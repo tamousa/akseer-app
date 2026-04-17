@@ -8,11 +8,11 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
-const C = "#0E7490";
 
 export default function HomeVisitsPage() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const C = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const topPadding = isWeb ? 67 : insets.top;
@@ -34,12 +34,12 @@ export default function HomeVisitsPage() {
   const [zones, setZones] = useState(ZONES_INIT.map((z) => ({ ...z })));
   const toggleZone = (nameAr: string) => setZones((prev) => prev.map((z) => z.nameAr === nameAr ? { ...z, active: !z.active } : z));
 
-  const cardBg = isDark ? "#0D2035" : "#FFFFFF";
-  const cardBorder = isDark ? "#1A3A52" : "#BAE6FD";
+  const cardBg = colors.surface;
+  const cardBorder = colors.border;
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: isDark ? "#070F18" : "#F0FDFF" }}
-      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
+    <ScrollView style={{ flex: 1, backgroundColor: colors.background }}
+      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 90 }} showsVerticalScrollIndicator={false}>
       <View style={styles.header}>
         <Pressable onPress={() => router.back()} style={styles.backBtn}>
           <Feather name="chevron-right" size={24} color={isDark ? "#fff" : "#0A2330"} />

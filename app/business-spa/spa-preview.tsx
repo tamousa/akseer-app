@@ -8,7 +8,6 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
-const BRAND = "#6366F1";
 
 const SERVICES = [
   { nameAr: "تدليك سويدي",          nameEn: "Swedish Massage",       duration: 60,  price: 320, descAr: "استرخاء عميق للعضلات",       descEn: "Deep muscle relaxation" },
@@ -37,6 +36,7 @@ const REVIEWS = [
 export default function SpaPreview() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const BRAND = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const { t, lang } = useLanguage();
@@ -50,19 +50,19 @@ export default function SpaPreview() {
   };
 
   return (
-    <View style={[styles.container, { backgroundColor: isDark ? "#0A0A2A" : "#EEF2FF" }]}>
-      <View style={[styles.header, { backgroundColor: BRAND, paddingTop: isWeb ? 72 : insets.top + 16 }]}>
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
+      <View style={[styles.header, { backgroundColor: colors.surface, paddingTop: isWeb ? 72 : insets.top + 16, borderBottomWidth: 1, borderBottomColor: colors.border }]}>
         <Pressable style={styles.backBtn} onPress={() => router.back()}>
           <Feather name="chevron-right" size={22} color="#fff" />
         </Pressable>
         <View style={{ flex: 1, alignItems: "center" }}>
-          <Text style={styles.headerTitle}>{t("معاينة الصفحة العامة","Public Page Preview")}</Text>
+          <Text style={[styles.headerTitle, { color: colors.text }]}>{t("معاينة الصفحة العامة","Public Page Preview")}</Text>
           <Text style={styles.headerSub}>{t("هكذا يراك العملاء في تطبيق أكسير","How clients see you in Akseer")}</Text>
         </View>
         <View style={{ width: 38 }} />
       </View>
 
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: insets.bottom + 80 }}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: insets.bottom + 90 }}>
         <View style={[styles.bioCard, { backgroundColor: isDark ? "#12124A" : "#fff", borderColor: BRAND + "30" }]}>
           <View style={[styles.avatar, { backgroundColor: BRAND }]}>
             <Text style={styles.avatarText}>💆</Text>
@@ -210,7 +210,7 @@ export default function SpaPreview() {
 const styles = StyleSheet.create({
   container: { flex: 1 },
   header: { flexDirection: "row-reverse", alignItems: "flex-end", paddingHorizontal: 16, paddingBottom: 16, gap: 12 },
-  backBtn: { width: 38, height: 38, borderRadius: 12, backgroundColor: "rgba(255,255,255,0.2)", alignItems: "center", justifyContent: "center" },
+  backBtn: { width: 38, height: 38, borderRadius: 12, alignItems: "center", justifyContent: "center" },
   headerTitle: { fontSize: 16, color: "#fff", fontFamily: "Cairo_700Bold" },
   headerSub: { fontSize: 11, color: "rgba(255,255,255,0.75)", fontFamily: "Tajawal_400Regular" },
   bioCard: { flexDirection: "row-reverse", gap: 12, margin: 16, borderRadius: 18, padding: 16, borderWidth: 1 },

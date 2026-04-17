@@ -8,11 +8,11 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
-const C = "#0369A1";
 
 export default function LabInvoices() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const C = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const topPadding = isWeb ? 67 : insets.top;
@@ -33,7 +33,7 @@ export default function LabInvoices() {
   ];
 
   const [filterIdx, setFilterIdx] = useState(0);
-  const cardBg = isDark ? "#0D2035" : "#FFFFFF";
+  const cardBg = colors.surface;
   const cardBorder = isDark ? "#1A3352" : "#BAD4E8";
 
   const filtered = filterIdx === 0 ? INVOICES : INVOICES.filter((inv) =>
@@ -42,14 +42,14 @@ export default function LabInvoices() {
   const paidTotal = INVOICES.filter((inv) => inv.statusAr === "مدفوعة").length;
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: isDark ? "#060E1A" : "#F0F7FF" }}
-      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
+    <ScrollView style={{ flex: 1, backgroundColor: colors.background }}
+      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 90 }} showsVerticalScrollIndicator={false}>
       <View style={styles.header}>
         <Pressable onPress={() => router.back()} style={styles.backBtn}>
           <Feather name="chevron-right" size={24} color={isDark ? "#fff" : "#0A1F35"} />
         </Pressable>
         <Text style={[styles.pageTitle, { color: isDark ? "#fff" : "#0A1F35" }]}>{t("الفواتير","Invoices")}</Text>
-        <Pressable style={[styles.exportBtn, { backgroundColor: isDark ? "#0D2035" : "#DBEAFE", borderColor: C + "40" }]}
+        <Pressable style={[styles.exportBtn, { backgroundColor: colors.surfaceAlt, borderColor: C + "40" }]}
           onPress={() => Alert.alert(t("تصدير الفواتير","Export Invoices"), t("سيتم تصدير فواتير الشهر الحالي بصيغة PDF","Current month invoices will be exported as PDF"))}>
           <Feather name="download" size={16} color={C} />
         </Pressable>

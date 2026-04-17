@@ -8,11 +8,11 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
-const BRAND = "#92400E";
 
 export default function CuppingSessions() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const BRAND = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const { t, lang } = useLanguage();
@@ -28,15 +28,15 @@ export default function CuppingSessions() {
   ];
 
   return (
-    <View style={[styles.container, { backgroundColor: isDark ? "#1A0E00" : "#FFFBEB" }]}>
-      <View style={[styles.header, { backgroundColor: BRAND, paddingTop: isWeb ? 72 : insets.top + 16 }]}>
-        <Text style={styles.headerTitle}>{t("أنواع الجلسات","Session Types")}</Text>
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
+      <View style={[styles.header, { backgroundColor: colors.surface, paddingTop: isWeb ? 72 : insets.top + 16, borderBottomWidth: 1, borderBottomColor: colors.border }]}>
+        <Text style={[styles.headerTitle, { color: colors.text }]}>{t("أنواع الجلسات","Session Types")}</Text>
         <View style={{ flexDirection: "row-reverse", gap: 8 }}>
-          <Pressable style={styles.addBtn} onPress={() => router.push("/business-cupping/packages" as any)}>
-            <Feather name="package" size={18} color="#fff" />
+          <Pressable style={[styles.addBtn, { backgroundColor: colors.surfaceAlt }]} onPress={() => router.push("/business-cupping/packages" as any)}>
+            <Feather name="package" size={18} color={colors.primary} />
           </Pressable>
-          <Pressable style={styles.addBtn} onPress={() => router.push("/business-cupping/add-session" as any)}>
-            <Feather name="plus" size={20} color="#fff" />
+          <Pressable style={[styles.addBtn, { backgroundColor: colors.surfaceAlt }]} onPress={() => router.push("/business-cupping/add-session" as any)}>
+            <Feather name="plus" size={20} color={colors.primary} />
           </Pressable>
         </View>
       </View>
@@ -49,9 +49,9 @@ export default function CuppingSessions() {
         </Pressable>
       </View>
 
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 80 }}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 90 }}>
         {SESSION_TYPES.map((sv) => (
-          <View key={sv.id} style={[styles.sessCard, { backgroundColor: isDark ? "#2A1500" : "#fff", borderColor: BRAND + "25" }]}>
+          <View key={sv.id} style={[styles.sessCard, { backgroundColor: colors.surface, borderColor: BRAND + "25" }]}>
             <View style={[styles.sessIcon, { backgroundColor: BRAND + "20" }]}>
               <Feather name="droplet" size={20} color={BRAND} />
             </View>
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   container: { flex: 1 },
   header: { flexDirection: "row-reverse", justifyContent: "space-between", alignItems: "flex-end", paddingHorizontal: 20, paddingBottom: 16 },
   headerTitle: { fontSize: 20, color: "#fff", fontFamily: "Cairo_700Bold" },
-  addBtn: { width: 38, height: 38, borderRadius: 12, backgroundColor: "rgba(255,255,255,0.2)", alignItems: "center", justifyContent: "center" },
+  addBtn: { width: 38, height: 38, borderRadius: 12, alignItems: "center", justifyContent: "center" },
   sterilBanner: { flexDirection: "row-reverse", alignItems: "center", gap: 8, margin: 16, padding: 12, borderRadius: 12, borderWidth: 1 },
   sterilText: { flex: 1, fontSize: 11, fontFamily: "Tajawal_700Bold", textAlign: "right" },
   sterilBtn: { paddingHorizontal: 10, paddingVertical: 5, backgroundColor: "#ECFDF5", borderRadius: 8 },

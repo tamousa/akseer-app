@@ -46,16 +46,16 @@ export default function ProductsPage() {
   const cardBorder = isDark ? "#2A1F45" : "#EDE9FE";
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: isDark ? "#0F0A1E" : "#F7F3FF" }}
-      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 40 }}
+    <ScrollView style={{ flex: 1, backgroundColor: colors.background }}
+      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 90 }}
       showsVerticalScrollIndicator={false}>
       <View style={styles.header}>
         <Pressable onPress={() => router.back()} style={styles.backBtn}>
-          <Feather name="chevron-right" size={24} color={isDark ? "#fff" : "#1A0A33"} />
+          <Feather name="chevron-right" size={24} color={colors.text} />
         </Pressable>
-        <Text style={[styles.pageTitle, { color: isDark ? "#fff" : "#1A0A33" }]}>{t("المنتجات والعروض والباقات", "Products, Offers & Packages")}</Text>
-        <Pressable style={styles.addBtn} onPress={() => Alert.alert(t("إضافة", "Add"), `${t("إضافة", "Add")} ${TABS[activeTab]}`)}>
-          <Feather name="plus" size={18} color="#fff" />
+        <Text style={[styles.pageTitle, { color: colors.text }]}>{t("المنتجات والعروض والباقات", "Products, Offers & Packages")}</Text>
+        <Pressable style={[styles.addBtn, { backgroundColor: colors.surfaceAlt }]} onPress={() => Alert.alert(t("إضافة", "Add"), `${t("إضافة", "Add")} ${TABS[activeTab]}`)}>
+          <Feather name="plus" size={18} color={colors.primary} />
         </Pressable>
       </View>
 
@@ -90,7 +90,7 @@ export default function ProductsPage() {
                 <View style={[styles.stockBadge, { backgroundColor: p.statusColor + "20" }]}>
                   <Text style={[styles.stockText, { color: p.statusColor }]}>{p.status}  ·  {p.stock}</Text>
                 </View>
-                <Text style={[styles.productName, { color: isDark ? "#fff" : "#1A0A33" }]}>{p.name}</Text>
+                <Text style={[styles.productName, { color: colors.text }]}>{p.name}</Text>
               </View>
               <Text style={[styles.productCat, { color: colors.muted }]}>{p.category}</Text>
             </View>
@@ -111,7 +111,7 @@ export default function ProductsPage() {
                   <View style={[styles.offerStatus, { backgroundColor: o.statusColor + "20" }]}>
                     <Text style={[styles.offerStatusText, { color: o.statusColor }]}>{o.status}</Text>
                   </View>
-                  <Text style={[styles.offerName, { color: isDark ? "#fff" : "#1A0A33" }]}>{o.name}</Text>
+                  <Text style={[styles.offerName, { color: colors.text }]}>{o.name}</Text>
                 </View>
                 <Text style={[styles.offerMeta, { color: colors.muted }]}>
                   {o.type}  ·  {o.value}  ·  {o.products} {t("منتج","products")}  ·  {o.ends}
@@ -130,7 +130,7 @@ export default function ProductsPage() {
             <View style={styles.pkgRow}>
               <Feather name="chevron-left" size={16} color={colors.muted} />
               <View style={{ flex: 1 }}>
-                <Text style={[styles.pkgName, { color: isDark ? "#fff" : "#1A0A33" }]}>{pkg.name}</Text>
+                <Text style={[styles.pkgName, { color: colors.text }]}>{pkg.name}</Text>
                 <Text style={[styles.pkgMeta, { color: colors.muted }]}>{pkg.items} {t("عناصر","items")}</Text>
                 <View style={styles.pkgPriceRow}>
                   <Text style={[styles.pkgOriginal, { color: colors.muted }]}>{pkg.originalPrice} SAR</Text>

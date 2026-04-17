@@ -8,11 +8,11 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
-const C = "#0369A1";
 
 export default function LabPayments() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const C = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const topPadding = isWeb ? 67 : insets.top;
@@ -37,12 +37,12 @@ export default function LabPayments() {
     { nameAr: "نقد", nameEn: "Cash", percent: 10, color: "#D97706" },
   ];
 
-  const cardBg = isDark ? "#0D2035" : "#FFFFFF";
+  const cardBg = colors.surface;
   const cardBorder = isDark ? "#1A3352" : "#BAD4E8";
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: isDark ? "#060E1A" : "#F0F7FF" }}
-      contentContainerStyle={{ paddingTop: topPadding + 16, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
+    <ScrollView style={{ flex: 1, backgroundColor: colors.background }}
+      contentContainerStyle={{ paddingTop: topPadding + 16, paddingBottom: 90 }} showsVerticalScrollIndicator={false}>
       <Text style={[styles.pageTitle, { color: isDark ? "#fff" : "#0A1F35", paddingHorizontal: 16, marginBottom: 16 }]}>{t("المدفوعات","Payments")}</Text>
 
       <View style={[styles.balanceCard, { backgroundColor: C }]}>
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
   balStatText: { fontSize: 13, fontFamily: "Tajawal_400Regular", color: "#BAD4E8" },
   balDivider: { width: 1, height: 16, backgroundColor: "#ffffff30" },
   withdrawBtn: { flexDirection: "row-reverse", gap: 8, backgroundColor: "#fff", alignSelf: "flex-start", paddingHorizontal: 16, paddingVertical: 10, borderRadius: 12, alignItems: "center" },
-  withdrawText: { fontSize: 13, fontFamily: "Tajawal_700Bold", color: C },
+  withdrawText: { fontSize: 13, fontFamily: "Tajawal_700Bold", color: "#A86DBF" },
   sectionCard: { borderRadius: 18, padding: 16, borderWidth: 1 },
   inner: { flexDirection: "row-reverse", alignItems: "center", gap: 14 },
   sIcon: { width: 52, height: 52, borderRadius: 16, alignItems: "center", justifyContent: "center" },

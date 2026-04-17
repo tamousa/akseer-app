@@ -9,12 +9,11 @@ import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
 
-const C = "#0369A1";
 
 const HOME_VISITS = [
   { id: "HV-201", patientAr: "فاطمة العتيبي", patientEn: "Fatima Al-Otaibi", testsAr: "هرمونات الغدة الدرقية TSH/T3/T4", testsEn: "Thyroid Hormones TSH/T3/T4", techAr: "فني. عمر السالم", techEn: "Tech. Omar Al-Salim", addressAr: "الرياض - حي الملقا", addressEn: "Riyadh - Malqa", date: "اليوم", dateEn: "Today", time: "10:30", statusAr: "مؤكد", statusEn: "Confirmed", statusColor: "#D97706", statusBg: "#FEF3C7", feeAr: "50 SAR رسوم التنقل", feeEn: "50 SAR transit fee", distance: "7 km", prepAr: "قبل الدواء الصباحي", prepEn: "Before morning medication" },
   { id: "HV-202", patientAr: "محمد الغامدي", patientEn: "Mohammed Al-Ghamdi", testsAr: "باقة مرضى السكري", testsEn: "Diabetes Package", techAr: "فني. سارة النجار", techEn: "Tech. Sara Al-Najjar", addressAr: "الرياض - حي الروضة", addressEn: "Riyadh - Rawda", date: "اليوم", dateEn: "Today", time: "12:00", statusAr: "انتظار", statusEn: "Pending", statusColor: "#6B7280", statusBg: "#F3F4F6", feeAr: "50 SAR رسوم التنقل", feeEn: "50 SAR transit fee", distance: "11 km", prepAr: "صيام 8 ساعات", prepEn: "Fast 8 hours" },
-  { id: "HV-200", patientAr: "نورة السلمي", patientEn: "Noura Al-Salmi", testsAr: "صورة دم كاملة + سكر", testsEn: "CBC + Blood Sugar", techAr: "فني. عمر السالم", techEn: "Tech. Omar Al-Salim", addressAr: "الرياض - حي النزهة", addressEn: "Riyadh - Nuzha", date: "أمس", dateEn: "Yesterday", time: "09:00", statusAr: "مكتمل", statusEn: "Completed", statusColor: C, statusBg: "#DBEAFE", feeAr: "50 SAR رسوم التنقل", feeEn: "50 SAR transit fee", distance: "3 km", prepAr: "صيام 8 ساعات", prepEn: "Fast 8 hours" },
+  { id: "HV-200", patientAr: "نورة السلمي", patientEn: "Noura Al-Salmi", testsAr: "صورة دم كاملة + سكر", testsEn: "CBC + Blood Sugar", techAr: "فني. عمر السالم", techEn: "Tech. Omar Al-Salim", addressAr: "الرياض - حي النزهة", addressEn: "Riyadh - Nuzha", date: "أمس", dateEn: "Yesterday", time: "09:00", statusAr: "مكتمل", statusEn: "Completed", statusColor: "#A86DBF", statusBg: "#DBEAFE", feeAr: "50 SAR رسوم التنقل", feeEn: "50 SAR transit fee", distance: "3 km", prepAr: "صيام 8 ساعات", prepEn: "Fast 8 hours" },
 ];
 
 const ZONES = [
@@ -31,6 +30,7 @@ const TECHS = [
 export default function LabHomeVisits() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const C = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const topPadding = isWeb ? 67 : insets.top;
@@ -39,12 +39,12 @@ export default function LabHomeVisits() {
   const [zones, setZones] = useState(ZONES.map((z) => ({ ...z })));
   const toggleZone = (idx: number) => setZones((prev) => prev.map((z, i) => i === idx ? { ...z, active: !z.active } : z));
 
-  const cardBg = isDark ? "#0D2035" : "#FFFFFF";
+  const cardBg = colors.surface;
   const cardBorder = isDark ? "#1A3352" : "#BAD4E8";
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: isDark ? "#060E1A" : "#F0F7FF" }}
-      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
+    <ScrollView style={{ flex: 1, backgroundColor: colors.background }}
+      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 90 }} showsVerticalScrollIndicator={false}>
       <View style={styles.header}>
         <Pressable onPress={() => router.back()} style={styles.backBtn}>
           <Feather name="chevron-right" size={24} color={isDark ? "#fff" : "#0A1F35"} />
@@ -69,7 +69,7 @@ export default function LabHomeVisits() {
         <Text style={{ fontSize: 44 }}>🚗</Text>
       </View>
 
-      <View style={[styles.tabRow, { backgroundColor: isDark ? "#0D2035" : "#DBEAFE" }]}>
+      <View style={[styles.tabRow, { backgroundColor: colors.surfaceAlt }]}>
         <Pressable style={[styles.tabBtn, activeTab === "settings" && { backgroundColor: C }]} onPress={() => setActiveTab("settings")}>
           <Text style={[styles.tabText, { color: activeTab === "settings" ? "#fff" : isDark ? "#6B9EBD" : C }]}>{t("إعدادات التغطية","Coverage Settings")}</Text>
         </Pressable>
@@ -140,7 +140,7 @@ export default function LabHomeVisits() {
                 </Pressable>
               </View>
             ))}
-            <Pressable style={[styles.addZoneBtn, { borderColor: C, backgroundColor: isDark ? "#0D2035" : "#EFF6FF" }]}
+            <Pressable style={[styles.addZoneBtn, { borderColor: C, backgroundColor: colors.surface }]}
               onPress={() => Alert.alert(t("إضافة منطقة","Add Zone"), t("سيتم فتح نموذج إضافة منطقة تغطية جديدة","A form to add a new coverage zone will open"))}>
               <Feather name="plus" size={16} color={C} />
               <Text style={[styles.addZoneText, { color: C }]}>{t("إضافة منطقة تغطية","Add Coverage Zone")}</Text>

@@ -5,6 +5,7 @@ import {
   I18nManager, Platform, Pressable, ScrollView, StyleSheet, Text, View,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import BusinessHeader from "@/components/BusinessHeader";
 import Colors from "@/constants/colors";
 import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
@@ -41,22 +42,13 @@ export default function BusinessHome() {
   ];
 
   return (
-    <ScrollView
-      style={{ flex: 1, backgroundColor: isDark ? "#0F0A1E" : "#F7F3FF" }}
-      contentContainerStyle={{ paddingTop: topPadding + 16, paddingBottom: 40 }}
-      showsVerticalScrollIndicator={false}
-    >
-      <View style={styles.headerRow}>
-        <LangToggle color="#7C3AED" bg={isDark ? "#1E1535" : "#EDE9FE"} />
-        <View style={styles.headerCenter}>
-          <Text style={[styles.greeting, { color: isDark ? "#BBA8D8" : "#7C5FA8" }]}>{t("مرحباً،", "Hello,")}</Text>
-          <Text style={[styles.storeName, { color: isDark ? "#fff" : "#1A0A33" }]}>{t("متجر الصحة النقية", "Pure Health Store")}</Text>
-        </View>
-        <View style={[styles.notifBtn, { backgroundColor: isDark ? "#1E1535" : "#EDE9FE" }]}>
-          <Feather name="bell" size={20} color="#7C3AED" />
-          <View style={styles.notifDot} />
-        </View>
-      </View>
+    <View style={{ flex: 1, backgroundColor: colors.background }}>
+      <BusinessHeader title={t("متجر الصحة النقية", "Pure Health Store")} />
+      <ScrollView
+        style={{ flex: 1 }}
+        contentContainerStyle={{ paddingTop: 0, paddingBottom: 90 }}
+        showsVerticalScrollIndicator={false}
+      >
 
       <View style={[styles.heroBanner, { backgroundColor: "#6D28D9" }]}>
         <View style={{ flex: 1 }}>
@@ -128,6 +120,7 @@ export default function BusinessHome() {
         ))}
       </View>
     </ScrollView>
+    </View>
   );
 }
 

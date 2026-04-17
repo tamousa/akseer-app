@@ -8,18 +8,18 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
-const C = "#0E7490";
 
 export default function ClinicPreviewPage() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const C = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const topPadding = isWeb ? 67 : insets.top;
   const { t, lang } = useLanguage();
   const [saved, setSaved] = useState(false);
-  const cardBg = isDark ? "#0D2035" : "#FFFFFF";
-  const cardBorder = isDark ? "#1A3A52" : "#BAE6FD";
+  const cardBg = colors.surface;
+  const cardBorder = colors.border;
 
   const DOCTORS = [
     { nameAr: "د. سارة الدوسري", nameEn: "Dr. Sarah Al-Dossari", specialtyAr: "طب عام", specialtyEn: "General Med", rating: 4.9, fee: 350, available: true, emoji: "👩‍⚕️", sessions: 280 },
@@ -48,7 +48,7 @@ export default function ClinicPreviewPage() {
   ];
 
   return (
-    <View style={{ flex: 1, backgroundColor: isDark ? "#070F18" : "#F0FDFF" }}>
+    <View style={{ flex: 1, backgroundColor: colors.background }}>
       <View style={[styles.topBar, { backgroundColor: "#083344", paddingTop: topPadding + 8 }]}>
         <View style={styles.topBarRow}>
           <Pressable onPress={() => router.back()} style={styles.backBtn}>

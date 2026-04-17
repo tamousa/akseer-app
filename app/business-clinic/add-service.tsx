@@ -56,7 +56,7 @@ export default function AddClinicService() {
           <Pressable style={st.saveHdr} onPress={save}><Text style={st.saveHdrTxt}>{t("حفظ","Save")}</Text></Pressable>
         </View>
 
-        <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 80, gap: 14 }}>
+        <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 90, gap: 14 }}>
           <Pressable style={[st.imgArea, { backgroundColor: card, borderColor: BRAND + "40" }]}
             onPress={() => Alert.alert(t("رفع صورة","Upload Image"), t("اختر صورة توضيحية","Choose an illustrative image"))}>
             <View style={[st.imgIcon, { backgroundColor: BRAND + "20" }]}><Feather name="camera" size={28} color={BRAND} /></View>

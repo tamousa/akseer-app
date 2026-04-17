@@ -3,16 +3,17 @@ import { router } from "expo-router";
 import React, { useState } from "react";
 import { I18nManager, Platform, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import BusinessHeader from "@/components/BusinessHeader";
 import Colors from "@/constants/colors";
 import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
-const BRAND = "#BE185D";
 
 export default function BeautyIndex() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const BRAND = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const [notifOpen, setNotifOpen] = useState(false);
@@ -51,23 +52,9 @@ export default function BeautyIndex() {
 
   return (
     <View style={[styles.container, { backgroundColor: isDark ? "#150010" : "#FFF0F6" }]}>
-      <View style={[styles.header, { backgroundColor: BRAND, paddingTop: isWeb ? 72 : insets.top + 16 }]}>
-        <View style={{ flex: 1 }}>
-          <Text style={styles.headerSub}>{t("لوحة تحكم | مركز","Control Panel | Center")}</Text>
-          <Text style={styles.headerTitle}>{t("أكسير للعناية والتجميل 💅","Akseer Beauty & Care 💅")}</Text>
-        </View>
-        <View style={{ flexDirection: "row-reverse", gap: 10 }}>
-          <Pressable style={styles.iconBtn} onPress={() => setNotifOpen(true)}>
-            <Feather name="bell" size={20} color="#fff" />
-            <View style={styles.badge}><Text style={styles.badgeText}>3</Text></View>
-          </Pressable>
-          <Pressable style={styles.iconBtn} onPress={() => router.push("/business-beauty/beauty-preview" as any)}>
-            <Feather name="eye" size={20} color="#fff" />
-          </Pressable>
-        </View>
-      </View>
+      <BusinessHeader />
 
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: insets.bottom + 80 }}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: insets.bottom + 90 }}>
         <View style={styles.statsGrid}>
           {STATS.map((s, i) => (
             <View key={i} style={[styles.statCard, { backgroundColor: isDark ? "#2D0020" : "#fff", borderColor: BRAND + "30" }]}>

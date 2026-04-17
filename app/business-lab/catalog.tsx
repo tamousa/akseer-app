@@ -9,17 +9,17 @@ import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
 
-const C = "#0369A1";
 
 export default function LabCatalog() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const C = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const topPadding = isWeb ? 67 : insets.top;
   const { t } = useLanguage();
 
-  const cardBg = isDark ? "#0D2035" : "#FFFFFF";
+  const cardBg = colors.surface;
   const cardBorder = isDark ? "#1A3352" : "#BAD4E8";
 
   const SECTIONS = [
@@ -37,11 +37,11 @@ export default function LabCatalog() {
   ];
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: isDark ? "#060E1A" : "#F0F7FF" }}
-      contentContainerStyle={{ paddingTop: topPadding + 16, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
+    <ScrollView style={{ flex: 1, backgroundColor: colors.background }}
+      contentContainerStyle={{ paddingTop: topPadding + 16, paddingBottom: 90 }} showsVerticalScrollIndicator={false}>
       <View style={styles.pageHeader}>
         <Text style={[styles.pageTitle, { color: isDark ? "#fff" : "#0A1F35" }]}>{t("كتالوج المختبر","Lab Catalog")}</Text>
-        <Pressable style={[styles.previewBtn, { backgroundColor: isDark ? "#0D2035" : "#DBEAFE", borderColor: C + "40" }]}
+        <Pressable style={[styles.previewBtn, { backgroundColor: colors.surfaceAlt, borderColor: C + "40" }]}
           onPress={() => router.push("/business-lab/lab-preview" as any)}>
           <Feather name="eye" size={14} color={C} />
           <Text style={[styles.previewBtnText, { color: C }]}>{t("معاينة","Preview")}</Text>

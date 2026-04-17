@@ -8,11 +8,11 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
-const C = "#7C3AED";
 
 export default function StorePreviewPage() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const C = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const topPadding = isWeb ? 67 : insets.top;
@@ -54,7 +54,7 @@ export default function StorePreviewPage() {
   const cardBorder = isDark ? "#2A1F45" : "#EDE9FE";
 
   return (
-    <View style={{ flex: 1, backgroundColor: isDark ? "#0F0A1E" : "#F7F3FF" }}>
+    <View style={{ flex: 1, backgroundColor: colors.background }}>
       <View style={[styles.topBar, { backgroundColor: "#4C1D95", paddingTop: topPadding + 8 }]}>
         <View style={styles.topBarRow}>
           <Pressable onPress={() => router.back()} style={styles.backBtn}><Feather name="chevron-right" size={22} color="#fff" /></Pressable>
@@ -109,7 +109,7 @@ export default function StorePreviewPage() {
         <View style={[styles.bioCard, { backgroundColor: cardBg, borderColor: cardBorder }]}>
           <View style={styles.bioHeader}>
             <Feather name="info" size={14} color={C} />
-            <Text style={[styles.bioTitle, { color: isDark ? "#fff" : "#1A0A33" }]}>{t("عن المتجر","About the Store")}</Text>
+            <Text style={[styles.bioTitle, { color: colors.text }]}>{t("عن المتجر","About the Store")}</Text>
           </View>
           <Text style={[styles.bioText, { color: isDark ? "#C4B5FD" : "#3D2B6B" }]}>
             {t("متجر الصحة النقية متخصص في المكملات الغذائية الطبيعية، منتجات العناية بالجسم، ومستلزمات اللياقة البدنية. نوفر منتجات أصلية 100% مع ضمان الجودة وخدمة توصيل سريعة لجميع أحياء الرياض.",
@@ -125,7 +125,7 @@ export default function StorePreviewPage() {
         </View>
 
         <View style={styles.secHeader}>
-          <Text style={[styles.secTitle, { color: isDark ? "#fff" : "#1A0A33" }]}>{t("العروض والخصومات","Offers & Discounts")}</Text>
+          <Text style={[styles.secTitle, { color: colors.text }]}>{t("العروض والخصومات","Offers & Discounts")}</Text>
           <Text style={[styles.secCount, { color: C }]}>{OFFERS.length} {t("عروض","Offers")}</Text>
         </View>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.hScroll}>
@@ -133,7 +133,7 @@ export default function StorePreviewPage() {
             <View key={i} style={[styles.offerCard, { backgroundColor: cardBg, borderColor: cardBorder }]}>
               <View style={[styles.offerBadge, { backgroundColor: o.color }]}><Text style={styles.offerBadgeText}>{o.badge}</Text></View>
               <Text style={{ fontSize: 30, marginBottom: 8 }}>{o.emoji}</Text>
-              <Text style={[styles.offerName, { color: isDark ? "#fff" : "#1A0A33" }]}>{lang === "ar" ? o.nameAr : o.nameEn}</Text>
+              <Text style={[styles.offerName, { color: colors.text }]}>{lang === "ar" ? o.nameAr : o.nameEn}</Text>
               <Text style={[styles.offerValidity, { color: colors.muted }]}>{t("حتى","Until")} {lang === "ar" ? o.validToAr : o.validToEn}</Text>
               <View style={[styles.offerCode, { backgroundColor: isDark ? "#2A1F45" : "#F5F0FF" }]}>
                 <Text style={[styles.offerCodeText, { color: C }]}>#{o.code}</Text>
@@ -143,13 +143,13 @@ export default function StorePreviewPage() {
         </ScrollView>
 
         <View style={styles.secHeader}>
-          <Text style={[styles.secTitle, { color: isDark ? "#fff" : "#1A0A33" }]}>{t("الخدمات","Services")}</Text>
+          <Text style={[styles.secTitle, { color: colors.text }]}>{t("الخدمات","Services")}</Text>
         </View>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.hScroll}>
           {SERVICES.map((s, i) => (
             <View key={i} style={[styles.serviceCard, { backgroundColor: cardBg, borderColor: cardBorder }]}>
               <View style={[styles.serviceEmoji, { backgroundColor: C + "15" }]}><Text style={{ fontSize: 26 }}>{s.emoji}</Text></View>
-              <Text style={[styles.serviceName, { color: isDark ? "#fff" : "#1A0A33" }]}>{lang === "ar" ? s.nameAr : s.nameEn}</Text>
+              <Text style={[styles.serviceName, { color: colors.text }]}>{lang === "ar" ? s.nameAr : s.nameEn}</Text>
               <Text style={[styles.serviceMeta, { color: colors.muted }]}>{lang === "ar" ? s.durationAr : s.durationEn}</Text>
               <View style={styles.serviceIcons}>
                 {s.virtual && <View style={[styles.sIcon, { backgroundColor: isDark ? "#1A1030" : "#EDE9FE" }]}><Text style={{ fontSize: 10 }}>📱</Text></View>}
@@ -161,7 +161,7 @@ export default function StorePreviewPage() {
         </ScrollView>
 
         <View style={styles.secHeader}>
-          <Text style={[styles.secTitle, { color: isDark ? "#fff" : "#1A0A33" }]}>{t("المنتجات","Products")}</Text>
+          <Text style={[styles.secTitle, { color: colors.text }]}>{t("المنتجات","Products")}</Text>
         </View>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.catScroll}>
           {CATS.map((cat, i) => (
@@ -181,7 +181,7 @@ export default function StorePreviewPage() {
                   {badge ? <View style={[styles.productBadge, { backgroundColor: C }]}><Text style={styles.productBadgeText}>{badge}</Text></View> : null}
                 </View>
                 <View style={styles.productInfo}>
-                  <Text style={[styles.productName, { color: isDark ? "#fff" : "#1A0A33" }]} numberOfLines={2}>{lang === "ar" ? p.nameAr : p.nameEn}</Text>
+                  <Text style={[styles.productName, { color: colors.text }]} numberOfLines={2}>{lang === "ar" ? p.nameAr : p.nameEn}</Text>
                   <View style={styles.productRatingRow}>
                     <Text style={[styles.productReviews, { color: colors.muted }]}>({p.reviews})</Text>
                     <Text style={[styles.productRatingVal, { color: "#D97706" }]}>{p.rating}</Text>
@@ -201,7 +201,7 @@ export default function StorePreviewPage() {
         </View>
 
         <View style={styles.secHeader}>
-          <Text style={[styles.secTitle, { color: isDark ? "#fff" : "#1A0A33" }]}>{t("آخر التقييمات","Latest Reviews")}</Text>
+          <Text style={[styles.secTitle, { color: colors.text }]}>{t("آخر التقييمات","Latest Reviews")}</Text>
           <View style={[styles.ratingBadge, { backgroundColor: C + "20" }]}>
             <Feather name="star" size={12} color={C} />
             <Text style={[styles.ratingBadgeText, { color: C }]}>4.8</Text>
@@ -212,7 +212,7 @@ export default function StorePreviewPage() {
             <View key={i} style={[styles.reviewCard, { backgroundColor: cardBg, borderColor: cardBorder }]}>
               <View style={styles.reviewTop}>
                 <Text style={[styles.reviewTime, { color: colors.muted }]}>{lang === "ar" ? r.timeAr : r.timeEn}</Text>
-                <Text style={[styles.reviewName, { color: isDark ? "#fff" : "#1A0A33" }]}>{r.customer}</Text>
+                <Text style={[styles.reviewName, { color: colors.text }]}>{r.customer}</Text>
                 <View style={[styles.reviewAvatar, { backgroundColor: C + "20" }]}>
                   <Text style={[styles.reviewAvatarText, { color: C }]}>{r.customer.charAt(0)}</Text>
                 </View>

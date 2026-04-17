@@ -9,7 +9,6 @@ import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
 
-const C = "#0369A1";
 
 const PACKAGES = [
   {
@@ -45,6 +44,7 @@ const PACKAGES = [
 export default function PackagesPage() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const C = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const topPadding = isWeb ? 67 : insets.top;
@@ -52,13 +52,13 @@ export default function PackagesPage() {
   const [expanded, setExpanded] = useState<number | null>(null);
   const [pkgs, setPkgs] = useState(PACKAGES.map((p) => ({ ...p })));
 
-  const cardBg = isDark ? "#0D2035" : "#FFFFFF";
+  const cardBg = colors.surface;
   const cardBorder = isDark ? "#1A3352" : "#BAD4E8";
   const togglePkg = (id: number) => setPkgs((prev) => prev.map((p) => p.id === id ? { ...p, active: !p.active } : p));
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: isDark ? "#060E1A" : "#F0F7FF" }}
-      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
+    <ScrollView style={{ flex: 1, backgroundColor: colors.background }}
+      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 90 }} showsVerticalScrollIndicator={false}>
       <View style={styles.header}>
         <Pressable onPress={() => router.back()} style={styles.backBtn}>
           <Feather name="chevron-right" size={24} color={isDark ? "#fff" : "#0A1F35"} />
@@ -66,7 +66,7 @@ export default function PackagesPage() {
         <Text style={[styles.pageTitle, { color: isDark ? "#fff" : "#0A1F35" }]}>{t("باقات التحاليل","Test Packages")}</Text>
         <Pressable style={[styles.addBtn, { backgroundColor: C }]}
           onPress={() => Alert.alert(t("إنشاء باقة","Create Package"), t("سيتم فتح نموذج إنشاء باقة جديدة","A form to create a new package will open"))}>
-          <Feather name="plus" size={18} color="#fff" />
+          <Feather name="plus" size={18} color={colors.primary} />
         </Pressable>
       </View>
 
@@ -152,7 +152,7 @@ export default function PackagesPage() {
         })}
       </View>
 
-      <Pressable style={[styles.addPkgBtn, { borderColor: C, backgroundColor: isDark ? "#0D2035" : "#EFF6FF", marginHorizontal: 16, marginTop: 16 }]}
+      <Pressable style={[styles.addPkgBtn, { borderColor: C, backgroundColor: colors.surface, marginHorizontal: 16, marginTop: 16 }]}
         onPress={() => Alert.alert(t("باقة جديدة","New Package"), t("سيتم فتح نموذج إنشاء باقة جديدة مخصصة","A custom package creation form will open"))}>
         <Feather name="plus" size={16} color={C} />
         <Text style={[styles.addPkgBtnText, { color: C }]}>{t("إنشاء باقة جديدة","Create New Package")}</Text>

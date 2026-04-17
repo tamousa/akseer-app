@@ -8,7 +8,6 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
-const BRAND = "#059669";
 const VAT = 0.15;
 
 const CATS_AR = ["علاج طبيعي", "إعادة تأهيل", "تأهيل رياضي", "ما بعد جراحة", "تقويم", "أخرى"];
@@ -20,6 +19,7 @@ const INS_EN = ["Bupa", "Tawuniya", "Al Ahli", "Al Rajhi", "Al-Ittihad", "None"]
 export default function AddRehabService() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const BRAND = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const { t, lang } = useLanguage();
@@ -52,12 +52,12 @@ export default function AddRehabService() {
   return (
     <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : undefined}>
       <View style={[st.c, { backgroundColor: bg }]}>
-        <View style={[st.hdr, { backgroundColor: BRAND, paddingTop: isWeb ? 72 : insets.top + 16 }]}>
+        <View style={[st.hdr, { backgroundColor: colors.surface, paddingTop: isWeb ? 72 : insets.top + 16, borderBottomWidth: 1, borderBottomColor: colors.border }]}>
           <Pressable style={st.back} onPress={() => router.back()}><Feather name="chevron-right" size={22} color="#fff" /></Pressable>
           <Text style={st.hdrTitle}>{t("إضافة خدمة علاجية","Add Therapy Service")}</Text>
           <Pressable style={st.saveHdr} onPress={save}><Text style={st.saveHdrTxt}>{t("حفظ","Save")}</Text></Pressable>
         </View>
-        <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 80, gap: 14 }}>
+        <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 90, gap: 14 }}>
           <Pressable style={[st.imgArea, { backgroundColor: card, borderColor: BRAND + "40" }]} onPress={() => Alert.alert(t("رفع صورة","Upload Photo"), t("اختر صورة توضيحية للخدمة","Choose an illustrative photo"))}>
             <View style={[st.imgIcon, { backgroundColor: BRAND + "20" }]}><Feather name="camera" size={28} color={BRAND} /></View>
             <Text style={[st.imgLabel, { color: colors.muted }]}>{t("اضغط لإضافة صورة الخدمة","Tap to add service photo")}</Text>
@@ -152,7 +152,7 @@ export default function AddRehabService() {
 const st = StyleSheet.create({
   c: { flex: 1 },
   hdr: { flexDirection: "row-reverse", alignItems: "flex-end", paddingHorizontal: 16, paddingBottom: 16, gap: 12 },
-  back: { width: 38, height: 38, borderRadius: 12, backgroundColor: "rgba(255,255,255,0.2)", alignItems: "center", justifyContent: "center" },
+  back: { width: 38, height: 38, borderRadius: 12, alignItems: "center", justifyContent: "center" },
   hdrTitle: { flex: 1, fontSize: 17, color: "#fff", fontFamily: "Cairo_700Bold", textAlign: "center" },
   saveHdr: { paddingHorizontal: 14, paddingVertical: 8, backgroundColor: "rgba(255,255,255,0.25)", borderRadius: 10 },
   saveHdrTxt: { color: "#fff", fontFamily: "Tajawal_700Bold", fontSize: 14 },

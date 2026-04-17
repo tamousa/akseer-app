@@ -48,7 +48,7 @@ export default function AddClinicOffer() {
           <Pressable style={st.saveHdr} onPress={save}><Text style={st.saveHdrTxt}>{t("حفظ","Save")}</Text></Pressable>
         </View>
 
-        <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 80, gap: 14 }}>
+        <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 90, gap: 14 }}>
           <View style={[st.sec, { backgroundColor: card, borderColor: BRAND + "20" }]}>
             <Text style={[st.secTitle, { color: colors.text }]}>{t("معلومات العرض","Offer Info")}</Text>
             <View style={[st.inpWrap, { borderColor: colors.border }]}>

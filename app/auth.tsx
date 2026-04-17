@@ -20,7 +20,7 @@ import Colors from "@/constants/colors";
 import { useApp } from "@/context/AppContext";
 import { useTheme } from "@/context/ThemeContext";
 import { useLanguage } from "@/context/LanguageContext";
-import LangToggle from "@/components/LangToggle";
+import { LangToggle } from "@/components/LangToggle";
 
 I18nManager.forceRTL(true);
 

@@ -52,14 +52,14 @@ export default function InvoicesPage() {
   const total = paidInvoices.reduce((a, i) => a + parseFloat(i.amount.replace(" SAR", "").replace(",", "")), 0);
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: isDark ? "#0F0A1E" : "#F7F3FF" }}
-      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 40 }}
+    <ScrollView style={{ flex: 1, backgroundColor: colors.background }}
+      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 90 }}
       showsVerticalScrollIndicator={false}>
       <View style={styles.header}>
         <Pressable onPress={() => router.back()} style={styles.backBtn}>
-          <Feather name="chevron-right" size={24} color={isDark ? "#fff" : "#1A0A33"} />
+          <Feather name="chevron-right" size={24} color={colors.text} />
         </Pressable>
-        <Text style={[styles.pageTitle, { color: isDark ? "#fff" : "#1A0A33" }]}>{t("الفواتير","Invoices")}</Text>
+        <Text style={[styles.pageTitle, { color: colors.text }]}>{t("الفواتير","Invoices")}</Text>
         <Pressable style={styles.exportBtn}
           onPress={() => Alert.alert(t("تصدير الفواتير","Export Invoices"), t("سيتم تصدير الفواتير كملف PDF أو Excel","Invoices will be exported as PDF or Excel"))}>
           <Feather name="download" size={16} color="#7C3AED" />
@@ -93,7 +93,7 @@ export default function InvoicesPage() {
                 </View>
                 <View style={{ flex: 1 }}>
                   <Text style={[styles.invId, { color: colors.muted }]}>{inv.id}  ·  {inv.date}</Text>
-                  <Text style={[styles.invCustomer, { color: isDark ? "#fff" : "#1A0A33" }]}>{inv.customer}</Text>
+                  <Text style={[styles.invCustomer, { color: colors.text }]}>{inv.customer}</Text>
                 </View>
                 <Text style={[styles.invAmount, { color: "#7C3AED" }]}>{inv.amount}</Text>
               </View>

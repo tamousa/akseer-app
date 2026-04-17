@@ -64,14 +64,14 @@ export default function InventoryPage() {
   });
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: isDark ? "#0F0A1E" : "#F7F3FF" }}
-      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 40 }}
+    <ScrollView style={{ flex: 1, backgroundColor: colors.background }}
+      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 90 }}
       showsVerticalScrollIndicator={false}>
       <View style={styles.header}>
         <Pressable onPress={() => router.back()} style={styles.backBtn}>
-          <Feather name="chevron-right" size={24} color={isDark ? "#fff" : "#1A0A33"} />
+          <Feather name="chevron-right" size={24} color={colors.text} />
         </Pressable>
-        <Text style={[styles.pageTitle, { color: isDark ? "#fff" : "#1A0A33" }]}>{t("المخزون","Inventory")}</Text>
+        <Text style={[styles.pageTitle, { color: colors.text }]}>{t("المخزون","Inventory")}</Text>
         <Pressable style={styles.exportBtn}
           onPress={() => Alert.alert(t("تصدير المخزون","Export Inventory"), t("سيتم تصدير تقرير المخزون كملف Excel","Inventory report will be exported as Excel"))}>
           <Feather name="download" size={16} color="#7C3AED" />
@@ -122,7 +122,7 @@ export default function InventoryPage() {
                     <View style={[styles.statusBadge, { backgroundColor: s.bg }]}>
                       <Text style={[styles.statusText, { color: s.color }]}>{s.label}</Text>
                     </View>
-                    <Text style={[styles.itemName, { color: isDark ? "#fff" : "#1A0A33" }]}>{item.name}</Text>
+                    <Text style={[styles.itemName, { color: colors.text }]}>{item.name}</Text>
                   </View>
                   <Text style={[styles.itemSku, { color: colors.muted }]}>{item.sku}  ·  {CAT_LABELS[item.catKey] ?? item.catKey}</Text>
                 </View>

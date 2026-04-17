@@ -1,4 +1,5 @@
 import { Feather } from "@expo/vector-icons";
+import { router } from "expo-router";
 import React, { useState } from "react";
 import { Alert, I18nManager, Platform, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -7,105 +8,229 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
-const BRAND = "#6366F1";
 
-const STATUS_MAP: Record<string, { ar: string; en: string; color: string }> = {
-  confirmed: { ar: "مؤكد", en: "Confirmed", color: "#059669" },
-  waiting: { ar: "في الانتظار", en: "Waiting", color: "#D97706" },
-  completed: { ar: "مكتمل", en: "Completed", color: "#6366F1" },
-  cancelled: { ar: "ملغى", en: "Cancelled", color: "#EF4444" },
+const STATUS_MAP: Record<string, { ar: string; en: string; color: string; bg: string }> = {
+  confirmed: { ar: "مؤكد",             en: "Confirmed",         color: "#059669", bg: "#D1FAE5" },
+  waiting:   { ar: "بانتظار الموافقة", en: "Awaiting Approval", color: "#D97706", bg: "#FEF3C7" },
+  completed: { ar: "مكتمل",            en: "Completed",         color: "#6366F1", bg: "#EDE9FE" },
+  cancelled: { ar: "ملغى",             en: "Cancelled",         color: "#EF4444", bg: "#FEE2E2" },
+  rejected:  { ar: "مرفوض",            en: "Rejected",          color: "#9CA3AF", bg: "#F3F4F6" },
 };
 
-const BOOKINGS = [
-  { id: 1, nameAr: "خالد المنصور", nameEn: "Khalid Al-Mansour", serviceAr: "تدليك سويدي 60 د", serviceEn: "Swedish Massage 60 min", time: "10:00", dateAr: "اليوم", dateEn: "Today", therapistAr: "أحمد", therapistEn: "Ahmed", roomAr: "غرفة 1", roomEn: "Room 1", status: "confirmed", amount: 320 },
-  { id: 2, nameAr: "عمر الدوسري", nameEn: "Omar Al-Dossari", serviceAr: "حمام بخار + ساونا", serviceEn: "Steam Bath + Sauna", time: "11:00", dateAr: "اليوم", dateEn: "Today", therapistAr: "—", therapistEn: "—", roomAr: "—", roomEn: "—", status: "confirmed", amount: 220 },
-  { id: 3, nameAr: "لمياء الزهراني", nameEn: "Lamia Al-Zahrani", serviceAr: "تدليك أحجار ساخنة", serviceEn: "Hot Stone Massage", time: "13:30", dateAr: "اليوم", dateEn: "Today", therapistAr: "وليد", therapistEn: "Walid", roomAr: "غرفة 2", roomEn: "Room 2", status: "waiting", amount: 420 },
-  { id: 4, nameAr: "نوف العسيري", nameEn: "Nouf Al-Asiri", serviceAr: "باقة الاسترخاء", serviceEn: "Relaxation Package", time: "15:00", dateAr: "اليوم", dateEn: "Today", therapistAr: "أحمد", therapistEn: "Ahmed", roomAr: "غرفة 4", roomEn: "Room 4", status: "confirmed", amount: 750 },
-  { id: 5, nameAr: "سعد الشمري", nameEn: "Saad Al-Shammari", serviceAr: "جاكوزي 30 د", serviceEn: "Jacuzzi 30 min", time: "09:30", dateAr: "غداً", dateEn: "Tomorrow", therapistAr: "—", therapistEn: "—", roomAr: "—", roomEn: "—", status: "confirmed", amount: 150 },
+const INITIAL_BOOKINGS = [
+  {
+    id: 1,
+    nameAr: "لمى الشهري",
+    nameEn: "Lama Al-Shahri",
+    serviceAr: "مساج استرخاء 60 دقيقة",
+    serviceEn: "60min Relaxation Massage",
+    time: "09:00",
+    dateAr: "اليوم",
+    dateEn: "Today",
+    staffAr: "رهف",
+    staffEn: "Rahaf",
+    status: "waiting",
+    amount: 280
+  },
+  {
+    id: 2,
+    nameAr: "نوف العمري",
+    nameEn: "Nouf Al-Omari",
+    serviceAr: "باقة سبا كاملة",
+    serviceEn: "Full Spa Package",
+    time: "10:30",
+    dateAr: "اليوم",
+    dateEn: "Today",
+    staffAr: "دانة",
+    staffEn: "Dana",
+    status: "waiting",
+    amount: 450
+  },
+  {
+    id: 3,
+    nameAr: "منى الرشيد",
+    nameEn: "Mona Al-Rashid",
+    serviceAr: "جاكوزي + سونا",
+    serviceEn: "Jacuzzi + Sauna",
+    time: "11:00",
+    dateAr: "اليوم",
+    dateEn: "Today",
+    staffAr: "رهف",
+    staffEn: "Rahaf",
+    status: "confirmed",
+    amount: 220
+  },
+  {
+    id: 4,
+    nameAr: "هدى الزهراني",
+    nameEn: "Huda Al-Zahrani",
+    serviceAr: "تدليك شياتسو",
+    serviceEn: "Shiatsu Massage",
+    time: "13:00",
+    dateAr: "اليوم",
+    dateEn: "Today",
+    staffAr: "دانة",
+    staffEn: "Dana",
+    status: "confirmed",
+    amount: 320
+  },
+  {
+    id: 5,
+    nameAr: "سارة السعيد",
+    nameEn: "Sara Al-Saeed",
+    serviceAr: "مساج استرخاء 90 دقيقة",
+    serviceEn: "90min Relaxation Massage",
+    time: "10:00",
+    dateAr: "غداً",
+    dateEn: "Tomorrow",
+    staffAr: "رهف",
+    staffEn: "Rahaf",
+    status: "confirmed",
+    amount: 380
+  }
 ];
 
 export default function SpaBookings() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const C = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
+  const topPadding = isWeb ? 67 : insets.top;
   const { t, lang } = useLanguage();
-
   const [tab, setTab] = useState<"today" | "tomorrow" | "all">("today");
+  const [bookings, setBookings] = useState(INITIAL_BOOKINGS);
 
   const TABS = [
-    { key: "today" as const, labelAr: "اليوم", labelEn: "Today" },
-    { key: "tomorrow" as const, labelAr: "غداً", labelEn: "Tomorrow" },
-    { key: "all" as const, labelAr: "الكل", labelEn: "All" },
+    { key: "today" as const,    labelAr: "اليوم", labelEn: "Today" },
+    { key: "tomorrow" as const, labelAr: "غداً",  labelEn: "Tomorrow" },
+    { key: "all" as const,      labelAr: "الكل",  labelEn: "All" },
   ];
 
-  const shown = tab === "all" ? BOOKINGS : BOOKINGS.filter((b) => {
-    if (tab === "today") return b.dateAr === "اليوم";
-    return b.dateAr === "غداً";
-  });
+  const shown = tab === "all" ? bookings : bookings.filter((b) => b.dateAr === (tab === "today" ? "اليوم" : "غداً"));
+  const pendingCount = bookings.filter((b) => b.status === "waiting").length;
+
+  const handleApprove = (id: number) => {
+    setBookings((prev) => prev.map((b) => b.id === id ? { ...b, status: "confirmed" } : b));
+    Alert.alert("✅ " + t("تم القبول", "Approved"), t("تم تأكيد الحجز بنجاح", "Booking confirmed successfully"));
+  };
+
+  const handleReject = (id: number, nameAr: string, nameEn: string) => {
+    Alert.alert(
+      t("رفض الحجز", "Reject Booking"),
+      t("هل تريد رفض هذا الحجز؟", `Reject booking for ${nameEn}?`),
+      [
+        { text: t("إلغاء", "Cancel"), style: "cancel" },
+        { text: t("رفض", "Reject"), style: "destructive",
+          onPress: () => setBookings((prev) => prev.map((b) => b.id === id ? { ...b, status: "rejected" } : b)),
+        },
+      ]
+    );
+  };
+
+  const cardBg = colors.surface;
+  const cardBorder = colors.border;
 
   return (
-    <View style={[s.container, { backgroundColor: isDark ? "#0A0A2A" : "#EEF2FF" }]}>
-      <View style={[s.header, { backgroundColor: BRAND, paddingTop: isWeb ? 72 : insets.top + 16 }]}>
-        <Text style={s.headerTitle}>{t("الحجوزات","Bookings")}</Text>
-        <Pressable style={s.addBtn} onPress={() => Alert.alert(t("حجز جديد","New Booking"), t("سيتم فتح نموذج حجز جديد","A new booking form will open"))}>
+    <View style={{ flex: 1, backgroundColor: colors.background }}>
+      <View style={[s.pageHeader, { paddingTop: topPadding + 10, backgroundColor: colors.background, borderBottomColor: cardBorder }]}>
+        <Pressable style={[s.iconBtn, { backgroundColor: colors.surfaceAlt }]} onPress={() => router.back()}>
+          <Feather name="chevron-right" size={22} color={colors.text} />
+        </Pressable>
+        <Text style={[s.pageTitle, { color: colors.text }]}>{t("إدارة الحجوزات", "Booking Management")}</Text>
+        <Pressable style={[s.iconBtn, { backgroundColor: C }]}
+          onPress={() => Alert.alert(t("حجز جديد", "New Booking"), t("سيتم فتح نموذج الحجز", "Booking form will open"))}>
           <Feather name="plus" size={20} color="#fff" />
         </Pressable>
       </View>
-      <View style={s.tabRow}>
+
+      {pendingCount > 0 && (
+        <Pressable style={[s.pendingBanner, { backgroundColor: isDark ? "#3B2200" : "#FEF3C7", borderColor: "#D97706" }]}
+          onPress={() => setTab("all")}>
+          <Feather name="alert-circle" size={18} color="#D97706" />
+          <Text style={[s.pendingText, { color: "#D97706" }]}>
+            {t(`${pendingCount} حجوزات بانتظار موافقتك`, `${pendingCount} bookings awaiting your approval`)}
+          </Text>
+          <Feather name="chevron-left" size={16} color="#D97706" />
+        </Pressable>
+      )}
+
+      <View style={[s.tabRow, { borderBottomColor: cardBorder, backgroundColor: colors.background }]}>
         {TABS.map((tb) => (
-          <Pressable key={tb.key} style={[s.tab, tab === tb.key && { borderBottomColor: BRAND, borderBottomWidth: 2 }]} onPress={() => setTab(tb.key)}>
-            <Text style={[s.tabText, { color: tab === tb.key ? BRAND : colors.muted }]}>{lang === "ar" ? tb.labelAr : tb.labelEn}</Text>
+          <Pressable key={tb.key}
+            style={[s.tab, tab === tb.key && { borderBottomColor: C, borderBottomWidth: 2 }]}
+            onPress={() => setTab(tb.key)}>
+            <Text style={[s.tabText, { color: tab === tb.key ? C : colors.muted }]}>{lang === "ar" ? tb.labelAr : tb.labelEn}</Text>
           </Pressable>
         ))}
       </View>
-      <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 80 }}>
+
+      <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 90 }}>
         {shown.map((b) => {
-          const st = STATUS_MAP[b.status];
+          const st = STATUS_MAP[b.status] || STATUS_MAP.waiting;
+          const isWaiting = b.status === "waiting";
           return (
-            <Pressable key={b.id} style={[s.card, { backgroundColor: isDark ? "#12124A" : "#fff", borderColor: BRAND + "25" }]}
-              onPress={() => Alert.alert(lang === "ar" ? b.nameAr : b.nameEn, `${t("الخدمة:","Service:")} ${lang === "ar" ? b.serviceAr : b.serviceEn}\n${t("الوقت:","Time:")} ${b.time}\n${t("المعالج:","Therapist:")} ${lang === "ar" ? b.therapistAr : b.therapistEn}\n${t("الغرفة:","Room:")} ${lang === "ar" ? b.roomAr : b.roomEn}`)}>
-              <View style={{ flex: 1 }}>
-                <Text style={[s.name, { color: colors.text }]}>{lang === "ar" ? b.nameAr : b.nameEn}</Text>
-                <Text style={[s.service, { color: colors.muted }]}>{lang === "ar" ? b.serviceAr : b.serviceEn}</Text>
-                <View style={{ flexDirection: "row-reverse", gap: 8 }}>
-                  <Text style={[s.time, { color: BRAND }]}>{b.time}</Text>
-                  {b.roomAr !== "—" && (
-                    <View style={[s.roomBadge, { backgroundColor: BRAND + "15" }]}>
-                      <Text style={[s.roomText, { color: BRAND }]}>{lang === "ar" ? b.roomAr : b.roomEn}</Text>
-                    </View>
-                  )}
+            <View key={b.id} style={[s.card, { backgroundColor: cardBg, borderColor: isWaiting ? "#D97706" : cardBorder, borderWidth: isWaiting ? 1.5 : 1, marginBottom: 12 }]}>
+              <View style={{ flexDirection: "row-reverse", justifyContent: "space-between" }}>
+                <View style={{ flex: 1 }}>
+                  <Text style={[s.name, { color: colors.text }]}>{lang === "ar" ? b.nameAr : b.nameEn}</Text>
+                  <Text style={[s.service, { color: colors.muted }]}>{lang === "ar" ? b.serviceAr : b.serviceEn}</Text>
+                  <Text style={[s.time, { color: C, marginTop: 4 }]}>{b.time} — {lang === "ar" ? b.dateAr : b.dateEn}</Text>
+                  <Text style={[s.service, { color: colors.muted, marginTop: 2 }]}>{lang === "ar" ? b.staffAr : b.staffEn}</Text>
+                </View>
+                <View style={{ alignItems: "flex-end", gap: 6 }}>
+                  <View style={[s.statusBadge, { backgroundColor: st.bg }]}>
+                    <Text style={[s.statusText, { color: st.color }]}>{lang === "ar" ? st.ar : st.en}</Text>
+                  </View>
+                  <Text style={[s.amount, { color: C }]}>{b.amount} SAR</Text>
                 </View>
               </View>
-              <View style={{ alignItems: "flex-end", gap: 6 }}>
-                <View style={[s.statusBadge, { backgroundColor: st.color + "20" }]}>
-                  <Text style={[s.statusText, { color: st.color }]}>{lang === "ar" ? st.ar : st.en}</Text>
+              {isWaiting && (
+                <View style={[s.actionRow, { borderTopColor: "#D97706" + "40" }]}>
+                  <Pressable style={[s.rejectBtn, { borderColor: "#DC2626" }]}
+                    onPress={() => handleReject(b.id, b.nameAr, b.nameEn)}>
+                    <Feather name="x" size={16} color="#DC2626" />
+                    <Text style={[s.actionText, { color: "#DC2626" }]}>{t("رفض", "Reject")}</Text>
+                  </Pressable>
+                  <Pressable style={[s.approveBtn, { backgroundColor: "#059669" }]}
+                    onPress={() => handleApprove(b.id)}>
+                    <Feather name="check" size={16} color="#fff" />
+                    <Text style={[s.actionText, { color: "#fff" }]}>{t("قبول الحجز", "Accept")}</Text>
+                  </Pressable>
                 </View>
-                <Text style={[s.amount, { color: BRAND }]}>{b.amount} SAR</Text>
-              </View>
-            </Pressable>
+              )}
+            </View>
           );
         })}
+        {shown.length === 0 && (
+          <View style={{ alignItems: "center", paddingVertical: 60, gap: 12 }}>
+            <Feather name="calendar" size={48} color={colors.muted} />
+            <Text style={{ fontSize: 14, fontFamily: "Tajawal_400Regular", color: colors.muted }}>{t("لا توجد حجوزات", "No bookings found")}</Text>
+          </View>
+        )}
       </ScrollView>
     </View>
   );
 }
 
 const s = StyleSheet.create({
-  container: { flex: 1 },
-  header: { flexDirection: "row-reverse", justifyContent: "space-between", alignItems: "flex-end", paddingHorizontal: 20, paddingBottom: 16 },
-  headerTitle: { fontSize: 22, fontFamily: "Cairo_700Bold", color: "#fff" },
-  addBtn: { width: 36, height: 36, borderRadius: 10, backgroundColor: "rgba(255,255,255,0.2)", alignItems: "center", justifyContent: "center" },
-  tabRow: { flexDirection: "row-reverse", borderBottomWidth: 1, borderBottomColor: "#E5E7EB" },
+  pageHeader: { flexDirection: "row-reverse", alignItems: "center", paddingHorizontal: 16, paddingBottom: 12, borderBottomWidth: 1, gap: 12 },
+  iconBtn: { width: 40, height: 40, borderRadius: 12, alignItems: "center", justifyContent: "center" },
+  pageTitle: { flex: 1, fontSize: 18, fontFamily: "Cairo_700Bold", textAlign: "right" },
+  pendingBanner: { flexDirection: "row-reverse", alignItems: "center", marginHorizontal: 16, marginTop: 12, marginBottom: 4, borderRadius: 14, padding: 12, borderWidth: 1.5, gap: 10 },
+  pendingText: { flex: 1, fontSize: 13, fontFamily: "Tajawal_700Bold", textAlign: "right" },
+  tabRow: { flexDirection: "row-reverse", borderBottomWidth: 1 },
   tab: { flex: 1, paddingVertical: 14, alignItems: "center" },
   tabText: { fontSize: 14, fontFamily: "Tajawal_700Bold" },
-  card: { flexDirection: "row-reverse", justifyContent: "space-between", padding: 16, borderRadius: 16, borderWidth: 1, marginBottom: 10 },
+  card: { borderRadius: 16, padding: 14 },
   name: { fontSize: 15, fontFamily: "Tajawal_700Bold", textAlign: "right", marginBottom: 4 },
-  service: { fontSize: 12, fontFamily: "Tajawal_400Regular", textAlign: "right", marginBottom: 4 },
-  time: { fontSize: 13, fontFamily: "Cairo_700Bold", textAlign: "right" },
-  roomBadge: { paddingHorizontal: 8, paddingVertical: 3, borderRadius: 8 },
-  roomText: { fontSize: 10, fontFamily: "Tajawal_700Bold" },
+  service: { fontSize: 12, fontFamily: "Tajawal_400Regular", textAlign: "right" },
+  time: { fontSize: 13, fontFamily: "Cairo_700Bold" },
   statusBadge: { paddingHorizontal: 10, paddingVertical: 4, borderRadius: 10 },
   statusText: { fontSize: 11, fontFamily: "Tajawal_700Bold" },
   amount: { fontSize: 13, fontFamily: "Cairo_700Bold" },
+  actionRow: { flexDirection: "row-reverse", gap: 10, borderTopWidth: 1, marginTop: 12, paddingTop: 12 },
+  approveBtn: { flex: 2, flexDirection: "row-reverse", alignItems: "center", justifyContent: "center", gap: 8, paddingVertical: 12, borderRadius: 12 },
+  rejectBtn: { flex: 1, flexDirection: "row-reverse", alignItems: "center", justifyContent: "center", gap: 8, paddingVertical: 12, borderRadius: 12, borderWidth: 1.5 },
+  actionText: { fontSize: 13, fontFamily: "Tajawal_700Bold" },
 });

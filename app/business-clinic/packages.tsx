@@ -59,7 +59,7 @@ export default function ClinicPackages() {
         </Pressable>
       </View>
 
-      <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 80, gap: 14 }}>
+      <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 90, gap: 14 }}>
         {adding && (
           <View style={[st.sec, { backgroundColor: card, borderColor: BRAND + "40", borderWidth: 2 }]}>
             <View style={{ flexDirection: "row-reverse", justifyContent: "space-between" }}>

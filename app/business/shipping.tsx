@@ -40,14 +40,14 @@ export default function ShippingPage() {
   const cardBorder = isDark ? "#2A1F45" : "#EDE9FE";
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: isDark ? "#0F0A1E" : "#F7F3FF" }}
-      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 40 }}
+    <ScrollView style={{ flex: 1, backgroundColor: colors.background }}
+      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 90 }}
       showsVerticalScrollIndicator={false}>
       <View style={styles.header}>
         <Pressable onPress={() => router.back()} style={styles.backBtn}>
-          <Feather name="chevron-right" size={24} color={isDark ? "#fff" : "#1A0A33"} />
+          <Feather name="chevron-right" size={24} color={colors.text} />
         </Pressable>
-        <Text style={[styles.pageTitle, { color: isDark ? "#fff" : "#1A0A33" }]}>{t("الشحن والتوصيل","Shipping & Delivery")}</Text>
+        <Text style={[styles.pageTitle, { color: colors.text }]}>{t("الشحن والتوصيل","Shipping & Delivery")}</Text>
       </View>
 
       <Text style={[styles.sectionLabel, { color: colors.muted }]}>{t("طرق التوصيل","Delivery Methods")}</Text>
@@ -57,7 +57,7 @@ export default function ShippingPage() {
             <Switch value={m.active} onValueChange={() => setMethods((p) => p.map((x) => x.key === m.key ? { ...x, active: !x.active } : x))}
               trackColor={{ false: "#ccc", true: "#7C3AED80" }} thumbColor={m.active ? "#7C3AED" : "#f4f3f4"} />
             <View style={{ flex: 1 }}>
-              <Text style={[styles.methodName, { color: isDark ? "#fff" : "#1A0A33" }]}>{m.label}</Text>
+              <Text style={[styles.methodName, { color: colors.text }]}>{m.label}</Text>
               <Text style={[styles.methodMeta, { color: colors.muted }]}>{m.price}  ·  {m.time}</Text>
             </View>
             <View style={[styles.methodIcon, { backgroundColor: m.active ? m.color + "20" : isDark ? "#2A1F45" : "#F3F0FF" }]}>
@@ -74,7 +74,7 @@ export default function ShippingPage() {
             <Switch value={z.active} onValueChange={() => setZones((p) => p.map((x) => x.name === z.name ? { ...x, active: !x.active } : x))}
               trackColor={{ false: "#ccc", true: "#7C3AED80" }} thumbColor={z.active ? "#7C3AED" : "#f4f3f4"} />
             <View style={{ flex: 1 }}>
-              <Text style={[styles.zoneName, { color: isDark ? "#fff" : "#1A0A33" }]}>{z.name}</Text>
+              <Text style={[styles.zoneName, { color: colors.text }]}>{z.name}</Text>
               <Text style={[styles.zoneMeta, { color: colors.muted }]}>{z.areas}  ·  {t("حد أدنى:","Min Order:")} {z.minOrder}</Text>
             </View>
           </View>

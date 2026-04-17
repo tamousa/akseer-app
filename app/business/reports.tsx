@@ -58,14 +58,14 @@ export default function ReportsPage() {
   const totalOrders = WEEKLY_DATA.reduce((a, d) => a + d.orders, 0);
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: isDark ? "#0F0A1E" : "#F7F3FF" }}
-      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 40 }}
+    <ScrollView style={{ flex: 1, backgroundColor: colors.background }}
+      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 90 }}
       showsVerticalScrollIndicator={false}>
       <View style={styles.header}>
         <Pressable onPress={() => router.back()} style={styles.backBtn}>
-          <Feather name="chevron-right" size={24} color={isDark ? "#fff" : "#1A0A33"} />
+          <Feather name="chevron-right" size={24} color={colors.text} />
         </Pressable>
-        <Text style={[styles.pageTitle, { color: isDark ? "#fff" : "#1A0A33" }]}>{t("التقارير المالية","Financial Reports")}</Text>
+        <Text style={[styles.pageTitle, { color: colors.text }]}>{t("التقارير المالية","Financial Reports")}</Text>
       </View>
 
       <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.periodRow}>
@@ -87,7 +87,7 @@ export default function ReportsPage() {
             <View style={[styles.kpiIcon, { backgroundColor: k.color + "20" }]}>
               <Feather name={k.icon} size={16} color={k.color} />
             </View>
-            <Text style={[styles.kpiValue, { color: isDark ? "#fff" : "#1A0A33" }]}>{k.value}</Text>
+            <Text style={[styles.kpiValue, { color: colors.text }]}>{k.value}</Text>
             <Text style={[styles.kpiLabel, { color: colors.muted }]}>{k.label}</Text>
             <Text style={[styles.kpiChange, { color: k.color }]}>{k.change}</Text>
           </View>
@@ -95,7 +95,7 @@ export default function ReportsPage() {
       </View>
 
       <View style={[styles.chartCard, { backgroundColor: cardBg, borderColor: cardBorder }]}>
-        <Text style={[styles.chartTitle, { color: isDark ? "#fff" : "#1A0A33" }]}>{t("الإيرادات اليومية","Daily Revenue")}</Text>
+        <Text style={[styles.chartTitle, { color: colors.text }]}>{t("الإيرادات اليومية","Daily Revenue")}</Text>
         <View style={styles.chartBars}>
           {WEEKLY_DATA.map((d) => (
             <View key={d.dayEn} style={styles.barGroup}>
@@ -112,14 +112,14 @@ export default function ReportsPage() {
       </View>
 
       <View style={[styles.chartCard, { backgroundColor: cardBg, borderColor: cardBorder }]}>
-        <Text style={[styles.chartTitle, { color: isDark ? "#fff" : "#1A0A33" }]}>{t("أفضل المنتجات مبيعاً","Top Selling Products")}</Text>
+        <Text style={[styles.chartTitle, { color: colors.text }]}>{t("أفضل المنتجات مبيعاً","Top Selling Products")}</Text>
         <View style={{ gap: 14 }}>
           {TOP_PRODUCTS.map((p, i) => (
             <View key={i} style={styles.productRow}>
               <View style={{ flex: 1 }}>
                 <View style={styles.productTopRow}>
                   <Text style={[styles.productRevenue, { color: "#7C3AED" }]}>{p.revenue}</Text>
-                  <Text style={[styles.productName, { color: isDark ? "#fff" : "#1A0A33" }]} numberOfLines={1}>{lang === "ar" ? p.nameAr : p.nameEn}</Text>
+                  <Text style={[styles.productName, { color: colors.text }]} numberOfLines={1}>{lang === "ar" ? p.nameAr : p.nameEn}</Text>
                 </View>
                 <View style={[styles.progressBg, { backgroundColor: isDark ? "#2A1F45" : "#EDE9FE" }]}>
                   <View style={[styles.progressFill, { width: `${p.percent}%` as any, backgroundColor: "#7C3AED" }]} />
@@ -134,7 +134,7 @@ export default function ReportsPage() {
       </View>
 
       <View style={[styles.chartCard, { backgroundColor: cardBg, borderColor: cardBorder }]}>
-        <Text style={[styles.chartTitle, { color: isDark ? "#fff" : "#1A0A33" }]}>{t("توزيع طرق الدفع","Payment Method Distribution")}</Text>
+        <Text style={[styles.chartTitle, { color: colors.text }]}>{t("توزيع طرق الدفع","Payment Method Distribution")}</Text>
         <View style={{ gap: 10 }}>
           {PAY_METHODS.map((m, i) => (
             <View key={i} style={styles.payRow}>

@@ -42,14 +42,14 @@ export default function SchedulePage() {
   const cardBorder = isDark ? "#2A1F45" : "#EDE9FE";
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: isDark ? "#0F0A1E" : "#F7F3FF" }}
-      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 40 }}
+    <ScrollView style={{ flex: 1, backgroundColor: colors.background }}
+      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 90 }}
       showsVerticalScrollIndicator={false}>
       <View style={styles.header}>
         <Pressable onPress={() => router.back()} style={styles.backBtn}>
-          <Feather name="chevron-right" size={24} color={isDark ? "#fff" : "#1A0A33"} />
+          <Feather name="chevron-right" size={24} color={colors.text} />
         </Pressable>
-        <Text style={[styles.pageTitle, { color: isDark ? "#fff" : "#1A0A33" }]}>{t("مواعيد العمل والفروع","Working Hours & Branches")}</Text>
+        <Text style={[styles.pageTitle, { color: colors.text }]}>{t("مواعيد العمل والفروع","Working Hours & Branches")}</Text>
       </View>
 
       <View style={[styles.tabRow, { backgroundColor: isDark ? "#1A1030" : "#EDE9FE" }]}>
@@ -68,7 +68,7 @@ export default function SchedulePage() {
               <Switch value={d.open} onValueChange={() => setSchedule((p) => p.map((x) => x.dayEn === d.dayEn ? { ...x, open: !x.open } : x))}
                 trackColor={{ false: "#ccc", true: "#7C3AED80" }} thumbColor={d.open ? "#7C3AED" : "#f4f3f4"} />
               <View style={{ flex: 1 }}>
-                <Text style={[styles.dayName, { color: isDark ? "#fff" : "#1A0A33" }]}>{t(d.dayAr, d.dayEn)}</Text>
+                <Text style={[styles.dayName, { color: colors.text }]}>{t(d.dayAr, d.dayEn)}</Text>
                 {d.open
                   ? <Text style={[styles.dayHours, { color: "#7C3AED" }]}>{d.from} — {d.to}</Text>
                   : <Text style={[styles.dayClosed, { color: colors.muted }]}>{t("مغلق","Closed")}</Text>}
@@ -97,7 +97,7 @@ export default function SchedulePage() {
                       <View style={[styles.statusDot, { backgroundColor: b.open ? "#059669" : "#DC2626" }]} />
                       <Text style={[styles.branchStatusText, { color: b.open ? "#059669" : "#DC2626" }]}>{b.open ? t("مفتوح","Open") : t("مغلق","Closed")}</Text>
                     </View>
-                    <Text style={[styles.branchName, { color: isDark ? "#fff" : "#1A0A33" }]}>{b.name}</Text>
+                    <Text style={[styles.branchName, { color: colors.text }]}>{b.name}</Text>
                   </View>
                   <Text style={[styles.branchArea, { color: colors.muted }]}>{b.area}</Text>
                   <Text style={[styles.branchMgr, { color: colors.textSecondary }]}>{t("المدير:","Manager:")} {b.manager}</Text>

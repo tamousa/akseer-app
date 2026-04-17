@@ -8,11 +8,11 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
-const BRAND = "#BE185D";
 
 export default function BeautyServices() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const BRAND = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const { t, lang } = useLanguage();
@@ -43,19 +43,19 @@ export default function BeautyServices() {
 
   return (
     <View style={[styles.container, { backgroundColor: isDark ? "#150010" : "#FFF0F6" }]}>
-      <View style={[styles.header, { backgroundColor: BRAND, paddingTop: isWeb ? 72 : insets.top + 16 }]}>
-        <Text style={styles.headerTitle}>{t("إدارة الخدمات","Manage Services")}</Text>
+      <View style={[styles.header, { backgroundColor: colors.surface, paddingTop: isWeb ? 72 : insets.top + 16, borderBottomWidth: 1, borderBottomColor: colors.border }]}>
+        <Text style={[styles.headerTitle, { color: colors.text }]}>{t("إدارة الخدمات","Manage Services")}</Text>
         <View style={{ flexDirection: "row-reverse", gap: 8 }}>
-          <Pressable style={styles.addBtn} onPress={() => router.push("/business-beauty/packages" as any)}>
-            <Feather name="package" size={18} color="#fff" />
+          <Pressable style={[styles.addBtn, { backgroundColor: colors.surfaceAlt }]} onPress={() => router.push("/business-beauty/packages" as any)}>
+            <Feather name="package" size={18} color={colors.primary} />
           </Pressable>
-          <Pressable style={styles.addBtn} onPress={() => router.push("/business-beauty/add-service" as any)}>
-            <Feather name="plus" size={20} color="#fff" />
+          <Pressable style={[styles.addBtn, { backgroundColor: colors.surfaceAlt }]} onPress={() => router.push("/business-beauty/add-service" as any)}>
+            <Feather name="plus" size={20} color={colors.primary} />
           </Pressable>
         </View>
       </View>
 
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: insets.bottom + 80, padding: 16 }}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: insets.bottom + 90, padding: 16 }}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginBottom: 16 }}>
           <View style={{ flexDirection: "row-reverse", gap: 8 }}>
             {CATS.map((c, i) => (
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   container: { flex: 1 },
   header: { flexDirection: "row-reverse", justifyContent: "space-between", alignItems: "flex-end", paddingHorizontal: 20, paddingBottom: 16 },
   headerTitle: { fontSize: 20, color: "#fff", fontFamily: "Cairo_700Bold" },
-  addBtn: { width: 38, height: 38, borderRadius: 12, backgroundColor: "rgba(255,255,255,0.2)", alignItems: "center", justifyContent: "center" },
+  addBtn: { width: 38, height: 38, borderRadius: 12, alignItems: "center", justifyContent: "center" },
   catChip: { paddingHorizontal: 14, paddingVertical: 8, borderRadius: 10, borderWidth: 1 },
   catText: { fontSize: 12, fontFamily: "Tajawal_700Bold" },
   serviceCard: { flexDirection: "row-reverse", alignItems: "center", gap: 12, borderRadius: 14, padding: 14, borderWidth: 1, marginBottom: 8 },

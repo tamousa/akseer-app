@@ -8,12 +8,12 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
-const BRAND = "#7C3AED";
 const VAT = 0.15;
 
 export default function AddProduct() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const BRAND = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const { t } = useLanguage();
@@ -52,13 +52,13 @@ export default function AddProduct() {
   return (
     <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : undefined}>
       <View style={{ flex: 1, backgroundColor: bg }}>
-        <View style={[st.hdr, { backgroundColor: BRAND, paddingTop: isWeb ? 72 : insets.top + 16 }]}>
+        <View style={[st.hdr, { backgroundColor: colors.surface, paddingTop: isWeb ? 72 : insets.top + 16, borderBottomWidth: 1, borderBottomColor: colors.border }]}>
           <Pressable style={st.back} onPress={() => router.back()}><Feather name="chevron-right" size={22} color="#fff" /></Pressable>
           <Text style={st.hdrTitle}>{t("إضافة منتج","Add Product")}</Text>
           <Pressable style={st.saveHdr} onPress={save}><Text style={st.saveHdrTxt}>{t("حفظ","Save")}</Text></Pressable>
         </View>
 
-        <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 80, gap: 14 }}>
+        <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 90, gap: 14 }}>
           <View style={{ flexDirection: "row-reverse", gap: 10 }}>
             <Pressable style={[st.imgMain, { backgroundColor: card, borderColor: BRAND + "40" }]}
               onPress={() => { setImgs((prev) => Math.min(prev + 1, 5)); Alert.alert(t("رفع صورة","Upload Image"), t("اختر صوراً للمنتج (حتى 5 صور)","Choose product images (up to 5)")); }}>
@@ -183,7 +183,7 @@ export default function AddProduct() {
 
 const st = StyleSheet.create({
   hdr: { flexDirection: "row-reverse", alignItems: "flex-end", paddingHorizontal: 16, paddingBottom: 16, gap: 12 },
-  back: { width: 38, height: 38, borderRadius: 12, backgroundColor: "rgba(255,255,255,0.2)", alignItems: "center", justifyContent: "center" },
+  back: { width: 38, height: 38, borderRadius: 12, alignItems: "center", justifyContent: "center" },
   hdrTitle: { flex: 1, fontSize: 18, color: "#fff", fontFamily: "Cairo_700Bold", textAlign: "center" },
   saveHdr: { paddingHorizontal: 14, paddingVertical: 8, backgroundColor: "rgba(255,255,255,0.25)", borderRadius: 10 },
   saveHdrTxt: { color: "#fff", fontFamily: "Tajawal_700Bold", fontSize: 14 },

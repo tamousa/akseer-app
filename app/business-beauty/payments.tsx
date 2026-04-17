@@ -7,11 +7,11 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
-const BRAND = "#BE185D";
 
 export default function BeautyPayments() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const BRAND = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const { t, lang } = useLanguage();
@@ -36,8 +36,8 @@ export default function BeautyPayments() {
 
   return (
     <View style={[s.container, { backgroundColor: isDark ? "#150010" : "#FFF0F6" }]}>
-      <View style={[s.header, { backgroundColor: BRAND, paddingTop: isWeb ? 72 : insets.top + 16 }]}>
-        <Text style={s.headerTitle}>{t("المدفوعات","Payments")}</Text>
+      <View style={[s.header, { backgroundColor: colors.surface, paddingTop: isWeb ? 72 : insets.top + 16, borderBottomWidth: 1, borderBottomColor: colors.border }]}>
+        <Text style={[s.headerTitle, { color: colors.text }]}>{t("المدفوعات","Payments")}</Text>
       </View>
       <View style={[s.summaryCard, { backgroundColor: isDark ? "#2D0020" : "#fff", borderColor: BRAND + "30" }]}>
         <View style={s.summaryItem}>
@@ -55,7 +55,7 @@ export default function BeautyPayments() {
           <Text style={[s.summaryLabel, { color: colors.muted }]}>{t("معلقة","Pending")}</Text>
         </View>
       </View>
-      <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 80 }}>
+      <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 90 }}>
         {TXS.map((tx) => {
           const st = STATUS_MAP[tx.status];
           return (

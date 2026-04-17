@@ -8,7 +8,6 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
-const BRAND = "#7C3AED";
 
 const PRODS = [
   { id: "1", nameAr: "مكمل بروتين 1kg",   nameEn: "Protein Supplement 1kg", price: 180 },
@@ -21,6 +20,7 @@ const PRODS = [
 export default function StorePackages() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const BRAND = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const { t, lang } = useLanguage();
@@ -50,13 +50,13 @@ export default function StorePackages() {
 
   return (
     <View style={{ flex: 1, backgroundColor: bg }}>
-      <View style={[st.hdr, { backgroundColor: BRAND, paddingTop: isWeb ? 72 : insets.top + 16 }]}>
+      <View style={[st.hdr, { backgroundColor: colors.surface, paddingTop: isWeb ? 72 : insets.top + 16, borderBottomWidth: 1, borderBottomColor: colors.border }]}>
         <Pressable style={st.back} onPress={() => router.back()}><Feather name="chevron-right" size={22} color="#fff" /></Pressable>
         <Text style={st.hdrTitle}>{t("باقات المتجر","Store Packages")}</Text>
-        <Pressable style={st.addBtn} onPress={() => setAdding(true)}><Feather name="plus" size={20} color="#fff" /></Pressable>
+        <Pressable style={[st.addBtn, { backgroundColor: colors.surfaceAlt }]} onPress={() => setAdding(true)}><Feather name="plus" size={20} color={colors.primary} /></Pressable>
       </View>
 
-      <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 80, gap: 14 }}>
+      <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 90, gap: 14 }}>
         {adding && (
           <View style={[st.sec, { backgroundColor: card, borderColor: BRAND + "40", borderWidth: 2 }]}>
             <View style={{ flexDirection: "row-reverse", justifyContent: "space-between" }}>
@@ -162,7 +162,7 @@ export default function StorePackages() {
 
 const st = StyleSheet.create({
   hdr: { flexDirection: "row-reverse", alignItems: "flex-end", paddingHorizontal: 16, paddingBottom: 16, gap: 12 },
-  back: { width: 38, height: 38, borderRadius: 12, backgroundColor: "rgba(255,255,255,0.2)", alignItems: "center", justifyContent: "center" },
+  back: { width: 38, height: 38, borderRadius: 12, alignItems: "center", justifyContent: "center" },
   hdrTitle: { flex: 1, fontSize: 18, color: "#fff", fontFamily: "Cairo_700Bold", textAlign: "center" },
   addBtn: { width: 38, height: 38, borderRadius: 12, backgroundColor: "rgba(255,255,255,0.25)", alignItems: "center", justifyContent: "center" },
   sec: { borderRadius: 16, padding: 16, borderWidth: 1, gap: 10 },

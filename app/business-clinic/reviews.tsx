@@ -8,11 +8,11 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
-const C = "#0E7490";
 
 export default function ClinicReviews() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const C = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const topPadding = isWeb ? 67 : insets.top;
@@ -32,13 +32,13 @@ export default function ClinicReviews() {
     { id: 2, patientAr: "فاطمة العتيبي", patientEn: "Fatima Al-Otaibi", questionAr: "ما هي مستندات التأمين المطلوبة للكشف؟", questionEn: "What insurance documents are required for the checkup?", timeAr: "أمس", timeEn: "Yesterday", answered: true, answerAr: "نقبل بطاقة التأمين الأصلية مع الهوية الوطنية.", answerEn: "We accept the original insurance card with national ID." },
   ];
 
-  const cardBg = isDark ? "#0D2035" : "#FFFFFF";
-  const cardBorder = isDark ? "#1A3A52" : "#BAE6FD";
+  const cardBg = colors.surface;
+  const cardBorder = colors.border;
   const avgRating = (REVIEWS.reduce((a, r) => a + r.rating, 0) / REVIEWS.length).toFixed(1);
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: isDark ? "#070F18" : "#F0FDFF" }}
-      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
+    <ScrollView style={{ flex: 1, backgroundColor: colors.background }}
+      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 90 }} showsVerticalScrollIndicator={false}>
       <View style={styles.header}>
         <Pressable onPress={() => router.back()} style={styles.backBtn}>
           <Feather name="chevron-right" size={24} color={isDark ? "#fff" : "#0A2330"} />

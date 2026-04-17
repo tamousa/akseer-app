@@ -8,11 +8,11 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
-const C = "#0E7490";
 
 export default function PatientsPage() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const C = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const topPadding = isWeb ? 67 : insets.top;
@@ -28,8 +28,8 @@ export default function PatientsPage() {
     { id: "P-005", nameAr: "نورة السلمي", nameEn: "Noura Al-Salmi", age: 38, genderAr: "أنثى", genderEn: "Female", lastVisitAr: "منذ أسبوع", lastVisitEn: "1 week ago", diagnosisAr: "متابعة وقاية", diagnosisEn: "Preventive Follow-up", doctor: "د. سارة / Dr. Sarah", visits: 3, emoji: "👩", statusAr: "غير منتظم", statusEn: "Irregular", statusColor: "#DC2626", statusBg: "#FEE2E2" },
   ];
 
-  const cardBg = isDark ? "#0D2035" : "#FFFFFF";
-  const cardBorder = isDark ? "#1A3A52" : "#BAE6FD";
+  const cardBg = colors.surface;
+  const cardBorder = colors.border;
 
   const filtered = PATIENTS.filter((p) =>
     (lang === "ar" ? p.nameAr : p.nameEn).toLowerCase().includes(search.toLowerCase()) ||
@@ -38,8 +38,8 @@ export default function PatientsPage() {
   );
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: isDark ? "#070F18" : "#F0FDFF" }}
-      contentContainerStyle={{ paddingTop: topPadding + 16, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
+    <ScrollView style={{ flex: 1, backgroundColor: colors.background }}
+      contentContainerStyle={{ paddingTop: topPadding + 16, paddingBottom: 90 }} showsVerticalScrollIndicator={false}>
       <View style={styles.pageHeader}>
         <Pressable onPress={() => router.back()} style={{ width: 40, height: 40, alignItems: "center", justifyContent: "center" }}>
           <Feather name="chevron-right" size={24} color={isDark ? "#fff" : "#0A2330"} />

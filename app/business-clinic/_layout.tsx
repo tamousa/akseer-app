@@ -14,18 +14,8 @@ export default function ClinicLayout() {
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarStyle: {
-          backgroundColor: isDark ? "#070F18" : "#FFFFFF",
-          borderTopColor: isDark ? "#1A3A52" : "#BAE6FD",
-          borderTopWidth: 1,
-          height: 70,
-          paddingBottom: 10,
-          paddingTop: 6,
-        },
-        tabBarActiveTintColor: "#0E7490",
-        tabBarInactiveTintColor: isDark ? "#4A7A8A" : "#6B9EAD",
-        tabBarLabelStyle: { fontSize: 11, fontFamily: "Tajawal_500Medium", marginTop: 2 },
-      }}
+        tabBarStyle: { display: 'none' },
+                              }}
     >
       <Tabs.Screen name="index"    options={{ title: t("الرئيسية",  "Home"),      tabBarIcon: ({ color, size }) => <Feather name="grid"        size={size} color={color} /> }} />
       <Tabs.Screen name="services" options={{ title: t("الخدمات",   "Services"),  tabBarIcon: ({ color, size }) => <Feather name="clipboard"   size={size} color={color} /> }} />

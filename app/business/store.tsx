@@ -31,12 +31,12 @@ export default function BusinessStore() {
 
   return (
     <ScrollView
-      style={{ flex: 1, backgroundColor: isDark ? "#0F0A1E" : "#F7F3FF" }}
-      contentContainerStyle={{ paddingTop: topPadding + 16, paddingBottom: 40 }}
+      style={{ flex: 1, backgroundColor: colors.background }}
+      contentContainerStyle={{ paddingTop: topPadding + 16, paddingBottom: 90 }}
       showsVerticalScrollIndicator={false}
     >
       <View style={styles.pageHeader}>
-        <Text style={[styles.pageTitle, { color: isDark ? "#fff" : "#1A0A33" }]}>{t("إدارة المتجر", "Manage Store")}</Text>
+        <Text style={[styles.pageTitle, { color: colors.text }]}>{t("إدارة المتجر", "Manage Store")}</Text>
         <Pressable
           style={[styles.previewBtn, { backgroundColor: isDark ? "#1A1030" : "#EDE9FE", borderColor: "#7C3AED50" }]}
           onPress={() => router.push("/business/store-preview" as any)}
@@ -60,7 +60,7 @@ export default function BusinessStore() {
                       <Text style={[styles.badgeText, { color: section.color }]}>{section.badge}</Text>
                     </View>
                   ) : null}
-                  <Text style={[styles.sectionLabel, { color: isDark ? "#fff" : "#1A0A33" }]}>{section.label}</Text>
+                  <Text style={[styles.sectionLabel, { color: colors.text }]}>{section.label}</Text>
                 </View>
                 <Text style={[styles.sectionDesc, { color: colors.muted }]}>{section.desc}</Text>
               </View>

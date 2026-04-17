@@ -3,18 +3,17 @@ import { router } from "expo-router";
 import React from "react";
 import { I18nManager, Platform, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import BusinessHeader from "@/components/BusinessHeader";
 import Colors from "@/constants/colors";
 import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
-const BRAND = "#92400E";
-const LIGHT_BG = "#FFFBEB";
-const DARK_BG = "#1A0E00";
 
 export default function CuppingIndex() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const BRAND = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const { t, lang } = useLanguage();
@@ -51,24 +50,10 @@ export default function CuppingIndex() {
   ];
 
   return (
-    <View style={[styles.container, { backgroundColor: isDark ? DARK_BG : LIGHT_BG }]}>
-      <View style={[styles.header, { backgroundColor: BRAND, paddingTop: isWeb ? 72 : insets.top + 16 }]}>
-        <View style={{ flex: 1 }}>
-          <Text style={styles.headerSub}>{t("لوحة تحكم | مركز","Control Panel | Center")}</Text>
-          <Text style={styles.headerTitle}>{t("أكسير للحجامة والطب النبوي 🩸","Akseer Cupping & Prophetic Medicine 🩸")}</Text>
-        </View>
-        <View style={{ flexDirection: "row-reverse", gap: 10 }}>
-          <Pressable style={styles.iconBtn}>
-            <Feather name="bell" size={20} color="#fff" />
-            <View style={styles.badge}><Text style={styles.badgeText}>2</Text></View>
-          </Pressable>
-          <Pressable style={styles.iconBtn} onPress={() => router.push("/business-cupping/cupping-preview" as any)}>
-            <Feather name="eye" size={20} color="#fff" />
-          </Pressable>
-        </View>
-      </View>
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
+      <BusinessHeader />
 
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: insets.bottom + 80 }}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: insets.bottom + 90 }}>
         <View style={[styles.alertBanner, { backgroundColor: "#FEF3C7", borderColor: "#FCD34D" }]}>
           <Feather name="alert-triangle" size={16} color="#D97706" />
           <Text style={[styles.alertText, { color: "#92400E" }]}>{t("تذكير: سجّل بروتوكول التعقيم لجلسات اليوم","Reminder: Record the sterilization protocol for today's sessions")}</Text>
@@ -79,7 +64,7 @@ export default function CuppingIndex() {
 
         <View style={styles.statsGrid}>
           {STATS.map((s, i) => (
-            <View key={i} style={[styles.statCard, { backgroundColor: isDark ? "#2A1500" : "#fff", borderColor: BRAND + "30" }]}>
+            <View key={i} style={[styles.statCard, { backgroundColor: colors.surface, borderColor: BRAND + "30" }]}>
               <View style={[styles.statIcon, { backgroundColor: BRAND + "20" }]}>
                 <Feather name={s.icon} size={18} color={BRAND} />
               </View>
@@ -94,7 +79,7 @@ export default function CuppingIndex() {
           <Text style={[styles.sectionTitle, { color: colors.text }]}>{t("إجراءات سريعة","Quick Actions")}</Text>
           <View style={styles.quickGrid}>
             {QUICK.map((q, i) => (
-              <Pressable key={i} style={[styles.quickCard, { backgroundColor: isDark ? "#2A1500" : "#fff", borderColor: BRAND + "25" }]}
+              <Pressable key={i} style={[styles.quickCard, { backgroundColor: colors.surface, borderColor: BRAND + "25" }]}
                 onPress={() => router.push(q.route as any)}>
                 <View style={[styles.quickIcon, { backgroundColor: BRAND + "20" }]}>
                   <Feather name={q.icon} size={22} color={BRAND} />
@@ -113,7 +98,7 @@ export default function CuppingIndex() {
             </Pressable>
           </View>
           {SESSIONS_TODAY.map((s, i) => (
-            <View key={i} style={[styles.sessCard, { backgroundColor: isDark ? "#2A1500" : "#fff", borderColor: s.color + "30" }]}>
+            <View key={i} style={[styles.sessCard, { backgroundColor: colors.surface, borderColor: s.color + "30" }]}>
               <View style={[styles.sessTypeBadge, { backgroundColor: s.color + "20" }]}>
                 <Feather name="droplet" size={16} color={s.color} />
                 <Text style={[styles.sessTypeText, { color: s.color }]}>{lang === "ar" ? s.typeAr : s.typeEn}</Text>

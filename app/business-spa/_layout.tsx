@@ -16,11 +16,8 @@ export default function SpaLayout() {
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarStyle: { backgroundColor: isDark ? "#0A0A2A" : "#EEF2FF", borderTopColor: BRAND + "30", height: 62, paddingBottom: 8 },
-        tabBarActiveTintColor: BRAND,
-        tabBarInactiveTintColor: colors.muted,
-        tabBarLabelStyle: { fontFamily: "Tajawal_700Bold", fontSize: 10 },
-      }}
+        tabBarStyle: { display: 'none' },
+                              }}
     >
       <Tabs.Screen name="index"        options={{ title: t("الرئيسية",  "Home"),     tabBarIcon: ({ color, size }) => <Feather name="home"        size={size} color={color} /> }} />
       <Tabs.Screen name="services"     options={{ title: t("الخدمات",   "Services"), tabBarIcon: ({ color, size }) => <Feather name="heart"       size={size} color={color} /> }} />

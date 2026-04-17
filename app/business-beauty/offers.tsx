@@ -8,11 +8,11 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
-const BRAND = "#BE185D";
 
 export default function BeautyOffers() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const BRAND = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const { t, lang } = useLanguage();
@@ -26,13 +26,13 @@ export default function BeautyOffers() {
 
   return (
     <View style={[s.container, { backgroundColor: isDark ? "#150010" : "#FFF0F6" }]}>
-      <View style={[s.header, { backgroundColor: BRAND, paddingTop: isWeb ? 72 : insets.top + 16 }]}>
-        <Text style={s.headerTitle}>{t("العروض والخصومات","Offers & Discounts")}</Text>
-        <Pressable style={s.addBtn} onPress={() => router.push("/business-beauty/add-offer" as any)}>
-          <Feather name="plus" size={20} color="#fff" />
+      <View style={[s.header, { backgroundColor: colors.surface, paddingTop: isWeb ? 72 : insets.top + 16, borderBottomWidth: 1, borderBottomColor: colors.border }]}>
+        <Text style={[s.headerTitle, { color: colors.text }]}>{t("العروض والخصومات","Offers & Discounts")}</Text>
+        <Pressable style={[s.addBtn, { backgroundColor: colors.surfaceAlt }]} onPress={() => router.push("/business-beauty/add-offer" as any)}>
+          <Feather name="plus" size={20} color={colors.primary} />
         </Pressable>
       </View>
-      <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 80, gap: 10 }}>
+      <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 90, gap: 10 }}>
         <View style={{ flexDirection: "row-reverse", gap: 10, marginBottom: 4 }}>
           <Pressable style={{ flex: 1, flexDirection: "row-reverse", alignItems: "center", gap: 8, padding: 14, borderRadius: 14, backgroundColor: BRAND + "15", borderWidth: 1, borderColor: BRAND + "30" }} onPress={() => router.push("/business-beauty/add-offer" as any)}>
             <Feather name="tag" size={16} color={BRAND} />
@@ -78,7 +78,7 @@ const s = StyleSheet.create({
   container: { flex: 1 },
   header: { flexDirection: "row-reverse", justifyContent: "space-between", alignItems: "flex-end", paddingHorizontal: 20, paddingBottom: 16 },
   headerTitle: { fontSize: 20, color: "#fff", fontFamily: "Cairo_700Bold" },
-  addBtn: { width: 38, height: 38, borderRadius: 12, backgroundColor: "rgba(255,255,255,0.2)", alignItems: "center", justifyContent: "center" },
+  addBtn: { width: 38, height: 38, borderRadius: 12, alignItems: "center", justifyContent: "center" },
   card: { flexDirection: "row-reverse", alignItems: "center", gap: 12, borderRadius: 14, padding: 14, borderWidth: 1 },
   typeBadge: { paddingHorizontal: 8, paddingVertical: 3, borderRadius: 8 },
   typeText: { fontSize: 10, fontFamily: "Tajawal_700Bold" },

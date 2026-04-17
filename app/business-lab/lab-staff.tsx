@@ -9,7 +9,6 @@ import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
 
-const C = "#0369A1";
 
 const ROLES_AR = ["الكل", "فني مختبر", "طبيب مختبر", "إداري", "موصل عينات"];
 const ROLES_EN = ["All", "Lab Technician", "Lab Doctor", "Admin", "Sample Courier"];
@@ -24,6 +23,7 @@ const STAFF = [
 export default function LabStaffPage() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const C = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const topPadding = isWeb ? 67 : insets.top;
@@ -32,14 +32,14 @@ export default function LabStaffPage() {
   const [staff, setStaff] = useState(STAFF.map((s) => ({ ...s })));
   const [expanded, setExpanded] = useState<number | null>(null);
 
-  const cardBg = isDark ? "#0D2035" : "#FFFFFF";
+  const cardBg = colors.surface;
   const cardBorder = isDark ? "#1A3352" : "#BAD4E8";
   const toggleStaff = (id: number) => setStaff((prev) => prev.map((s) => s.id === id ? { ...s, active: !s.active } : s));
   const filtered = roleIdx === 0 ? staff : staff.filter((s) => s.roleAr === ROLES_AR[roleIdx]);
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: isDark ? "#060E1A" : "#F0F7FF" }}
-      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
+    <ScrollView style={{ flex: 1, backgroundColor: colors.background }}
+      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 90 }} showsVerticalScrollIndicator={false}>
       <View style={styles.header}>
         <Pressable onPress={() => router.back()} style={styles.backBtn}>
           <Feather name="chevron-right" size={24} color={isDark ? "#fff" : "#0A1F35"} />
@@ -47,7 +47,7 @@ export default function LabStaffPage() {
         <Text style={[styles.pageTitle, { color: isDark ? "#fff" : "#0A1F35" }]}>{t("موظفو المختبر","Lab Staff")}</Text>
         <Pressable style={[styles.addBtn, { backgroundColor: C }]}
           onPress={() => Alert.alert(t("إضافة موظف","Add Staff"), t("سيتم فتح نموذج إضافة موظف جديد","A form to add a new staff member will open"))}>
-          <Feather name="user-plus" size={16} color="#fff" />
+          <Feather name="user-plus" size={16} color={colors.primary} />
         </Pressable>
       </View>
 

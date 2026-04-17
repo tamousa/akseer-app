@@ -39,14 +39,14 @@ export default function ReviewsPage() {
   const avgRating = (REVIEWS.reduce((a, r) => a + r.rating, 0) / REVIEWS.length).toFixed(1);
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: isDark ? "#0F0A1E" : "#F7F3FF" }}
-      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 40 }}
+    <ScrollView style={{ flex: 1, backgroundColor: colors.background }}
+      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 90 }}
       showsVerticalScrollIndicator={false}>
       <View style={styles.header}>
         <Pressable onPress={() => router.back()} style={styles.backBtn}>
-          <Feather name="chevron-right" size={24} color={isDark ? "#fff" : "#1A0A33"} />
+          <Feather name="chevron-right" size={24} color={colors.text} />
         </Pressable>
-        <Text style={[styles.pageTitle, { color: isDark ? "#fff" : "#1A0A33" }]}>{t("الأسئلة والتقييمات","Questions & Reviews")}</Text>
+        <Text style={[styles.pageTitle, { color: colors.text }]}>{t("الأسئلة والتقييمات","Questions & Reviews")}</Text>
       </View>
 
       <View style={[styles.ratingCard, { backgroundColor: "#6D28D9" }]}>
@@ -78,7 +78,7 @@ export default function ReviewsPage() {
             <View style={styles.reviewTop}>
               <Text style={[styles.reviewTime, { color: colors.muted }]}>{r.time}</Text>
               <View style={{ flex: 1 }}>
-                <Text style={[styles.reviewCustomer, { color: isDark ? "#fff" : "#1A0A33" }]}>{r.customer}</Text>
+                <Text style={[styles.reviewCustomer, { color: colors.text }]}>{r.customer}</Text>
                 <Text style={[styles.reviewProduct, { color: colors.muted }]}>{r.product}</Text>
               </View>
               <View style={[styles.reviewAvatar, { backgroundColor: "#7C3AED20" }]}>
@@ -132,13 +132,13 @@ export default function ReviewsPage() {
             <View style={styles.reviewTop}>
               <Text style={[styles.reviewTime, { color: colors.muted }]}>{q.time}</Text>
               <View style={{ flex: 1 }}>
-                <Text style={[styles.reviewCustomer, { color: isDark ? "#fff" : "#1A0A33" }]}>{q.customer}</Text>
+                <Text style={[styles.reviewCustomer, { color: colors.text }]}>{q.customer}</Text>
               </View>
               <View style={[styles.reviewAvatar, { backgroundColor: "#7C3AED20" }]}>
                 <Text style={[styles.reviewAvatarText, { color: "#7C3AED" }]}>{q.customer.charAt(0)}</Text>
               </View>
             </View>
-            <Text style={[styles.questionText, { color: isDark ? "#fff" : "#1A0A33" }]}>{q.question}</Text>
+            <Text style={[styles.questionText, { color: colors.text }]}>{q.question}</Text>
 
             {"answer" in q && q.answered && q.answer && (
               <View style={[styles.replyBox, { backgroundColor: isDark ? "#2A1F45" : "#F5F0FF" }]}>

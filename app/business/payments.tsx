@@ -34,12 +34,12 @@ export default function BusinessPayments() {
 
   return (
     <ScrollView
-      style={{ flex: 1, backgroundColor: isDark ? "#0F0A1E" : "#F7F3FF" }}
-      contentContainerStyle={{ paddingTop: topPadding + 16, paddingBottom: 40 }}
+      style={{ flex: 1, backgroundColor: colors.background }}
+      contentContainerStyle={{ paddingTop: topPadding + 16, paddingBottom: 90 }}
       showsVerticalScrollIndicator={false}
     >
       <View style={styles.pageHeader}>
-        <Text style={[styles.pageTitle, { color: isDark ? "#fff" : "#1A0A33" }]}>{t("إدارة المدفوعات", "Payments Management")}</Text>
+        <Text style={[styles.pageTitle, { color: colors.text }]}>{t("إدارة المدفوعات", "Payments Management")}</Text>
       </View>
 
       <View style={[styles.balanceCard, { backgroundColor: "#6D28D9" }]}>
@@ -77,7 +77,7 @@ export default function BusinessPayments() {
                       <Text style={[styles.badgeText, { color: section.color }]}>{section.badge}</Text>
                     </View>
                   ) : null}
-                  <Text style={[styles.sectionLabel, { color: isDark ? "#fff" : "#1A0A33" }]}>{section.label}</Text>
+                  <Text style={[styles.sectionLabel, { color: colors.text }]}>{section.label}</Text>
                 </View>
                 <Text style={[styles.sectionDesc, { color: colors.muted }]}>{section.desc}</Text>
               </View>
@@ -93,7 +93,7 @@ export default function BusinessPayments() {
         <Pressable onPress={() => router.push("/business/invoices" as any)}>
           <Text style={[styles.seeAll, { color: "#7C3AED" }]}>{t("عرض الكل", "View All")}</Text>
         </Pressable>
-        <Text style={[styles.subTitle, { color: isDark ? "#fff" : "#1A0A33" }]}>{t("آخر المعاملات", "Recent Transactions")}</Text>
+        <Text style={[styles.subTitle, { color: colors.text }]}>{t("آخر المعاملات", "Recent Transactions")}</Text>
       </View>
 
       <View style={{ paddingHorizontal: 16, gap: 10 }}>
@@ -101,7 +101,7 @@ export default function BusinessPayments() {
           <View key={i} style={[styles.txCard, { backgroundColor: isDark ? "#1A1030" : "#FFFFFF", borderColor: isDark ? "#2A1F45" : "#EDE9FE" }]}>
             <Text style={[styles.txAmount, { color: tx.color }]}>{tx.amount}</Text>
             <View style={{ flex: 1 }}>
-              <Text style={[styles.txCustomer, { color: isDark ? "#fff" : "#1A0A33" }]}>{tx.customer}</Text>
+              <Text style={[styles.txCustomer, { color: colors.text }]}>{tx.customer}</Text>
               <Text style={[styles.txMeta, { color: colors.muted }]}>{tx.id}  ·  {tx.time}</Text>
             </View>
             <View style={[styles.txIcon, { backgroundColor: tx.color + "20" }]}>

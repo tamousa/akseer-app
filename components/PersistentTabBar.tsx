@@ -19,7 +19,11 @@ import { useTheme } from "@/context/ThemeContext";
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
 const HIDDEN_ROUTES = ["/auth", "/onboarding", "/business-auth"];
-const HIDDEN_PREFIXES = ["/business/", "/business-clinic/", "/store-checkout", "/order/"];
+const HIDDEN_PREFIXES = [
+  "/business",        // matches /business, /business/, /business-clinic, /business-rehab, etc.
+  "/store-checkout",
+  "/order/",
+];
 
 const TAB_COUNT = 5;
 

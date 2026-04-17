@@ -7,7 +7,6 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
-const BRAND = "#6366F1";
 
 type RoomStatusKey = "busy" | "available" | "maintenance" | "reserved";
 
@@ -33,6 +32,7 @@ function t_(ar: string, en: string) { return ar; }
 export default function SpaRooms() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const BRAND = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const { t, lang } = useLanguage();
@@ -40,9 +40,9 @@ export default function SpaRooms() {
   const SUMMARY_KEYS: RoomStatusKey[] = ["busy", "available", "reserved", "maintenance"];
 
   return (
-    <View style={[s.container, { backgroundColor: isDark ? "#0A0A2A" : "#EEF2FF" }]}>
-      <View style={[s.header, { backgroundColor: BRAND, paddingTop: isWeb ? 72 : insets.top + 16 }]}>
-        <Text style={s.headerTitle}>{t("الغرف والمرافق","Rooms & Facilities")}</Text>
+    <View style={[s.container, { backgroundColor: colors.background }]}>
+      <View style={[s.header, { backgroundColor: colors.surface, paddingTop: isWeb ? 72 : insets.top + 16, borderBottomWidth: 1, borderBottomColor: colors.border }]}>
+        <Text style={[s.headerTitle, { color: colors.text }]}>{t("الغرف والمرافق","Rooms & Facilities")}</Text>
       </View>
       <View style={[s.summaryRow, { backgroundColor: isDark ? "#12124A" : "#fff", borderBottomColor: colors.border }]}>
         {SUMMARY_KEYS.map((key) => {
@@ -56,7 +56,7 @@ export default function SpaRooms() {
           );
         })}
       </View>
-      <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 80, gap: 10 }}>
+      <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 90, gap: 10 }}>
         {ROOMS.map((r) => {
           const cfg = STATUS_MAP[r.status];
           return (

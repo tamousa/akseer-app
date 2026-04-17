@@ -23,8 +23,8 @@ export default function AddLabTest() {
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const { t, lang } = useLanguage();
-  const bg = isDark ? "#060E1A" : "#F0F8FF";
-  const card = isDark ? "#0D2035" : "#fff";
+  const bg = colors.background;
+  const card = colors.surface;
 
   const [name, setName] = useState("");
   const [code, setCode] = useState("");
@@ -52,12 +52,12 @@ export default function AddLabTest() {
   return (
     <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : undefined}>
       <View style={{ flex: 1, backgroundColor: bg }}>
-        <View style={[st.hdr, { backgroundColor: BRAND, paddingTop: isWeb ? 72 : insets.top + 16 }]}>
+        <View style={[st.hdr, { backgroundColor: colors.surface, paddingTop: isWeb ? 72 : insets.top + 16, borderBottomWidth: 1, borderBottomColor: colors.border }]}>
           <Pressable style={st.back} onPress={() => router.back()}><Feather name="chevron-right" size={22} color="#fff" /></Pressable>
           <Text style={st.hdrTitle}>{t("إضافة فحص / تحليل","Add Test / Analysis")}</Text>
           <Pressable style={st.saveHdr} onPress={save}><Text style={st.saveHdrTxt}>{t("حفظ","Save")}</Text></Pressable>
         </View>
-        <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 80, gap: 14 }}>
+        <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 90, gap: 14 }}>
           <View style={[st.sec, { backgroundColor: card, borderColor: BRAND + "20" }]}>
             <Text style={[st.secTitle, { color: colors.text }]}>{t("معلومات الفحص","Test Information")}</Text>
             <View style={[st.inpWrap, { borderColor: colors.border }]}>
@@ -145,7 +145,7 @@ export default function AddLabTest() {
 
 const st = StyleSheet.create({
   hdr: { flexDirection: "row-reverse", alignItems: "flex-end", paddingHorizontal: 16, paddingBottom: 16, gap: 12 },
-  back: { width: 38, height: 38, borderRadius: 12, backgroundColor: "rgba(255,255,255,0.2)", alignItems: "center", justifyContent: "center" },
+  back: { width: 38, height: 38, borderRadius: 12, alignItems: "center", justifyContent: "center" },
   hdrTitle: { flex: 1, fontSize: 17, color: "#fff", fontFamily: "Cairo_700Bold", textAlign: "center" },
   saveHdr: { paddingHorizontal: 14, paddingVertical: 8, backgroundColor: "rgba(255,255,255,0.25)", borderRadius: 10 },
   saveHdrTxt: { color: "#fff", fontFamily: "Tajawal_700Bold", fontSize: 14 },

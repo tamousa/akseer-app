@@ -51,17 +51,17 @@ export default function StaffPage() {
   const cardBorder = isDark ? "#2A1F45" : "#EDE9FE";
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: isDark ? "#0F0A1E" : "#F7F3FF" }}
-      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 40 }}
+    <ScrollView style={{ flex: 1, backgroundColor: colors.background }}
+      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 90 }}
       showsVerticalScrollIndicator={false}>
       <View style={styles.header}>
         <Pressable onPress={() => router.back()} style={styles.backBtn}>
-          <Feather name="chevron-right" size={24} color={isDark ? "#fff" : "#1A0A33"} />
+          <Feather name="chevron-right" size={24} color={colors.text} />
         </Pressable>
-        <Text style={[styles.pageTitle, { color: isDark ? "#fff" : "#1A0A33" }]}>{t("حسابات مدراء المتجر","Store Manager Accounts")}</Text>
-        <Pressable style={styles.addBtn}
+        <Text style={[styles.pageTitle, { color: colors.text }]}>{t("حسابات مدراء المتجر","Store Manager Accounts")}</Text>
+        <Pressable style={[styles.addBtn, { backgroundColor: colors.surfaceAlt }]}
           onPress={() => Alert.alert(t("إضافة مدير","Add Manager"), t("سيتم إرسال دعوة عبر البريد الإلكتروني","An invitation will be sent via email"))}>
-          <Feather name="user-plus" size={16} color="#fff" />
+          <Feather name="user-plus" size={16} color={colors.primary} />
         </Pressable>
       </View>
 
@@ -88,7 +88,7 @@ export default function StaffPage() {
                     <View style={[styles.roleBadge, { backgroundColor: isDark ? role.color + "25" : role.bg }]}>
                       <Text style={[styles.roleBadgeText, { color: role.color }]}>{role.label}</Text>
                     </View>
-                    <Text style={[styles.staffName, { color: isDark ? "#fff" : "#1A0A33" }]}>{member.name}</Text>
+                    <Text style={[styles.staffName, { color: colors.text }]}>{member.name}</Text>
                     <View style={[styles.activeDot, { backgroundColor: member.active ? "#059669" : "#DC2626" }]} />
                   </View>
                   <Text style={[styles.staffEmail, { color: colors.muted }]}>{member.email}</Text>

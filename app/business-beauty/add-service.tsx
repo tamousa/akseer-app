@@ -8,7 +8,6 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
-const BRAND = "#BE185D";
 const VAT = 0.15;
 
 const CATS_AR = ["شعر", "بشرة", "مكياج", "أظافر", "إزالة"];
@@ -24,6 +23,7 @@ function calcVat(base: string) {
 export default function AddBeautyService() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const BRAND = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const { t, lang } = useLanguage();
@@ -54,12 +54,12 @@ export default function AddBeautyService() {
   return (
     <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : undefined}>
       <View style={[st.container, { backgroundColor: bg }]}>
-        <View style={[st.header, { backgroundColor: BRAND, paddingTop: isWeb ? 72 : insets.top + 16 }]}>
+        <View style={[st.header, { backgroundColor: colors.surface, paddingTop: isWeb ? 72 : insets.top + 16, borderBottomWidth: 1, borderBottomColor: colors.border }]}>
           <Pressable style={st.backBtn} onPress={() => router.back()}><Feather name="chevron-right" size={22} color="#fff" /></Pressable>
-          <Text style={st.headerTitle}>{t("إضافة خدمة","Add Service")}</Text>
+          <Text style={[st.headerTitle, { color: colors.text }]}>{t("إضافة خدمة","Add Service")}</Text>
           <Pressable style={st.saveHdr} onPress={save}><Text style={st.saveHdrText}>{t("حفظ","Save")}</Text></Pressable>
         </View>
-        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 80, gap: 14 }}>
+        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 90, gap: 14 }}>
           <Pressable style={[st.imageArea, { backgroundColor: card, borderColor: BRAND + "40" }]}
             onPress={() => { setHasImage(!hasImage); Alert.alert(t("رفع صورة","Upload Photo"), t("اختر صورة من معرض الصور أو التقط صورة جديدة","Choose from gallery or take a new photo")); }}>
             {hasImage ? (
@@ -154,7 +154,7 @@ export default function AddBeautyService() {
 const st = StyleSheet.create({
   container: { flex: 1 },
   header: { flexDirection: "row-reverse", alignItems: "flex-end", paddingHorizontal: 16, paddingBottom: 16, gap: 12 },
-  backBtn: { width: 38, height: 38, borderRadius: 12, backgroundColor: "rgba(255,255,255,0.2)", alignItems: "center", justifyContent: "center" },
+  backBtn: { width: 38, height: 38, borderRadius: 12, alignItems: "center", justifyContent: "center" },
   headerTitle: { flex: 1, fontSize: 18, color: "#fff", fontFamily: "Cairo_700Bold", textAlign: "center" },
   saveHdr: { paddingHorizontal: 14, paddingVertical: 8, backgroundColor: "rgba(255,255,255,0.25)", borderRadius: 10 },
   saveHdrText: { color: "#fff", fontFamily: "Tajawal_700Bold", fontSize: 14 },

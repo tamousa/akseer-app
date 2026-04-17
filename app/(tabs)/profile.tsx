@@ -603,7 +603,11 @@ export default function ProfileScreen() {
             </Text>
             <Pressable
               style={{ width: "100%", backgroundColor: "#F43F5E", borderRadius: 14, paddingVertical: 15, alignItems: "center", marginBottom: 12 }}
-              onPress={() => { setShowLogoutConfirm(false); logout(); router.replace("/auth" as any); }}
+              onPress={async () => {
+                setShowLogoutConfirm(false);
+                await logout();
+                router.replace("/auth" as any);
+              }}
             >
               <Text style={{ color: "#fff", fontFamily: "Tajawal_700Bold", fontSize: 16 }}>{t("نعم، تسجيل الخروج", "Yes, Sign Out")}</Text>
             </Pressable>

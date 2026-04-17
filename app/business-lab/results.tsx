@@ -8,11 +8,11 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
-const C = "#0369A1";
 
 export default function ResultsPage() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const C = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const topPadding = isWeb ? 67 : insets.top;
@@ -32,7 +32,7 @@ export default function ResultsPage() {
   const [pending, setPending] = useState(PENDING_RESULTS.map((p) => ({ ...p, done: false })));
   const [activeTab, setActiveTab] = useState<"pending" | "done">("pending");
 
-  const cardBg = isDark ? "#0D2035" : "#FFFFFF";
+  const cardBg = colors.surface;
   const cardBorder = isDark ? "#1A3352" : "#BAD4E8";
 
   const uploadResult = (id: string) => {
@@ -49,8 +49,8 @@ export default function ResultsPage() {
   };
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: isDark ? "#060E1A" : "#F0F7FF" }}
-      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
+    <ScrollView style={{ flex: 1, backgroundColor: colors.background }}
+      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 90 }} showsVerticalScrollIndicator={false}>
       <View style={styles.header}>
         <Pressable onPress={() => router.back()} style={styles.backBtn}>
           <Feather name="chevron-right" size={24} color={isDark ? "#fff" : "#0A1F35"} />
@@ -68,7 +68,7 @@ export default function ResultsPage() {
         </Text>
       </View>
 
-      <View style={[styles.tabRow, { backgroundColor: isDark ? "#0D2035" : "#DBEAFE" }]}>
+      <View style={[styles.tabRow, { backgroundColor: colors.surfaceAlt }]}>
         <Pressable style={[styles.tabBtn, activeTab === "done" && { backgroundColor: C }]} onPress={() => setActiveTab("done")}>
           <Text style={[styles.tabText, { color: activeTab === "done" ? "#fff" : isDark ? "#6B9EBD" : C }]}>{t("مُرفوعة","Uploaded")} ({DONE_RESULTS.length})</Text>
         </Pressable>

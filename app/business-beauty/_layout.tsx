@@ -16,11 +16,8 @@ export default function BeautyLayout() {
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarStyle: { backgroundColor: isDark ? "#1A0020" : "#FFF0F6", borderTopColor: BRAND + "30", height: 62, paddingBottom: 8 },
-        tabBarActiveTintColor: BRAND,
-        tabBarInactiveTintColor: colors.muted,
-        tabBarLabelStyle: { fontFamily: "Tajawal_700Bold", fontSize: 10 },
-      }}
+        tabBarStyle: { display: 'none' },
+                              }}
     >
       <Tabs.Screen name="index"          options={{ title: t("الرئيسية",  "Home"),     tabBarIcon: ({ color, size }) => <Feather name="home"        size={size} color={color} /> }} />
       <Tabs.Screen name="services"       options={{ title: t("الخدمات",   "Services"), tabBarIcon: ({ color, size }) => <Feather name="scissors"    size={size} color={color} /> }} />

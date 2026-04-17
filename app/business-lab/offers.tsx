@@ -8,11 +8,11 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
-const C = "#0369A1";
 
 export default function LabOffers() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const C = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const topPadding = isWeb ? 67 : insets.top;
@@ -24,7 +24,7 @@ export default function LabOffers() {
     { id: 3, nameAr: "باقة السكري مجانية الشحن", nameEn: "Diabetes Package Free Delivery", emoji: "🎁", discount: 0, typeAr: "باقة", typeEn: "Package", targetAr: "باقة مرضى السكري", targetEn: "Diabetes Package", originalPrice: 149, offerPrice: 149, validFromAr: "1 مايو", validFromEn: "May 1", validToAr: "15 مايو", validToEn: "May 15", active: false, usedCount: 0, maxUses: 50, code: "DIABFREE", descAr: "باقة مرضى السكري مع توصيل مجاني للمنزل", descEn: "Diabetes Package with free home delivery" },
   ];
 
-  const cardBg = isDark ? "#0D2035" : "#FFFFFF";
+  const cardBg = colors.surface;
   const cardBorder = isDark ? "#1A3352" : "#BAD4E8";
   const [offers, setOffers] = useState(INITIAL_OFFERS.map((o) => ({ ...o })));
   const [expanded, setExpanded] = useState<number | null>(null);
@@ -37,8 +37,8 @@ export default function LabOffers() {
   ];
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: isDark ? "#060E1A" : "#F0F7FF" }}
-      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
+    <ScrollView style={{ flex: 1, backgroundColor: colors.background }}
+      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 90 }} showsVerticalScrollIndicator={false}>
       <View style={styles.header}>
         <Pressable onPress={() => router.back()} style={styles.backBtn}>
           <Feather name="chevron-right" size={24} color={isDark ? "#fff" : "#0A1F35"} />
@@ -46,7 +46,7 @@ export default function LabOffers() {
         <Text style={[styles.pageTitle, { color: isDark ? "#fff" : "#0A1F35" }]}>{t("العروض والخصومات","Offers & Discounts")}</Text>
         <Pressable style={[styles.addBtn, { backgroundColor: C }]}
           onPress={() => Alert.alert(t("عرض جديد","New Offer"), t("سيتم فتح نموذج إنشاء عرض جديد","A new offer form will open"))}>
-          <Feather name="plus" size={18} color="#fff" />
+          <Feather name="plus" size={18} color={colors.primary} />
         </Pressable>
       </View>
 
@@ -130,7 +130,7 @@ export default function LabOffers() {
         })}
       </View>
 
-      <Pressable style={[styles.addOfferBtn, { borderColor: C, backgroundColor: isDark ? "#0D2035" : "#EFF6FF", marginHorizontal: 16, marginTop: 16 }]}
+      <Pressable style={[styles.addOfferBtn, { borderColor: C, backgroundColor: colors.surface, marginHorizontal: 16, marginTop: 16 }]}
         onPress={() => Alert.alert(t("عرض جديد","New Offer"), t("سيتم فتح نموذج إنشاء عرض جديد","A new offer form will open"))}>
         <Feather name="tag" size={16} color={C} />
         <Text style={[styles.addOfferBtnText, { color: C }]}>{t("إضافة عرض جديد","Add New Offer")}</Text>

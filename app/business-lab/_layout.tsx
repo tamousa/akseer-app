@@ -14,18 +14,8 @@ export default function LabLayout() {
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarStyle: {
-          backgroundColor: isDark ? "#060E1A" : "#FFFFFF",
-          borderTopColor: isDark ? "#1A3352" : "#BAD4E8",
-          borderTopWidth: 1,
-          height: 70,
-          paddingBottom: 10,
-          paddingTop: 6,
-        },
-        tabBarActiveTintColor: "#0369A1",
-        tabBarInactiveTintColor: isDark ? "#4A6A8A" : "#6B9EBD",
-        tabBarLabelStyle: { fontSize: 11, fontFamily: "Tajawal_500Medium", marginTop: 2 },
-      }}
+        tabBarStyle: { display: 'none' },
+                              }}
     >
       <Tabs.Screen name="index"    options={{ title: t("الرئيسية",  "Home"),      tabBarIcon: ({ color, size }) => <Feather name="grid"        size={size} color={color} /> }} />
       <Tabs.Screen name="catalog"  options={{ title: t("الكتالوج",  "Catalog"),   tabBarIcon: ({ color, size }) => <Feather name="list"        size={size} color={color} /> }} />

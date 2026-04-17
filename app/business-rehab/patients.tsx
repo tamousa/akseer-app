@@ -7,11 +7,11 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
-const BRAND = "#059669";
 
 export default function RehabPatients() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const BRAND = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const { t, lang } = useLanguage();
@@ -45,16 +45,16 @@ export default function RehabPatients() {
   );
 
   return (
-    <View style={[styles.container, { backgroundColor: isDark ? "#001A12" : "#ECFDF5" }]}>
-      <View style={[styles.header, { backgroundColor: BRAND, paddingTop: isWeb ? 72 : insets.top + 16 }]}>
-        <Text style={styles.headerTitle}>{t("المرضى","Patients")} ({PATIENTS.length})</Text>
-        <Pressable style={styles.addBtn} onPress={() => Alert.alert(t("تسجيل مريض","Register Patient"), t("سيتم فتح نموذج تسجيل مريض جديد","A new patient registration form will open"))}>
-          <Feather name="user-plus" size={20} color="#fff" />
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
+      <View style={[styles.header, { backgroundColor: colors.surface, paddingTop: isWeb ? 72 : insets.top + 16, borderBottomWidth: 1, borderBottomColor: colors.border }]}>
+        <Text style={[styles.headerTitle, { color: colors.text }]}>{t("المرضى","Patients")} ({PATIENTS.length})</Text>
+        <Pressable style={[styles.addBtn, { backgroundColor: colors.surfaceAlt }]} onPress={() => Alert.alert(t("تسجيل مريض","Register Patient"), t("سيتم فتح نموذج تسجيل مريض جديد","A new patient registration form will open"))}>
+          <Feather name="user-plus" size={20} color={colors.primary} />
         </Pressable>
       </View>
 
       <View style={{ padding: 16, gap: 12 }}>
-        <View style={[styles.searchBox, { backgroundColor: isDark ? "#003020" : "#fff", borderColor: colors.border }]}>
+        <View style={[styles.searchBox, { backgroundColor: colors.surface, borderColor: colors.border }]}>
           <Feather name="search" size={16} color={colors.muted} />
           <TextInput
             style={[styles.searchInput, { color: colors.text }]}
@@ -74,11 +74,11 @@ export default function RehabPatients() {
         </View>
       </View>
 
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: insets.bottom + 80 }}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: insets.bottom + 90 }}>
         {filtered.map((p) => {
           const st = STATUS_MAP[p.status];
           return (
-            <Pressable key={p.id} style={[styles.patientCard, { backgroundColor: isDark ? "#003020" : "#fff", borderColor: BRAND + "25" }]}
+            <Pressable key={p.id} style={[styles.patientCard, { backgroundColor: colors.surface, borderColor: BRAND + "25" }]}
               onPress={() => Alert.alert(lang === "ar" ? p.nameAr : p.nameEn, `${t("خطة العلاج:","Treatment:")} ${lang === "ar" ? p.planAr : p.planEn}\n${t("المعالج:","Therapist:")} ${lang === "ar" ? p.therapistAr : p.therapistEn}\n${t("التأمين:","Insurance:")} ${lang === "ar" ? p.insuranceAr : p.insuranceEn}`)}>
               <View style={[styles.avatar, { backgroundColor: p.status === "completed" ? "#047857" : BRAND }]}>
                 <Feather name="user" size={20} color="#fff" />
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
   container: { flex: 1 },
   header: { flexDirection: "row-reverse", justifyContent: "space-between", alignItems: "flex-end", paddingHorizontal: 20, paddingBottom: 16 },
   headerTitle: { fontSize: 20, color: "#fff", fontFamily: "Cairo_700Bold" },
-  addBtn: { width: 38, height: 38, borderRadius: 12, backgroundColor: "rgba(255,255,255,0.2)", alignItems: "center", justifyContent: "center" },
+  addBtn: { width: 38, height: 38, borderRadius: 12, alignItems: "center", justifyContent: "center" },
   searchBox: { flexDirection: "row-reverse", alignItems: "center", gap: 10, borderRadius: 12, borderWidth: 1, paddingHorizontal: 14, paddingVertical: 10 },
   searchInput: { flex: 1, fontSize: 14, fontFamily: "Tajawal_400Regular" },
   filterChip: { paddingHorizontal: 14, paddingVertical: 8, borderRadius: 10, borderWidth: 1 },

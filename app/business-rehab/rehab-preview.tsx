@@ -8,7 +8,6 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
-const BRAND = "#059669";
 
 const SERVICES = [
   { nameAr: "علاج طبيعي عام",          nameEn: "General Physiotherapy",    duration: 45,  price: 280, sessions: "8–12", descAr: "تقييم وعلاج شامل للحالة",       descEn: "Comprehensive assessment and treatment" },
@@ -41,6 +40,7 @@ const REVIEWS = [
 export default function RehabPreview() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const BRAND = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const { t, lang } = useLanguage();
@@ -55,20 +55,20 @@ export default function RehabPreview() {
   };
 
   return (
-    <View style={[styles.container, { backgroundColor: isDark ? "#001A12" : "#ECFDF5" }]}>
-      <View style={[styles.header, { backgroundColor: BRAND, paddingTop: isWeb ? 72 : insets.top + 16 }]}>
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
+      <View style={[styles.header, { backgroundColor: colors.surface, paddingTop: isWeb ? 72 : insets.top + 16, borderBottomWidth: 1, borderBottomColor: colors.border }]}>
         <Pressable style={styles.backBtn} onPress={() => router.back()}>
           <Feather name="chevron-right" size={22} color="#fff" />
         </Pressable>
         <View style={{ flex: 1, alignItems: "center" }}>
-          <Text style={styles.headerTitle}>{t("معاينة الصفحة العامة","Public Page Preview")}</Text>
+          <Text style={[styles.headerTitle, { color: colors.text }]}>{t("معاينة الصفحة العامة","Public Page Preview")}</Text>
           <Text style={styles.headerSub}>{t("هكذا يراك العملاء في تطبيق أكسير","How clients see you in Akseer")}</Text>
         </View>
         <View style={{ width: 38 }} />
       </View>
 
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: insets.bottom + 80 }}>
-        <View style={[styles.bioCard, { backgroundColor: isDark ? "#003020" : "#fff", borderColor: BRAND + "30" }]}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: insets.bottom + 90 }}>
+        <View style={[styles.bioCard, { backgroundColor: colors.surface, borderColor: BRAND + "30" }]}>
           <View style={[styles.avatar, { backgroundColor: BRAND }]}>
             <Text style={styles.avatarText}>🦾</Text>
           </View>
@@ -131,7 +131,7 @@ export default function RehabPreview() {
         {tab === "services" && (
           <View style={{ paddingHorizontal: 16 }}>
             {SERVICES.map((s, i) => (
-              <View key={i} style={[styles.serviceRow, { backgroundColor: isDark ? "#003020" : "#fff", borderColor: BRAND + "20" }]}>
+              <View key={i} style={[styles.serviceRow, { backgroundColor: colors.surface, borderColor: BRAND + "20" }]}>
                 <View style={{ flex: 1 }}>
                   <Text style={[styles.serviceName, { color: colors.text }]}>{lang === "ar" ? s.nameAr : s.nameEn}</Text>
                   <Text style={[styles.serviceDesc, { color: colors.muted }]}>{lang === "ar" ? s.descAr : s.descEn}</Text>
@@ -154,7 +154,7 @@ export default function RehabPreview() {
         {tab === "packages" && (
           <View style={{ paddingHorizontal: 16 }}>
             {PACKAGES.map((p, i) => (
-              <View key={i} style={[styles.pkgCard, { backgroundColor: isDark ? "#003020" : "#fff", borderColor: BRAND + "30" }]}>
+              <View key={i} style={[styles.pkgCard, { backgroundColor: colors.surface, borderColor: BRAND + "30" }]}>
                 <Text style={[styles.pkgName, { color: colors.text }]}>{lang === "ar" ? p.nameAr : p.nameEn}</Text>
                 <Text style={[styles.pkgDesc, { color: colors.muted }]}>{lang === "ar" ? p.descAr : p.descEn}</Text>
                 <View style={styles.pkgPriceRow}>
@@ -175,7 +175,7 @@ export default function RehabPreview() {
         {tab === "therapists" && (
           <View style={{ paddingHorizontal: 16 }}>
             {THERAPISTS.map((th, i) => (
-              <View key={i} style={[styles.therapistCard, { backgroundColor: isDark ? "#003020" : "#fff", borderColor: th.color + "30" }]}>
+              <View key={i} style={[styles.therapistCard, { backgroundColor: colors.surface, borderColor: th.color + "30" }]}>
                 <View style={[styles.therapistAvatar, { backgroundColor: th.color }]}>
                   <Feather name="user" size={24} color="#fff" />
                 </View>
@@ -198,14 +198,14 @@ export default function RehabPreview() {
 
         {tab === "insurance" && (
           <View style={{ paddingHorizontal: 16 }}>
-            <View style={[styles.insInfoCard, { backgroundColor: isDark ? "#003020" : "#fff", borderColor: BRAND + "30" }]}>
+            <View style={[styles.insInfoCard, { backgroundColor: colors.surface, borderColor: BRAND + "30" }]}>
               <Feather name="shield" size={28} color={BRAND} />
               <Text style={[styles.insInfoTitle, { color: colors.text }]}>{t("شركات التأمين المقبولة","Accepted Insurance Companies")}</Text>
               <Text style={[styles.insInfoSub, { color: colors.muted }]}>{t("يمكنك حجز جلستك مباشرة وتسوية الفاتورة عبر التأمين","Book your session directly and settle the bill via insurance")}</Text>
             </View>
             <View style={{ flexDirection: "row-reverse", flexWrap: "wrap", gap: 10 }}>
               {INSURANCE_AR.map((ins, i) => (
-                <View key={ins} style={[styles.insCard2, { backgroundColor: isDark ? "#003020" : "#fff", borderColor: BRAND + "30" }]}>
+                <View key={ins} style={[styles.insCard2, { backgroundColor: colors.surface, borderColor: BRAND + "30" }]}>
                   <Feather name="shield" size={20} color={BRAND} />
                   <Text style={[styles.insCardText, { color: colors.text }]}>{lang === "ar" ? ins : INSURANCE_EN[i]}</Text>
                   <View style={[styles.insCovBadge, { backgroundColor: BRAND + "20" }]}>
@@ -219,13 +219,13 @@ export default function RehabPreview() {
 
         {tab === "reviews" && (
           <View style={{ paddingHorizontal: 16 }}>
-            <View style={[styles.ratingOverview, { backgroundColor: isDark ? "#003020" : "#fff", borderColor: BRAND + "30" }]}>
+            <View style={[styles.ratingOverview, { backgroundColor: colors.surface, borderColor: BRAND + "30" }]}>
               <Text style={[styles.ratingBig, { color: BRAND }]}>4.9</Text>
               <Text style={[styles.ratingStars, { color: "#F59E0B" }]}>★★★★★</Text>
               <Text style={[styles.ratingCountText, { color: colors.muted }]}>189 {t("تقييم","reviews")}</Text>
             </View>
             {REVIEWS.map((r, i) => (
-              <View key={i} style={[styles.reviewCard, { backgroundColor: isDark ? "#003020" : "#fff", borderColor: BRAND + "20" }]}>
+              <View key={i} style={[styles.reviewCard, { backgroundColor: colors.surface, borderColor: BRAND + "20" }]}>
                 <View style={styles.reviewHeader}>
                   <Text style={[styles.reviewName, { color: colors.text }]}>{lang === "ar" ? r.nameAr : r.nameEn}</Text>
                   <Text style={[styles.reviewTime, { color: colors.muted }]}>{r.time}</Text>
@@ -247,7 +247,7 @@ export default function RehabPreview() {
 const styles = StyleSheet.create({
   container: { flex: 1 },
   header: { flexDirection: "row-reverse", alignItems: "flex-end", paddingHorizontal: 16, paddingBottom: 16, gap: 12 },
-  backBtn: { width: 38, height: 38, borderRadius: 12, backgroundColor: "rgba(255,255,255,0.2)", alignItems: "center", justifyContent: "center" },
+  backBtn: { width: 38, height: 38, borderRadius: 12, alignItems: "center", justifyContent: "center" },
   headerTitle: { fontSize: 16, color: "#fff", fontFamily: "Cairo_700Bold" },
   headerSub: { fontSize: 11, color: "rgba(255,255,255,0.75)", fontFamily: "Tajawal_400Regular" },
   bioCard: { flexDirection: "row-reverse", gap: 12, margin: 16, borderRadius: 18, padding: 16, borderWidth: 1 },

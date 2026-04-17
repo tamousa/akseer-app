@@ -9,7 +9,6 @@ import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
 
-const C = "#0369A1";
 
 const PERIODS_AR = ["هذا الشهر", "الشهر الماضي", "هذا العام"];
 const PERIODS_EN = ["This Month", "Last Month", "This Year"];
@@ -34,19 +33,20 @@ const MONTHLY_DATA = [
 export default function LabReports() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const C = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const topPadding = isWeb ? 67 : insets.top;
   const { t, lang } = useLanguage();
   const [periodIdx, setPeriodIdx] = useState(0);
 
-  const cardBg = isDark ? "#0D2035" : "#FFFFFF";
+  const cardBg = colors.surface;
   const cardBorder = isDark ? "#1A3352" : "#BAD4E8";
   const maxVal = Math.max(...MONTHLY_DATA.map((m) => m.value));
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: isDark ? "#060E1A" : "#F0F7FF" }}
-      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
+    <ScrollView style={{ flex: 1, backgroundColor: colors.background }}
+      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 90 }} showsVerticalScrollIndicator={false}>
       <View style={styles.header}>
         <Pressable onPress={() => router.back()} style={styles.backBtn}>
           <Feather name="chevron-right" size={24} color={isDark ? "#fff" : "#0A1F35"} />

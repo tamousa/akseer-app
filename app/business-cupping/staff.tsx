@@ -7,11 +7,11 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
-const BRAND = "#92400E";
 
 export default function CuppingStaff() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const BRAND = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const { t, lang } = useLanguage();
@@ -23,16 +23,16 @@ export default function CuppingStaff() {
   ];
 
   return (
-    <View style={[s.container, { backgroundColor: isDark ? "#1A0E00" : "#FFFBEB" }]}>
-      <View style={[s.header, { backgroundColor: BRAND, paddingTop: isWeb ? 72 : insets.top + 16 }]}>
-        <Text style={s.headerTitle}>{t("المعالجون","Therapists")} ({STAFF.length})</Text>
-        <Pressable style={s.addBtn} onPress={() => Alert.alert(t("إضافة معالج","Add Therapist"), t("سيتم فتح نموذج إضافة معالج جديد","A new therapist form will open"))}>
-          <Feather name="user-plus" size={20} color="#fff" />
+    <View style={[s.container, { backgroundColor: colors.background }]}>
+      <View style={[s.header, { backgroundColor: colors.surface, paddingTop: isWeb ? 72 : insets.top + 16, borderBottomWidth: 1, borderBottomColor: colors.border }]}>
+        <Text style={[s.headerTitle, { color: colors.text }]}>{t("المعالجون","Therapists")} ({STAFF.length})</Text>
+        <Pressable style={[s.addBtn, { backgroundColor: colors.surfaceAlt }]} onPress={() => Alert.alert(t("إضافة معالج","Add Therapist"), t("سيتم فتح نموذج إضافة معالج جديد","A new therapist form will open"))}>
+          <Feather name="user-plus" size={20} color={colors.primary} />
         </Pressable>
       </View>
-      <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 80, gap: 10 }}>
+      <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 90, gap: 10 }}>
         {STAFF.map((m) => (
-          <View key={m.id} style={[s.card, { backgroundColor: isDark ? "#2A1500" : "#fff", borderColor: m.color + "30" }]}>
+          <View key={m.id} style={[s.card, { backgroundColor: colors.surface, borderColor: m.color + "30" }]}>
             <View style={[s.avatar, { backgroundColor: m.color }]}><Feather name="user" size={22} color="#fff" /></View>
             <View style={{ flex: 1 }}>
               <Text style={[s.name, { color: colors.text }]}>{lang === "ar" ? m.nameAr : m.nameEn}</Text>
@@ -58,7 +58,7 @@ const s = StyleSheet.create({
   container: { flex: 1 },
   header: { flexDirection: "row-reverse", justifyContent: "space-between", alignItems: "flex-end", paddingHorizontal: 20, paddingBottom: 16 },
   headerTitle: { fontSize: 20, color: "#fff", fontFamily: "Cairo_700Bold" },
-  addBtn: { width: 38, height: 38, borderRadius: 12, backgroundColor: "rgba(255,255,255,0.2)", alignItems: "center", justifyContent: "center" },
+  addBtn: { width: 38, height: 38, borderRadius: 12, alignItems: "center", justifyContent: "center" },
   card: { flexDirection: "row-reverse", alignItems: "center", gap: 14, padding: 16, borderRadius: 16, borderWidth: 1 },
   avatar: { width: 52, height: 52, borderRadius: 16, alignItems: "center", justifyContent: "center" },
   name: { fontSize: 15, fontFamily: "Tajawal_700Bold", textAlign: "right", marginBottom: 2 },

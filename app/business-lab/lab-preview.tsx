@@ -9,7 +9,6 @@ import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
 
-const C = "#0369A1";
 
 const PACKAGES = [
   { nameAr: "باقة الفحص الشامل", nameEn: "Full Checkup", emoji: "🌟", price: 249, original: 380, tests: 10, homeVisit: true, targetAr: "للكشف السنوي", targetEn: "Annual checkup" },
@@ -42,6 +41,7 @@ const CATS_EN = ["All", "Blood 🩸", "Sugar 🍬", "Hormones ⚗️", "Liver & 
 export default function LabPreviewPage() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const C = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const topPadding = isWeb ? 67 : insets.top;
@@ -49,11 +49,11 @@ export default function LabPreviewPage() {
   const [activeCat, setActiveCat] = useState(0);
   const [saved, setSaved] = useState(false);
 
-  const cardBg = isDark ? "#0D2035" : "#FFFFFF";
+  const cardBg = colors.surface;
   const cardBorder = isDark ? "#1A3352" : "#BAD4E8";
 
   return (
-    <View style={{ flex: 1, backgroundColor: isDark ? "#060E1A" : "#F0F7FF" }}>
+    <View style={{ flex: 1, backgroundColor: colors.background }}>
       <View style={[styles.topBar, { backgroundColor: "#072040", paddingTop: topPadding + 8 }]}>
         <View style={styles.topBarRow}>
           <Pressable onPress={() => router.back()} style={styles.backBtn}>
@@ -97,11 +97,11 @@ export default function LabPreviewPage() {
             <Feather name="calendar" size={15} color="#fff" />
             <Text style={styles.ctaMainText}>{t("حجز تحليل","Book Test")}</Text>
           </Pressable>
-          <Pressable style={[styles.ctaSecondary, { backgroundColor: isDark ? "#0D2035" : "#DBEAFE", borderColor: C + "40" }]}>
+          <Pressable style={[styles.ctaSecondary, { backgroundColor: colors.surfaceAlt, borderColor: C + "40" }]}>
             <Feather name="message-circle" size={16} color={C} />
             <Text style={[styles.ctaSecondaryText, { color: C }]}>{t("دردشة","Chat")}</Text>
           </Pressable>
-          <Pressable style={[styles.ctaSecondary, { backgroundColor: saved ? C + "20" : (isDark ? "#0D2035" : "#DBEAFE"), borderColor: saved ? C : C + "40" }]}
+          <Pressable style={[styles.ctaSecondary, { backgroundColor: saved ? C + "20" : (colors.surface), borderColor: saved ? C : C + "40" }]}
             onPress={() => setSaved(!saved)}>
             <Feather name="heart" size={16} color={saved ? C : colors.muted} />
             <Text style={[styles.ctaSecondaryText, { color: saved ? C : colors.muted }]}>{saved ? t("متابَع ✓","Following ✓") : t("متابعة","Follow")}</Text>
@@ -258,7 +258,7 @@ export default function LabPreviewPage() {
           ))}
         </View>
 
-        <View style={[styles.infoBox, { backgroundColor: isDark ? "#0D2035" : "#DBEAFE", borderColor: C + "30" }]}>
+        <View style={[styles.infoBox, { backgroundColor: colors.surfaceAlt, borderColor: C + "30" }]}>
           <Feather name="eye" size={14} color={C} />
           <Text style={[styles.infoBoxText, { color: isDark ? "#A5C8E0" : "#0A1F35" }]}>
             {t("أي تعديل في التحاليل، الباقات، أو العروض يُحدَّث فوراً. النتائج تصل مباشرة عبر التطبيق. التواصل حصرياً عبر دردشة أكسير.",

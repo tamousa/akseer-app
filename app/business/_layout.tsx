@@ -14,18 +14,8 @@ export default function BusinessLayout() {
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarStyle: {
-          backgroundColor: isDark ? "#120D24" : "#FFFFFF",
-          borderTopColor: isDark ? "#2A1F45" : "#EDE9FE",
-          borderTopWidth: 1,
-          height: 70,
-          paddingBottom: 10,
-          paddingTop: 6,
-        },
-        tabBarActiveTintColor: "#7C3AED",
-        tabBarInactiveTintColor: isDark ? "#7A6A96" : "#A89BC4",
-        tabBarLabelStyle: { fontSize: 11, fontFamily: "Tajawal_500Medium", marginTop: 2 },
-      }}
+        tabBarStyle: { display: 'none' },
+                              }}
     >
       <Tabs.Screen name="index"     options={{ title: t("الرئيسية",   "Home"),      tabBarIcon: ({ color, size }) => <Feather name="grid"          size={size} color={color} /> }} />
       <Tabs.Screen name="store"     options={{ title: t("المتجر",      "Store"),     tabBarIcon: ({ color, size }) => <Feather name="shopping-bag"  size={size} color={color} /> }} />

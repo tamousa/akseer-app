@@ -3,16 +3,17 @@ import { router } from "expo-router";
 import React from "react";
 import { I18nManager, Platform, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import BusinessHeader from "@/components/BusinessHeader";
 import Colors from "@/constants/colors";
 import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
-const C = "#0E7490";
 
 export default function ClinicHome() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const C = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const topPadding = isWeb ? 67 : insets.top;
@@ -39,12 +40,14 @@ export default function ClinicHome() {
     { time: "14:00", patientAr: "فاطمة العتيبي", patientEn: "Fatima Al-Otaibi", doctor: "أخ. ريم الحربي / Nurse Reem", serviceAr: "زيارة منزلية", serviceEn: "Home Visit", typeAr: "منزلي", typeEn: "Home", typeIcon: "🏠", statusAr: "مؤكد", statusEn: "Confirmed", statusColor: "#059669", statusBg: "#D1FAE5" },
   ];
 
-  const cardBg = isDark ? "#0D2035" : "#FFFFFF";
-  const cardBorder = isDark ? "#1A3A52" : "#BAE6FD";
+  const cardBg = colors.surface;
+  const cardBorder = colors.border;
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: isDark ? "#070F18" : "#F0FDFF" }}
-      contentContainerStyle={{ paddingTop: topPadding + 16, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
+    <View style={{ flex: 1, backgroundColor: colors.background }}>
+      <BusinessHeader />
+      <ScrollView style={{ flex: 1 }}
+      contentContainerStyle={{ paddingTop: 0, paddingBottom: 90 }} showsVerticalScrollIndicator={false}>
       <View style={styles.headerRow}>
         <View style={[styles.avatarCircle, { backgroundColor: C + "30" }]}>
           <Text style={{ fontSize: 18 }}>🏥</Text>
@@ -59,7 +62,7 @@ export default function ClinicHome() {
         </Pressable>
       </View>
 
-      <View style={[styles.heroBanner, { backgroundColor: isDark ? "#0D2A40" : "#0E7490" }]}>
+      <View style={[styles.heroBanner, { backgroundColor: isDark ? C + "25" : C }]}>
         <View>
           <Text style={styles.heroTitle}>{t("اليوم، 29 مارس","Today, March 29")}</Text>
           <Text style={styles.heroSub}>{t("لديك 12 موعداً · 3 في انتظار التأكيد","You have 12 appointments · 3 pending")}</Text>
@@ -127,6 +130,7 @@ export default function ClinicHome() {
         ))}
       </View>
     </ScrollView>
+    </View>
   );
 }
 

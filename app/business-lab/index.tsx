@@ -3,16 +3,17 @@ import { router } from "expo-router";
 import React from "react";
 import { I18nManager, Platform, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import BusinessHeader from "@/components/BusinessHeader";
 import Colors from "@/constants/colors";
 import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
-const C = "#0369A1";
 
 export default function LabHome() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const C = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const topPadding = isWeb ? 67 : insets.top;
@@ -39,25 +40,14 @@ export default function LabHome() {
     { id: "LAB-804", time: "11:00", patientAr: "خالد الشمري", patientEn: "Khalid Al-Shammari", testsAr: "وظائف الكبد والكلى", testsEn: "Liver & Kidney Function", typeAr: "حضوري", typeEn: "In-Lab", typeIcon: "🏥", statusAr: "انتظار", statusEn: "Waiting", statusColor: "#6B7280", statusBg: "#F3F4F6" },
   ];
 
-  const cardBg = isDark ? "#0D2035" : "#FFFFFF";
+  const cardBg = colors.surface;
   const cardBorder = isDark ? "#1A3352" : "#BAD4E8";
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: isDark ? "#060E1A" : "#F0F7FF" }}
-      contentContainerStyle={{ paddingTop: topPadding + 16, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
-      <View style={styles.headerRow}>
-        <View style={[styles.avatarCircle, { backgroundColor: C + "30" }]}>
-          <Text style={{ fontSize: 18 }}>🔬</Text>
-        </View>
-        <View style={styles.headerCenter}>
-          <Text style={[styles.greeting, { color: colors.muted }]}>{t("مرحباً، إدارة","Welcome, Management")}</Text>
-          <Text style={[styles.labName, { color: isDark ? "#fff" : "#0A1F35" }]}>{t("مختبر التشخيص الطبي","Medical Diagnostics Lab")}</Text>
-        </View>
-        <Pressable style={[styles.notifBtn, { backgroundColor: isDark ? "#0D2035" : "#DBEAFE" }]}>
-          <Feather name="bell" size={20} color={C} />
-          <View style={styles.notifDot} />
-        </Pressable>
-      </View>
+    <View style={{ flex: 1, backgroundColor: colors.background }}>
+      <BusinessHeader title={t("مختبر التشخيص الطبي", "Medical Diagnostics Lab")} />
+      <ScrollView style={{ flex: 1 }}
+        contentContainerStyle={{ paddingTop: 0, paddingBottom: 90 }} showsVerticalScrollIndicator={false}>
 
       <View style={[styles.heroBanner, { backgroundColor: isDark ? "#0A2040" : C }]}>
         <View>
@@ -71,7 +61,7 @@ export default function LabHome() {
         <Text style={{ fontSize: 44 }}>🔬</Text>
       </View>
 
-      <Pressable style={[styles.previewBtn, { backgroundColor: isDark ? "#0D2035" : "#DBEAFE", borderColor: C + "50" }]}
+      <Pressable style={[styles.previewBtn, { backgroundColor: colors.surface, borderColor: C + "50" }]}
         onPress={() => router.push("/business-lab/lab-preview" as any)}>
         <Feather name="eye" size={15} color={C} />
         <Text style={[styles.previewBtnText, { color: C }]}>{t("معاينة كيف يظهر مختبرك للمرضى في أكسير","Preview how your lab appears to patients in Akseer")}</Text>
@@ -132,6 +122,7 @@ export default function LabHome() {
         ))}
       </View>
     </ScrollView>
+    </View>
   );
 }
 

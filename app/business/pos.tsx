@@ -72,13 +72,13 @@ export default function POSPage() {
   const cardBorder = isDark ? "#2A1F45" : "#EDE9FE";
 
   return (
-    <View style={{ flex: 1, backgroundColor: isDark ? "#0F0A1E" : "#F7F3FF" }}>
+    <View style={{ flex: 1, backgroundColor: colors.background }}>
       <ScrollView contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 240 }} showsVerticalScrollIndicator={false}>
         <View style={styles.header}>
           <Pressable onPress={() => router.back()} style={styles.backBtn}>
-            <Feather name="chevron-right" size={24} color={isDark ? "#fff" : "#1A0A33"} />
+            <Feather name="chevron-right" size={24} color={colors.text} />
           </Pressable>
-          <Text style={[styles.pageTitle, { color: isDark ? "#fff" : "#1A0A33" }]}>{t("نقطة البيع","Point of Sale")}</Text>
+          <Text style={[styles.pageTitle, { color: colors.text }]}>{t("نقطة البيع","Point of Sale")}</Text>
           <View style={[styles.cartBadgeWrap, { backgroundColor: "#7C3AED20" }]}>
             <Feather name="shopping-cart" size={18} color="#7C3AED" />
             {cart.length > 0 && <View style={styles.cartDot}><Text style={styles.cartDotText}>{cart.reduce((a, c) => a + c.qty, 0)}</Text></View>}
@@ -93,7 +93,7 @@ export default function POSPage() {
               <Pressable key={item.id} style={[styles.catalogItem, { backgroundColor: inCart ? "#7C3AED10" : cardBg, borderColor: inCart ? "#7C3AED" : cardBorder }]}
                 onPress={() => addToCart(item)}>
                 <Text style={styles.catalogEmoji}>{item.emoji}</Text>
-                <Text style={[styles.catalogName, { color: isDark ? "#fff" : "#1A0A33" }]} numberOfLines={2}>{item.name}</Text>
+                <Text style={[styles.catalogName, { color: colors.text }]} numberOfLines={2}>{item.name}</Text>
                 <Text style={[styles.catalogPrice, { color: "#7C3AED" }]}>{item.price} SAR</Text>
                 {inCart && (
                   <View style={[styles.qtyBubble, { backgroundColor: "#7C3AED" }]}>
@@ -116,7 +116,7 @@ export default function POSPage() {
                   <Pressable style={[styles.qtyBtn, { backgroundColor: "#7C3AED20" }]} onPress={() => removeFromCart(c.id)}>
                     <Feather name="minus" size={12} color="#7C3AED" />
                   </Pressable>
-                  <Text style={[styles.qtyNum, { color: isDark ? "#fff" : "#1A0A33" }]}>{c.qty}</Text>
+                  <Text style={[styles.qtyNum, { color: colors.text }]}>{c.qty}</Text>
                   <Pressable style={[styles.qtyBtn, { backgroundColor: "#7C3AED20" }]} onPress={() => addToCart(c)}>
                     <Feather name="plus" size={12} color="#7C3AED" />
                   </Pressable>
@@ -128,7 +128,7 @@ export default function POSPage() {
         )}
 
         <View style={styles.totalsRow}>
-          <Text style={[styles.totalFinal, { color: isDark ? "#fff" : "#1A0A33" }]}>{grandTotal} SAR</Text>
+          <Text style={[styles.totalFinal, { color: colors.text }]}>{grandTotal} SAR</Text>
           <View style={{ flex: 1 }}>
             <View style={styles.totalLine}>
               <Text style={[styles.totalLabel, { color: colors.muted }]}>{total} SAR</Text>

@@ -3,16 +3,17 @@ import { router } from "expo-router";
 import React from "react";
 import { I18nManager, Platform, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import BusinessHeader from "@/components/BusinessHeader";
 import Colors from "@/constants/colors";
 import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
-const BRAND = "#059669";
 
 export default function RehabIndex() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const BRAND = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const { t, lang } = useLanguage();
@@ -49,27 +50,13 @@ export default function RehabIndex() {
   ];
 
   return (
-    <View style={[styles.container, { backgroundColor: isDark ? "#001A12" : "#ECFDF5" }]}>
-      <View style={[styles.header, { backgroundColor: BRAND, paddingTop: isWeb ? 72 : insets.top + 16 }]}>
-        <View style={{ flex: 1 }}>
-          <Text style={styles.headerSub}>{t("لوحة تحكم | مركز","Control Panel | Center")}</Text>
-          <Text style={styles.headerTitle}>{t("أكسير للتأهيل والعلاج الطبيعي 🦾","Akseer Rehab & Physiotherapy 🦾")}</Text>
-        </View>
-        <View style={{ flexDirection: "row-reverse", gap: 10 }}>
-          <Pressable style={styles.iconBtn}>
-            <Feather name="bell" size={20} color="#fff" />
-            <View style={styles.badge}><Text style={styles.badgeText}>2</Text></View>
-          </Pressable>
-          <Pressable style={styles.iconBtn} onPress={() => router.push("/business-rehab/rehab-preview" as any)}>
-            <Feather name="eye" size={20} color="#fff" />
-          </Pressable>
-        </View>
-      </View>
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
+      <BusinessHeader />
 
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: insets.bottom + 80 }}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: insets.bottom + 90 }}>
         <View style={styles.statsGrid}>
           {STATS.map((s, i) => (
-            <View key={i} style={[styles.statCard, { backgroundColor: isDark ? "#003020" : "#fff", borderColor: BRAND + "30" }]}>
+            <View key={i} style={[styles.statCard, { backgroundColor: colors.surface, borderColor: BRAND + "30" }]}>
               <View style={[styles.statIcon, { backgroundColor: BRAND + "20" }]}>
                 <Feather name={s.icon} size={18} color={BRAND} />
               </View>
@@ -80,7 +67,7 @@ export default function RehabIndex() {
           ))}
         </View>
 
-        <View style={[styles.insCard, { backgroundColor: isDark ? "#003020" : "#fff", borderColor: BRAND + "30" }]}>
+        <View style={[styles.insCard, { backgroundColor: colors.surface, borderColor: BRAND + "30" }]}>
           <View style={{ flex: 1, gap: 4 }}>
             <Text style={[styles.insTitle, { color: colors.text }]}>{t("مطالبات التأمين المعلقة","Pending Insurance Claims")}</Text>
             <Text style={[styles.insSub, { color: colors.muted }]}>3 {t("مطالبات بانتظار المراجعة","claims pending review")}</Text>
@@ -94,7 +81,7 @@ export default function RehabIndex() {
           <Text style={[styles.sectionTitle, { color: colors.text }]}>{t("إجراءات سريعة","Quick Actions")}</Text>
           <View style={styles.quickGrid}>
             {QUICK.map((q, i) => (
-              <Pressable key={i} style={[styles.quickCard, { backgroundColor: isDark ? "#003020" : "#fff", borderColor: BRAND + "25" }]}
+              <Pressable key={i} style={[styles.quickCard, { backgroundColor: colors.surface, borderColor: BRAND + "25" }]}
                 onPress={() => router.push(q.route as any)}>
                 <View style={[styles.quickIcon, { backgroundColor: BRAND + "20" }]}>
                   <Feather name={q.icon} size={22} color={BRAND} />
@@ -113,7 +100,7 @@ export default function RehabIndex() {
             </Pressable>
           </View>
           {SESSIONS_TODAY.map((s, i) => (
-            <View key={i} style={[styles.sessCard, { backgroundColor: isDark ? "#003020" : "#fff", borderColor: s.color + "30" }]}>
+            <View key={i} style={[styles.sessCard, { backgroundColor: colors.surface, borderColor: s.color + "30" }]}>
               <View style={{ flex: 1 }}>
                 <Text style={[styles.sessName, { color: colors.text }]}>{lang === "ar" ? s.nameAr : s.nameEn}</Text>
                 <Text style={[styles.sessPlan, { color: colors.muted }]}>{lang === "ar" ? s.planAr : s.planEn}</Text>

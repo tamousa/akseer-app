@@ -8,11 +8,11 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
-const C = "#0E7490";
 
 export default function ClinicServices() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const C = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const topPadding = isWeb ? 67 : insets.top;
@@ -34,8 +34,8 @@ export default function ClinicServices() {
   ];
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: isDark ? "#070F18" : "#F0FDFF" }}
-      contentContainerStyle={{ paddingTop: topPadding + 16, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
+    <ScrollView style={{ flex: 1, backgroundColor: colors.background }}
+      contentContainerStyle={{ paddingTop: topPadding + 16, paddingBottom: 90 }} showsVerticalScrollIndicator={false}>
       <View style={styles.pageHeader}>
         <Text style={[styles.pageTitle, { color: isDark ? "#fff" : "#0A2330" }]}>{t("إدارة العيادة","Clinic Management")}</Text>
         <Pressable style={[styles.previewBtn, { backgroundColor: isDark ? "#0D2035" : "#E0F7FA", borderColor: C + "40" }]}
@@ -57,7 +57,7 @@ export default function ClinicServices() {
 
       <View style={{ paddingHorizontal: 16, gap: 12 }}>
         {SECTIONS.map((s) => (
-          <Pressable key={s.key} style={[styles.sectionCard, { backgroundColor: isDark ? "#0D2035" : "#FFFFFF", borderColor: isDark ? "#1A3A52" : "#BAE6FD" }]}
+          <Pressable key={s.key} style={[styles.sectionCard, { backgroundColor: colors.surface, borderColor: colors.border }]}
             onPress={() => router.push(s.route as any)}>
             <View style={styles.inner}>
               <Feather name="chevron-left" size={18} color={colors.muted} />

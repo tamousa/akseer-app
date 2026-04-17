@@ -7,7 +7,6 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
-const BRAND = "#BE185D";
 
 const CATS_AR = ["الكل", "شعر", "مكياج", "بشرة", "أظافر"];
 const CATS_EN = ["All", "Hair", "Makeup", "Skin", "Nails"];
@@ -26,6 +25,7 @@ const GALLERY = [
 export default function BeautyGallery() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const BRAND = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const { t, lang } = useLanguage();
@@ -36,13 +36,13 @@ export default function BeautyGallery() {
 
   return (
     <View style={[s.container, { backgroundColor: isDark ? "#150010" : "#FFF0F6" }]}>
-      <View style={[s.header, { backgroundColor: BRAND, paddingTop: isWeb ? 72 : insets.top + 16 }]}>
-        <Text style={s.headerTitle}>{t("معرض الأعمال","Work Gallery")}</Text>
-        <Pressable style={s.addBtn} onPress={() => Alert.alert(t("رفع صورة","Upload Photo"), t("سيتم فتح متصفح الصور لرفع عمل جديد","Gallery will open to upload a new work"))}>
-          <Feather name="upload" size={20} color="#fff" />
+      <View style={[s.header, { backgroundColor: colors.surface, paddingTop: isWeb ? 72 : insets.top + 16, borderBottomWidth: 1, borderBottomColor: colors.border }]}>
+        <Text style={[s.headerTitle, { color: colors.text }]}>{t("معرض الأعمال","Work Gallery")}</Text>
+        <Pressable style={[s.addBtn, { backgroundColor: colors.surfaceAlt }]} onPress={() => Alert.alert(t("رفع صورة","Upload Photo"), t("سيتم فتح متصفح الصور لرفع عمل جديد","Gallery will open to upload a new work"))}>
+          <Feather name="upload" size={20} color={colors.primary} />
         </Pressable>
       </View>
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: insets.bottom + 80 }}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: insets.bottom + 90 }}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ padding: 16 }}>
           <View style={{ flexDirection: "row-reverse", gap: 8 }}>
             {CATS_AR.map((c, i) => (
@@ -79,7 +79,7 @@ const s = StyleSheet.create({
   container: { flex: 1 },
   header: { flexDirection: "row-reverse", justifyContent: "space-between", alignItems: "flex-end", paddingHorizontal: 20, paddingBottom: 16 },
   headerTitle: { fontSize: 20, color: "#fff", fontFamily: "Cairo_700Bold" },
-  addBtn: { width: 38, height: 38, borderRadius: 12, backgroundColor: "rgba(255,255,255,0.2)", alignItems: "center", justifyContent: "center" },
+  addBtn: { width: 38, height: 38, borderRadius: 12, alignItems: "center", justifyContent: "center" },
   catChip: { paddingHorizontal: 14, paddingVertical: 8, borderRadius: 10, borderWidth: 1 },
   catText: { fontSize: 12, fontFamily: "Tajawal_700Bold" },
   grid: { flexDirection: "row-reverse", flexWrap: "wrap", paddingHorizontal: 12, gap: 10 },

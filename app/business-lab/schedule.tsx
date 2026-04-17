@@ -9,7 +9,6 @@ import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
 
-const C = "#0369A1";
 
 const DAYS_AR = ["السبت", "الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة"];
 const DAYS_EN = ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
@@ -32,6 +31,7 @@ const BRANCHES = [
 export default function LabSchedule() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const C = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const topPadding = isWeb ? 67 : insets.top;
@@ -39,13 +39,13 @@ export default function LabSchedule() {
   const [schedule, setSchedule] = useState(INITIAL_SCHEDULE.map((s) => ({ ...s })));
   const [activeTab, setActiveTab] = useState<"hours" | "branches">("hours");
 
-  const cardBg = isDark ? "#0D2035" : "#FFFFFF";
+  const cardBg = colors.surface;
   const cardBorder = isDark ? "#1A3352" : "#BAD4E8";
   const toggleDay = (idx: number) => setSchedule((prev) => prev.map((s) => s.dayIdx === idx ? { ...s, open: !s.open } : s));
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: isDark ? "#060E1A" : "#F0F7FF" }}
-      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
+    <ScrollView style={{ flex: 1, backgroundColor: colors.background }}
+      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 90 }} showsVerticalScrollIndicator={false}>
       <View style={styles.header}>
         <Pressable onPress={() => router.back()} style={styles.backBtn}>
           <Feather name="chevron-right" size={24} color={isDark ? "#fff" : "#0A1F35"} />
@@ -53,7 +53,7 @@ export default function LabSchedule() {
         <Text style={[styles.pageTitle, { color: isDark ? "#fff" : "#0A1F35" }]}>{t("مواعيد العمل والفروع","Working Hours & Branches")}</Text>
       </View>
 
-      <View style={[styles.tabRow, { backgroundColor: isDark ? "#0D2035" : "#DBEAFE" }]}>
+      <View style={[styles.tabRow, { backgroundColor: colors.surfaceAlt }]}>
         <Pressable style={[styles.tabBtn, activeTab === "branches" && { backgroundColor: C }]} onPress={() => setActiveTab("branches")}>
           <Text style={[styles.tabText, { color: activeTab === "branches" ? "#fff" : isDark ? "#6B9EBD" : C }]}>{t("الفروع","Branches")}</Text>
         </Pressable>
@@ -99,14 +99,14 @@ export default function LabSchedule() {
                 </View>
                 <Text style={[styles.branchAddress, { color: colors.muted }]}>📍 {lang === "ar" ? b.addressAr : b.addressEn}</Text>
                 <Text style={[styles.branchHV, { color: "#059669" }]}>🏠 {t("تغطية منزلية:","Home coverage:")} {lang === "ar" ? b.homeVisitRangeAr : b.homeVisitRangeEn}</Text>
-                <Pressable style={[styles.editBranchBtn, { borderColor: C, backgroundColor: isDark ? "#0D2035" : "#EFF6FF" }]}
+                <Pressable style={[styles.editBranchBtn, { borderColor: C, backgroundColor: colors.surface }]}
                   onPress={() => Alert.alert(t("تعديل الفرع","Edit Branch"), lang === "ar" ? b.nameAr : b.nameEn)}>
                   <Feather name="edit-2" size={13} color={C} />
                   <Text style={[styles.editBranchText, { color: C }]}>{t("تعديل الفرع","Edit Branch")}</Text>
                 </Pressable>
               </View>
             ))}
-            <Pressable style={[styles.addBranchBtn, { borderColor: C, backgroundColor: isDark ? "#0D2035" : "#EFF6FF" }]}
+            <Pressable style={[styles.addBranchBtn, { borderColor: C, backgroundColor: colors.surface }]}
               onPress={() => Alert.alert(t("فرع جديد","New Branch"), t("سيتم فتح نموذج إضافة فرع جديد","A form to add a new branch will open"))}>
               <Feather name="plus" size={16} color={C} />
               <Text style={[styles.addBranchText, { color: C }]}>{t("إضافة فرع","Add Branch")}</Text>

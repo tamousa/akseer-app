@@ -24,8 +24,10 @@ import Colors from "@/constants/colors";
 
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import PersistentTabBar from "@/components/PersistentTabBar";
+import BusinessTabBar from "@/components/BusinessTabBar";
 import WelcomeSplash from "@/components/WelcomeSplash";
 import { AppProvider } from "@/context/AppContext";
+import { BusinessProvider } from "@/context/BusinessContext";
 import { CartProvider } from "@/context/CartContext";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { ThemeProvider, useTheme } from "@/context/ThemeContext";
@@ -79,14 +81,17 @@ function InnerLayout() {
       <KeyboardProvider>
         <LanguageProvider>
           <AppProvider>
-            <CartProvider>
-              <StatusBar style={isDark ? "light" : "dark"} />
-              <View style={{ flex: 1 }}>
-                <RootLayoutNav />
-                <PersistentTabBar />
-                {showWelcome && <WelcomeSplash onFinish={() => setShowWelcome(false)} />}
-              </View>
-            </CartProvider>
+            <BusinessProvider>
+              <CartProvider>
+                <StatusBar style={isDark ? "light" : "dark"} />
+                <View style={{ flex: 1 }}>
+                  <RootLayoutNav />
+                  <PersistentTabBar />
+                  <BusinessTabBar />
+                  {showWelcome && <WelcomeSplash onFinish={() => setShowWelcome(false)} />}
+                </View>
+              </CartProvider>
+            </BusinessProvider>
           </AppProvider>
         </LanguageProvider>
       </KeyboardProvider>

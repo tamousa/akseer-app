@@ -16,17 +16,15 @@ export default function RehabLayout() {
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarStyle: { backgroundColor: isDark ? "#001A12" : "#ECFDF5", borderTopColor: BRAND + "30", height: 62, paddingBottom: 8 },
-        tabBarActiveTintColor: BRAND,
-        tabBarInactiveTintColor: colors.muted,
-        tabBarLabelStyle: { fontFamily: "Tajawal_700Bold", fontSize: 10 },
-      }}
+        tabBarStyle: { display: 'none' },
+                              }}
     >
       <Tabs.Screen name="index"            options={{ title: t("الرئيسية",  "Home"),     tabBarIcon: ({ color, size }) => <Feather name="home"        size={size} color={color} /> }} />
       <Tabs.Screen name="patients"         options={{ title: t("المرضى",    "Patients"), tabBarIcon: ({ color, size }) => <Feather name="users"       size={size} color={color} /> }} />
       <Tabs.Screen name="sessions"         options={{ title: t("الجلسات",   "Sessions"), tabBarIcon: ({ color, size }) => <Feather name="activity"    size={size} color={color} /> }} />
       <Tabs.Screen name="payments"         options={{ title: t("المدفوعات", "Payments"), tabBarIcon: ({ color, size }) => <Feather name="credit-card" size={size} color={color} /> }} />
       <Tabs.Screen name="more"             options={{ title: t("المزيد",    "More"),     tabBarIcon: ({ color, size }) => <Feather name="menu"        size={size} color={color} /> }} />
+      <Tabs.Screen name="bookings"         options={{ href: null }} />
       <Tabs.Screen name="staff"            options={{ href: null }} />
       <Tabs.Screen name="offers"           options={{ href: null }} />
       <Tabs.Screen name="treatment-plans"  options={{ href: null }} />

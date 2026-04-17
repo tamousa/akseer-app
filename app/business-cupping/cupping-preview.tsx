@@ -8,7 +8,6 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
-const BRAND = "#92400E";
 
 const SESSION_TYPES = [
   { nameAr: "حجامة رطبة",        nameEn: "Wet Cupping",     price: 280, duration: 45, descAr: "إزالة الدم الفاسد — الفائدة الأكبر",  descEn: "Removes stagnant blood — maximum benefit",  icon: "droplet" as const },
@@ -37,6 +36,7 @@ const REVIEWS = [
 export default function CuppingPreview() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const BRAND = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const { t, lang } = useLanguage();
@@ -50,20 +50,20 @@ export default function CuppingPreview() {
   };
 
   return (
-    <View style={[styles.container, { backgroundColor: isDark ? "#1A0E00" : "#FFFBEB" }]}>
-      <View style={[styles.header, { backgroundColor: BRAND, paddingTop: isWeb ? 72 : insets.top + 16 }]}>
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
+      <View style={[styles.header, { backgroundColor: colors.surface, paddingTop: isWeb ? 72 : insets.top + 16, borderBottomWidth: 1, borderBottomColor: colors.border }]}>
         <Pressable style={styles.backBtn} onPress={() => router.back()}>
           <Feather name="chevron-right" size={22} color="#fff" />
         </Pressable>
         <View style={{ flex: 1, alignItems: "center" }}>
-          <Text style={styles.headerTitle}>{t("معاينة الصفحة العامة","Public Page Preview")}</Text>
+          <Text style={[styles.headerTitle, { color: colors.text }]}>{t("معاينة الصفحة العامة","Public Page Preview")}</Text>
           <Text style={styles.headerSub}>{t("هكذا يراك العملاء في تطبيق أكسير","How clients see you in Akseer")}</Text>
         </View>
         <View style={{ width: 38 }} />
       </View>
 
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: insets.bottom + 80 }}>
-        <View style={[styles.bioCard, { backgroundColor: isDark ? "#2A1500" : "#fff", borderColor: BRAND + "30" }]}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: insets.bottom + 90 }}>
+        <View style={[styles.bioCard, { backgroundColor: colors.surface, borderColor: BRAND + "30" }]}>
           <View style={[styles.avatar, { backgroundColor: BRAND }]}>
             <Text style={styles.avatarText}>🩸</Text>
           </View>
@@ -119,7 +119,7 @@ export default function CuppingPreview() {
         {tab === "sessions" && (
           <View style={{ paddingHorizontal: 16 }}>
             {SESSION_TYPES.map((s, i) => (
-              <View key={i} style={[styles.sessCard, { backgroundColor: isDark ? "#2A1500" : "#fff", borderColor: BRAND + "20" }]}>
+              <View key={i} style={[styles.sessCard, { backgroundColor: colors.surface, borderColor: BRAND + "20" }]}>
                 <View style={[styles.sessIcon, { backgroundColor: BRAND + "20" }]}>
                   <Feather name={s.icon} size={20} color={BRAND} />
                 </View>
@@ -142,7 +142,7 @@ export default function CuppingPreview() {
         {tab === "packages" && (
           <View style={{ paddingHorizontal: 16 }}>
             {PACKAGES.map((p, i) => (
-              <View key={i} style={[styles.pkgCard, { backgroundColor: isDark ? "#2A1500" : "#fff", borderColor: BRAND + "30" }]}>
+              <View key={i} style={[styles.pkgCard, { backgroundColor: colors.surface, borderColor: BRAND + "30" }]}>
                 <Text style={[styles.pkgName, { color: colors.text }]}>{lang === "ar" ? p.nameAr : p.nameEn}</Text>
                 <Text style={[styles.pkgDesc, { color: colors.muted }]}>{lang === "ar" ? p.descAr : p.descEn}</Text>
                 <View style={styles.pkgRow}>
@@ -163,7 +163,7 @@ export default function CuppingPreview() {
         {tab === "therapists" && (
           <View style={{ paddingHorizontal: 16 }}>
             {THERAPISTS.map((th, i) => (
-              <View key={i} style={[styles.therapistCard, { backgroundColor: isDark ? "#2A1500" : "#fff", borderColor: th.color + "30" }]}>
+              <View key={i} style={[styles.therapistCard, { backgroundColor: colors.surface, borderColor: th.color + "30" }]}>
                 <View style={[styles.therapistAvatar, { backgroundColor: th.color }]}>
                   <Feather name="user" size={24} color="#fff" />
                 </View>
@@ -185,13 +185,13 @@ export default function CuppingPreview() {
 
         {tab === "reviews" && (
           <View style={{ paddingHorizontal: 16 }}>
-            <View style={[styles.ratingOverview, { backgroundColor: isDark ? "#2A1500" : "#fff", borderColor: BRAND + "30" }]}>
+            <View style={[styles.ratingOverview, { backgroundColor: colors.surface, borderColor: BRAND + "30" }]}>
               <Text style={[styles.ratingBig, { color: BRAND }]}>4.9</Text>
               <Text style={[styles.ratingStars, { color: "#F59E0B" }]}>★★★★★</Text>
               <Text style={[styles.ratingCountText, { color: colors.muted }]}>312 {t("تقييم","reviews")}</Text>
             </View>
             {REVIEWS.map((r, i) => (
-              <View key={i} style={[styles.reviewCard, { backgroundColor: isDark ? "#2A1500" : "#fff", borderColor: BRAND + "20" }]}>
+              <View key={i} style={[styles.reviewCard, { backgroundColor: colors.surface, borderColor: BRAND + "20" }]}>
                 <View style={styles.reviewHeader}>
                   <Text style={[styles.reviewName, { color: colors.text }]}>{lang === "ar" ? r.nameAr : r.nameEn}</Text>
                   <Text style={[styles.reviewTime, { color: colors.muted }]}>{r.time}</Text>
@@ -213,7 +213,7 @@ export default function CuppingPreview() {
 const styles = StyleSheet.create({
   container: { flex: 1 },
   header: { flexDirection: "row-reverse", alignItems: "flex-end", paddingHorizontal: 16, paddingBottom: 16, gap: 12 },
-  backBtn: { width: 38, height: 38, borderRadius: 12, backgroundColor: "rgba(255,255,255,0.2)", alignItems: "center", justifyContent: "center" },
+  backBtn: { width: 38, height: 38, borderRadius: 12, alignItems: "center", justifyContent: "center" },
   headerTitle: { fontSize: 16, color: "#fff", fontFamily: "Cairo_700Bold" },
   headerSub: { fontSize: 11, color: "rgba(255,255,255,0.75)", fontFamily: "Tajawal_400Regular" },
   bioCard: { flexDirection: "row-reverse", gap: 12, margin: 16, borderRadius: 18, padding: 16, borderWidth: 1 },

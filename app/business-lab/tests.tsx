@@ -9,7 +9,6 @@ import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
 
-const C = "#0369A1";
 
 const CATS_AR = ["الكل", "دم", "سكر", "هرمونات", "كبد وكلى", "مناعة", "بول وبراز", "جرثومي"];
 const CATS_EN = ["All", "Blood", "Sugar", "Hormones", "Liver & Kidney", "Immunity", "Urine & Stool", "Bacterial"];
@@ -30,6 +29,7 @@ const TESTS = [
 export default function TestsPage() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const C = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const topPadding = isWeb ? 67 : insets.top;
@@ -38,15 +38,15 @@ export default function TestsPage() {
   const [expanded, setExpanded] = useState<number | null>(null);
   const [tests, setTests] = useState(TESTS.map((tx) => ({ ...tx })));
 
-  const cardBg = isDark ? "#0D2035" : "#FFFFFF";
+  const cardBg = colors.surface;
   const cardBorder = isDark ? "#1A3352" : "#BAD4E8";
 
   const filtered = catIdx === 0 ? tests : tests.filter((tx) => tx.catAr === CATS_AR[catIdx]);
   const toggleTest = (id: number) => setTests((prev) => prev.map((tx) => tx.id === id ? { ...tx, active: !tx.active } : tx));
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: isDark ? "#060E1A" : "#F0F7FF" }}
-      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
+    <ScrollView style={{ flex: 1, backgroundColor: colors.background }}
+      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 90 }} showsVerticalScrollIndicator={false}>
       <View style={styles.header}>
         <Pressable onPress={() => router.back()} style={styles.backBtn}>
           <Feather name="chevron-right" size={24} color={isDark ? "#fff" : "#0A1F35"} />
@@ -54,7 +54,7 @@ export default function TestsPage() {
         <Text style={[styles.pageTitle, { color: isDark ? "#fff" : "#0A1F35" }]}>{t("قائمة التحاليل","Tests List")}</Text>
         <Pressable style={[styles.addBtn, { backgroundColor: C }]}
           onPress={() => Alert.alert(t("إضافة تحليل","Add Test"), t("سيتم فتح نموذج إضافة تحليل جديد","A form to add a new test will open"))}>
-          <Feather name="plus" size={18} color="#fff" />
+          <Feather name="plus" size={18} color={colors.primary} />
         </Pressable>
       </View>
 

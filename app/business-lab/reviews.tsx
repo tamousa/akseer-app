@@ -9,7 +9,6 @@ import { useTheme } from "@/context/ThemeContext";
 
 I18nManager.forceRTL(true);
 
-const C = "#0369A1";
 
 const REVIEWS = [
   { id: 1, name: "أحمد الغامدي", rating: 5, textAr: "مختبر ممتاز، سرعة في الاستقبال والنتائج وصلت بسرعة للتطبيق.", textEn: "Excellent lab, fast reception and results arrived quickly in the app.", date: "اليوم", dateEn: "Today", typeAr: "حضوري", typeEn: "In-person", replied: false },
@@ -25,19 +24,20 @@ const QUESTIONS = [
 export default function LabReviews() {
   const { isDark } = useTheme();
   const colors = isDark ? Colors.dark : Colors.light;
+  const C = colors.primary;
   const insets = useSafeAreaInsets();
   const isWeb = Platform.OS === "web";
   const topPadding = isWeb ? 67 : insets.top;
   const { t, lang } = useLanguage();
   const [activeTab, setActiveTab] = useState<"reviews" | "questions">("reviews");
 
-  const cardBg = isDark ? "#0D2035" : "#FFFFFF";
+  const cardBg = colors.surface;
   const cardBorder = isDark ? "#1A3352" : "#BAD4E8";
   const avgRating = (REVIEWS.reduce((a, r) => a + r.rating, 0) / REVIEWS.length).toFixed(1);
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: isDark ? "#060E1A" : "#F0F7FF" }}
-      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
+    <ScrollView style={{ flex: 1, backgroundColor: colors.background }}
+      contentContainerStyle={{ paddingTop: topPadding + 8, paddingBottom: 90 }} showsVerticalScrollIndicator={false}>
       <View style={styles.header}>
         <Pressable onPress={() => router.back()} style={styles.backBtn}>
           <Feather name="chevron-right" size={24} color={isDark ? "#fff" : "#0A1F35"} />
@@ -70,7 +70,7 @@ export default function LabReviews() {
         </View>
       </View>
 
-      <View style={[styles.tabRow, { backgroundColor: isDark ? "#0D2035" : "#DBEAFE" }]}>
+      <View style={[styles.tabRow, { backgroundColor: colors.surfaceAlt }]}>
         <Pressable style={[styles.tabBtn, activeTab === "reviews" && { backgroundColor: C }]} onPress={() => setActiveTab("reviews")}>
           <Text style={[styles.tabText, { color: activeTab === "reviews" ? "#fff" : isDark ? "#6B9EBD" : C }]}>{t("تقييمات","Reviews")}</Text>
         </Pressable>
@@ -99,7 +99,7 @@ export default function LabReviews() {
               </View>
             )}
             {!review.replied && (
-              <Pressable style={[styles.replyBtn, { borderColor: C, backgroundColor: isDark ? "#0D2035" : "#EFF6FF" }]}
+              <Pressable style={[styles.replyBtn, { borderColor: C, backgroundColor: colors.surface }]}
                 onPress={() => Alert.alert(t("الرد على التقييم","Reply to Review"), t("سيتم فتح نافذة كتابة الرد","A reply window will open"))}>
                 <Feather name="message-square" size={13} color={C} />
                 <Text style={[styles.replyBtnText, { color: C }]}>{t("الرد على التقييم","Reply to Review")}</Text>

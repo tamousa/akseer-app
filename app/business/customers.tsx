@@ -46,12 +46,12 @@ export default function BusinessCustomers() {
 
   return (
     <ScrollView
-      style={{ flex: 1, backgroundColor: isDark ? "#0F0A1E" : "#F7F3FF" }}
-      contentContainerStyle={{ paddingTop: topPadding + 16, paddingBottom: 40 }}
+      style={{ flex: 1, backgroundColor: colors.background }}
+      contentContainerStyle={{ paddingTop: topPadding + 16, paddingBottom: 90 }}
       showsVerticalScrollIndicator={false}
     >
       <View style={styles.pageHeader}>
-        <Text style={[styles.pageTitle, { color: isDark ? "#fff" : "#1A0A33" }]}>{t("إدارة العملاء", "Customers")}</Text>
+        <Text style={[styles.pageTitle, { color: colors.text }]}>{t("إدارة العملاء", "Customers")}</Text>
         <Pressable
           style={[styles.exportBtn, { borderColor: "#7C3AED", backgroundColor: isDark ? "#1A1030" : "#EDE9FE" }]}
           onPress={() => Alert.alert(t("تصدير", "Export"), t("سيتم تصدير بيانات العملاء كملف Excel", "Customer data will be exported as an Excel file"))}
@@ -67,7 +67,7 @@ export default function BusinessCustomers() {
             <View style={[styles.summaryIcon, { backgroundColor: s.color + "20" }]}>
               <Feather name={s.icon} size={16} color={s.color} />
             </View>
-            <Text style={[styles.summaryValue, { color: isDark ? "#fff" : "#1A0A33" }]}>{s.value}</Text>
+            <Text style={[styles.summaryValue, { color: colors.text }]}>{s.value}</Text>
             <Text style={[styles.summaryLabel, { color: colors.muted }]}>{s.label}</Text>
           </View>
         ))}
@@ -98,7 +98,7 @@ export default function BusinessCustomers() {
                 <View style={[styles.customerTag, { backgroundColor: customer.tagBg }]}>
                   <Text style={[styles.customerTagText, { color: customer.tagColor }]}>{tagLabel(customer.tag)}</Text>
                 </View>
-                <Text style={[styles.customerName, { color: isDark ? "#fff" : "#1A0A33" }]}>{customer.name}</Text>
+                <Text style={[styles.customerName, { color: colors.text }]}>{customer.name}</Text>
               </View>
               <Text style={[styles.customerPhone, { color: colors.muted }]}>{customer.phone}  ·  {t("آخر طلب:", "Last order:")} {customer.lastOrder}</Text>
               <View style={styles.customerStats}>
