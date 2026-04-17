@@ -1,0 +1,27 @@
+kind = "mobile"
+previewPath = "/"
+title = "أكسير - الصحة والجمال"
+version = "1.0.0"
+id = "artifacts/akseer"
+router = "expo-domain"
+
+[[integratedSkills]]
+name = "expo"
+version = "1.0.0"
+
+[[services]]
+ensurePreviewReachable = "/status"
+name = "expo"
+paths = [ "/" ]
+localPort = 21031
+
+[services.development]
+run = "pnpm --filter @workspace/akseer run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/akseer", "run", "build" ]
+run = [ "pnpm", "--filter", "@workspace/akseer", "run", "serve" ]
+
+[services.env]
+PORT = "21031"
+BASE_PATH = "/"
