@@ -26,9 +26,9 @@ const CATEGORIES = [
   { key: "الكل",                keyEn: "All",              emoji: "🌐", color: "#6B7280" },
   { key: "التغذية",             keyEn: "Nutrition",        emoji: "🥗", color: "#F59E0B" },
   { key: "الرياضة",             keyEn: "Fitness",          emoji: "🏋️", color: "#F43F5E" },
-  { key: "الصحة النفسية",       keyEn: "Mental Health",    emoji: "🧠", color: "#C490D8" },
+  { key: "الصحة النفسية",       keyEn: "Mental Health",    emoji: "🧠", color: "#00E0B8" },
   { key: "جمال وعناية",         keyEn: "Beauty & Care",    emoji: "💆", color: "#EC4899" },
-  { key: "طبي",                 keyEn: "Medical",          emoji: "🩺", color: "#A86DBF" },
+  { key: "طبي",                 keyEn: "Medical",          emoji: "🩺", color: "#00C4A0" },
   { key: "النوم",               keyEn: "Sleep",            emoji: "😴", color: "#3B82F6" },
   { key: "صحة المرأة والطفل",   keyEn: "Women & Child",    emoji: "🌸", color: "#F472B6" },
   { key: "صحة الرجل",           keyEn: "Men's Health",     emoji: "💪", color: "#2563EB" },
@@ -40,7 +40,7 @@ const CATEGORIES = [
 const STORIES = [
   { id: "1", nameAr: "سارة",  nameEn: "Sara",   emoji: "👩", color: "#EC4899", hasNew: true },
   { id: "2", nameAr: "محمد",  nameEn: "Mohammed",emoji: "👨", color: "#3B82F6", hasNew: true },
-  { id: "3", nameAr: "نورة",  nameEn: "Noura",  emoji: "👩", color: "#C490D8", hasNew: false },
+  { id: "3", nameAr: "نورة",  nameEn: "Noura",  emoji: "👩", color: "#00E0B8", hasNew: false },
   { id: "4", nameAr: "فيصل", nameEn: "Faisal",  emoji: "👨", color: "#22C55E", hasNew: true },
   { id: "5", nameAr: "لمى",   nameEn: "Lama",   emoji: "👩", color: "#F59E0B", hasNew: false },
 ];
@@ -59,10 +59,10 @@ const POSTS = [
     likes: 89, comments: 24, shares: 15, tag: "التغذية", tagEn: "Nutrition", tagColor: "#F59E0B", hasImage: false,
   },
   {
-    id: "3", user: "نورة السالم", avatar: "👩", avatarColor: "#C490D8", time: "منذ أمس",
+    id: "3", user: "نورة السالم", avatar: "👩", avatarColor: "#00E0B8", time: "منذ أمس",
     contentAr: "التأمل لمدة 10 دقائق يومياً غير حياتي تماماً. قل توتري وتحسن نومي بشكل ملحوظ ✨ جربوه!",
     contentEn: "10 minutes of daily meditation completely changed my life. Stress reduced and sleep improved noticeably ✨ Try it!",
-    likes: 156, comments: 38, shares: 22, tag: "الصحة النفسية", tagEn: "Mental Health", tagColor: "#C490D8", hasImage: false,
+    likes: 156, comments: 38, shares: 22, tag: "الصحة النفسية", tagEn: "Mental Health", tagColor: "#00E0B8", hasImage: false,
   },
   {
     id: "4", user: "فاطمة الزهراء", avatar: "👩", avatarColor: "#22C55E", time: "منذ يومين",
@@ -149,12 +149,12 @@ export default function CommunityScreen() {
       {/* Stories */}
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.storiesScroll} contentContainerStyle={{ flexDirection: "row-reverse", paddingRight: 20 }}>
         <View style={[styles.storyAdd, { backgroundColor: isDark ? colors.card : "#FDF6FA" }]}>
-          <Feather name="plus" size={20} color="#C490D8" />
+          <Feather name="plus" size={20} color="#00E0B8" />
           <Text style={[styles.storyName, { color: colors.muted }]}>{t("إضافة", "Add")}</Text>
         </View>
         {STORIES.map((s) => (
           <View key={s.id} style={styles.storyItem}>
-            <View style={[styles.storyRing, s.hasNew && { borderColor: "#C490D8" }]}>
+            <View style={[styles.storyRing, s.hasNew && { borderColor: "#00E0B8" }]}>
               <View style={[styles.storyAvatar, { backgroundColor: s.color + "20" }]}>
                 <Text style={{ fontSize: 22 }}>{s.emoji}</Text>
               </View>
@@ -227,7 +227,7 @@ export default function CommunityScreen() {
         )}
 
         <View style={[styles.newPostActions, { flexDirection: lang === "en" ? "row" : "row-reverse" }]}>
-          <Pressable style={[styles.postBtn, { backgroundColor: (newPost.trim() && selectedTag) ? "#C490D8" : colors.border }]} onPress={handlePost}>
+          <Pressable style={[styles.postBtn, { backgroundColor: (newPost.trim() && selectedTag) ? "#00E0B8" : colors.border }]} onPress={handlePost}>
             <Text style={styles.postBtnTxt}>{t("نشر", "Post")}</Text>
           </Pressable>
           <View style={[styles.mediaActions, { flexDirection: lang === "en" ? "row" : "row-reverse" }]}>
@@ -309,7 +309,7 @@ export default function CommunityScreen() {
                 <Text style={[styles.actionTxt, { color: colors.muted }]}>{post.shares}</Text>
               </Pressable>
               <Pressable style={[styles.actionBtn, { flexDirection: lang === "en" ? "row" : "row-reverse" }]} onPress={() => toggleSave(post.id)}>
-                <Feather name="bookmark" size={20} color={savedPosts.includes(post.id) ? "#C490D8" : colors.muted} />
+                <Feather name="bookmark" size={20} color={savedPosts.includes(post.id) ? "#00E0B8" : colors.muted} />
               </Pressable>
             </View>
           </View>

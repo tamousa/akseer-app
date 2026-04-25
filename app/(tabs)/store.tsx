@@ -220,8 +220,8 @@ export default function StoreScreen() {
         {/* Location Bar */}
         <View style={[styles.locationRow, { flexDirection: lang === "en" ? "row" : "row-reverse" }]}>
           <View style={styles.locationLeft}>
-            <View style={[styles.locationBtn, { backgroundColor: "#C490D8" + "15", flexDirection: lang === "en" ? "row" : "row-reverse" }]}>
-              <Feather name="map-pin" size={14} color="#C490D8" />
+            <View style={[styles.locationBtn, { backgroundColor: "#00E0B8" + "15", flexDirection: lang === "en" ? "row" : "row-reverse" }]}>
+              <Feather name="map-pin" size={14} color="#00E0B8" />
               <Text style={[styles.locationTxt, { color: colors.text }]}>{t("الرياض، السليمانية", "Riyadh, Al-Sulaimaniyah")}</Text>
               <Feather name="chevron-down" size={14} color={colors.muted} />
             </View>
@@ -231,7 +231,7 @@ export default function StoreScreen() {
               style={[styles.notifBtn, { backgroundColor: isDark ? colors.card : "#F5F5F5" }]}
               onPress={() => setShowOrders(true)}
             >
-              <Feather name="package" size={18} color={"#C490D8"} />
+              <Feather name="package" size={18} color={"#00E0B8"} />
               {productOrders.length > 0 && (
                 <View style={styles.ordersBadge}>
                   <Text style={styles.ordersBadgeText}>{productOrders.length}</Text>
@@ -270,10 +270,10 @@ export default function StoreScreen() {
                       <Pressable
                         key={order.id}
                         onPress={() => { setShowOrders(false); router.push(("/order/" + order.id) as any); }}
-                        style={[styles.orderCard, { backgroundColor: isDark ? colors.card : "#F8F5FF", borderColor: "#C490D820" }]}
+                        style={[styles.orderCard, { backgroundColor: isDark ? colors.card : "#F8F5FF", borderColor: "#00E0B820" }]}
                       >
                         <View style={[styles.orderCardTop, { flexDirection: lang === "en" ? "row" : "row-reverse" }]}>
-                          <View style={[styles.orderStatusBadge, { backgroundColor: order.status === "delivered" ? "#22C55E" : order.status === "cancelled" ? "#EF4444" : "#C490D8" }]}>
+                          <View style={[styles.orderStatusBadge, { backgroundColor: order.status === "delivered" ? "#22C55E" : order.status === "cancelled" ? "#EF4444" : "#00E0B8" }]}>
                             <Text style={styles.orderStatusText}>
                               {order.status === "delivered"
                                 ? t("✓ تم التوصيل", "✓ Delivered")
@@ -287,7 +287,7 @@ export default function StoreScreen() {
                         <Text style={[styles.orderCardStore, { color: colors.text, textAlign: lang === "en" ? "left" : "right" }]}>{order.storeName}</Text>
                         <View style={[styles.orderCardMeta, { flexDirection: lang === "en" ? "row" : "row-reverse" }]}>
                           <Text style={[{ fontSize: 12, fontFamily: "Tajawal_400Regular" }, { color: colors.muted }]}>{order.date}</Text>
-                          <Text style={[styles.orderCardTotal, { color: "#C490D8" }]}>{order.total} {t("ر.س", "SAR")}</Text>
+                          <Text style={[styles.orderCardTotal, { color: "#00E0B8" }]}>{order.total} {t("ر.س", "SAR")}</Text>
                         </View>
                       </Pressable>
                     ))}
@@ -321,7 +321,7 @@ export default function StoreScreen() {
           {MENU_TABS.map((tab) => (
             <Pressable
               key={tab.key}
-              style={[styles.tab, activeTab === tab.key && { borderBottomColor: "#C490D8" }]}
+              style={[styles.tab, activeTab === tab.key && { borderBottomColor: "#00E0B8" }]}
               onPress={() => {
                 if (tab.key === "ai") {
                   router.push("/section/ai-chat" as any);
@@ -332,7 +332,7 @@ export default function StoreScreen() {
                 }
               }}
             >
-              <Text style={[styles.tabText, { color: activeTab === tab.key ? "#C490D8" : colors.muted }]}>
+              <Text style={[styles.tabText, { color: activeTab === tab.key ? "#00E0B8" : colors.muted }]}>
                 {t(tab.labelAr, tab.labelEn)}
               </Text>
             </Pressable>
@@ -347,8 +347,8 @@ export default function StoreScreen() {
           <RefreshControl
             refreshing={refreshing}
             onRefresh={onRefresh}
-            tintColor="#C490D8"
-            colors={["#C490D8", "#7C3AED"]}
+            tintColor="#00E0B8"
+            colors={["#00E0B8", "#007A65"]}
           />
         }
       >
@@ -367,8 +367,8 @@ export default function StoreScreen() {
                   style={[
                     styles.catChip,
                     {
-                      backgroundColor: selectedCategory === cat.key ? "#C490D8" : (isDark ? colors.card : "#F5F5F5"),
-                      borderColor: selectedCategory === cat.key ? "#C490D8" : colors.border,
+                      backgroundColor: selectedCategory === cat.key ? "#00E0B8" : (isDark ? colors.card : "#F5F5F5"),
+                      borderColor: selectedCategory === cat.key ? "#00E0B8" : colors.border,
                       flexDirection: lang === "en" ? "row" : "row-reverse",
                     },
                   ]}
@@ -410,7 +410,7 @@ export default function StoreScreen() {
               <View style={{ marginHorizontal: 16, marginBottom: 8 }}>
                 <View style={[styles.sectionHeader, { flexDirection: lang === "en" ? "row" : "row-reverse" }]}>
                   <Text style={[styles.sectionTitle, { color: colors.text }]}>{t("عروض حصرية 🔥", "Exclusive Offers 🔥")}</Text>
-                  <Text style={[styles.sectionMore, { color: "#C490D8" }]}>{t("عرض الكل", "View All")}</Text>
+                  <Text style={[styles.sectionMore, { color: "#00E0B8" }]}>{t("عرض الكل", "View All")}</Text>
                 </View>
                 <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 12, flexDirection: "row-reverse" }}>
                   {STORE_OFFERS.map((offer) => (
@@ -503,10 +503,10 @@ export default function StoreScreen() {
         {activeTab === "ai" && (
           <View style={{ paddingHorizontal: 16, paddingTop: 20 }}>
             <Pressable
-              style={[styles.aiNavCard, { backgroundColor: isDark ? colors.card : "#fff", borderColor: "#A86DBF", flexDirection: lang === "en" ? "row" : "row-reverse" }]}
+              style={[styles.aiNavCard, { backgroundColor: isDark ? colors.card : "#fff", borderColor: "#00C4A0", flexDirection: lang === "en" ? "row" : "row-reverse" }]}
               onPress={() => router.push("/section/ai-chat" as any)}
             >
-              <View style={[styles.aiNavIcon, { backgroundColor: "#A86DBF20" }]}>
+              <View style={[styles.aiNavIcon, { backgroundColor: "#00C4A020" }]}>
                 <Text style={{ fontSize: 36 }}>🤖</Text>
               </View>
               <View style={{ flex: 1 }}>
@@ -517,7 +517,7 @@ export default function StoreScreen() {
                   {t("اسألني عن الصحة والجمال والعناية والمتاجر والمواعيد!", "Ask me about health, beauty, care, stores, and appointments!")}
                 </Text>
               </View>
-              <Feather name={lang === "en" ? "chevron-right" : "chevron-left"} size={22} color="#A86DBF" />
+              <Feather name={lang === "en" ? "chevron-right" : "chevron-left"} size={22} color="#00C4A0" />
             </Pressable>
           </View>
         )}

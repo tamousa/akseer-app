@@ -121,9 +121,9 @@ function DatePicker({value,onSelect,title,maxDate="today"}:{value:string;onSelec
     <>
       <View style={{gap:6}}>
         <Text style={{fontSize:12,fontFamily:"Tajawal_700Bold",color:colors.muted,textAlign:"right"}}>{title}</Text>
-        <Pressable onPress={()=>setOpen(true)} style={{borderWidth:1,borderRadius:14,paddingHorizontal:14,paddingVertical:13,borderColor:value?"#A86DBF":colors.border,backgroundColor:isDark?colors.surfaceAlt:"#F8F0F5",flexDirection:"row-reverse",alignItems:"center",justifyContent:"space-between"}}>
+        <Pressable onPress={()=>setOpen(true)} style={{borderWidth:1,borderRadius:14,paddingHorizontal:14,paddingVertical:13,borderColor:value?"#00C4A0":colors.border,backgroundColor:isDark?colors.surfaceAlt:"#F8F0F5",flexDirection:"row-reverse",alignItems:"center",justifyContent:"space-between"}}>
           <Text style={{fontSize:13,fontFamily:"Tajawal_500Medium",color:value?colors.text:colors.muted}}>{display}</Text>
-          <Feather name="calendar" size={16} color="#A86DBF"/>
+          <Feather name="calendar" size={16} color="#00C4A0"/>
         </Pressable>
       </View>
       <Modal visible={open} transparent animationType="fade" onRequestClose={()=>setOpen(false)}>
@@ -146,13 +146,13 @@ function DatePicker({value,onSelect,title,maxDate="today"}:{value:string;onSelec
                 const isFut=maxDate==="today"&&new Date(pY,pM,cell)>today;
                 return(
                   <Pressable key={idx} onPress={()=>{if(!isFut){onSelect(ds);setOpen(false);}}}
-                    style={{width:"14.28%",aspectRatio:1,alignItems:"center",justifyContent:"center",backgroundColor:isSel?"#A86DBF":"transparent",borderRadius:10,opacity:isFut?0.3:1}}>
+                    style={{width:"14.28%",aspectRatio:1,alignItems:"center",justifyContent:"center",backgroundColor:isSel?"#00C4A0":"transparent",borderRadius:10,opacity:isFut?0.3:1}}>
                     <Text style={{fontSize:13,fontFamily:isSel?"Cairo_700Bold":"Tajawal_400Regular",color:isSel?"#fff":colors.text}}>{cell}</Text>
                   </Pressable>
                 );
               })}
             </View>
-            <Pressable onPress={()=>setOpen(false)} style={{backgroundColor:"#A86DBF",borderRadius:14,padding:12,alignItems:"center"}}>
+            <Pressable onPress={()=>setOpen(false)} style={{backgroundColor:"#00C4A0",borderRadius:14,padding:12,alignItems:"center"}}>
               <Text style={{color:"#fff",fontSize:13,fontFamily:"Tajawal_700Bold"}}>تأكيد</Text>
             </Pressable>
           </Pressable>
@@ -189,11 +189,11 @@ function WeightChart({logs,guide}:{logs:{date:string;weight:number}[];guide:{low
           const len=Math.sqrt(dx*dx+dy*dy);
           const ang=Math.atan2(dy,dx)*180/Math.PI;
           return(
-            <View key={i} style={{position:"absolute",left:prev.x,top:prev.y,width:len,height:2,backgroundColor:"#A86DBF",transformOrigin:"left center",transform:[{rotate:`${ang}deg`}]}}/>
+            <View key={i} style={{position:"absolute",left:prev.x,top:prev.y,width:len,height:2,backgroundColor:"#00C4A0",transformOrigin:"left center",transform:[{rotate:`${ang}deg`}]}}/>
           );
         })}
         {pts.map((p,i)=>(
-          <View key={i} style={{position:"absolute",left:p.x-4,top:p.y-4,width:8,height:8,borderRadius:4,backgroundColor:"#A86DBF",borderWidth:2,borderColor:"#fff"}}/>
+          <View key={i} style={{position:"absolute",left:p.x-4,top:p.y-4,width:8,height:8,borderRadius:4,backgroundColor:"#00C4A0",borderWidth:2,borderColor:"#fff"}}/>
         ))}
       </View>
       {logs.map((l,i)=>(
@@ -328,7 +328,7 @@ export default function PregnancyScreen(){
   const gConfig={
     boy:{label:"🩵 ولد",color:"#3B82F6"},
     girl:{label:"🩷 بنت",color:"#EC4899"},
-    surprise:{label:"🎁 مفاجأة",color:"#A86DBF"},
+    surprise:{label:"🎁 مفاجأة",color:"#00C4A0"},
   };
 
   const saveSetup=()=>{
@@ -346,7 +346,7 @@ export default function PregnancyScreen(){
     setSetupOpen(false);
   };
 
-  const trimColors={1:"#10B981",2:"#A86DBF",3:"#EF4444"};
+  const trimColors={1:"#10B981",2:"#00C4A0",3:"#EF4444"};
   const trimNames={1:"الثلث الأول",2:"الثلث الثاني",3:"الثلث الثالث"};
 
   return(
@@ -357,7 +357,7 @@ export default function PregnancyScreen(){
       {/* ── Hero ── */}
       <View style={[S.hero,{height:220+topPadding}]}>
         <Image source={PREG_ART} style={S.heroImg} resizeMode="cover"/>
-        <LinearGradient colors={["rgba(168,109,191,0.45)","rgba(107,65,165,0.92)"]}
+        <LinearGradient colors={["rgba(0,196,160,0.45)","rgba(107,65,165,0.92)"]}
           style={[S.heroGrad,{paddingTop:topPadding}]}>
           <View style={S.heroRow}>
             <Pressable onPress={()=>router.back()} style={S.iconBtn}>
@@ -384,13 +384,13 @@ export default function PregnancyScreen(){
       {/* ── No data ── */}
       {!stats&&(
         <Pressable onPress={()=>setSetupOpen(true)}
-          style={[S.card,{backgroundColor:"#A86DBF12",borderColor:"#A86DBF44",alignItems:"center",gap:12}]}>
+          style={[S.card,{backgroundColor:"#00C4A012",borderColor:"#00C4A044",alignItems:"center",gap:12}]}>
           <Text style={{fontSize:50}}>🤰</Text>
-          <Text style={[S.cardTitle,{color:"#A86DBF"}]}>ابدئي رحلة الأمومة</Text>
+          <Text style={[S.cardTitle,{color:"#00C4A0"}]}>ابدئي رحلة الأمومة</Text>
           <Text style={[S.sub,{color:colors.muted,textAlign:"center"}]}>
             أدخلي تاريخ آخر دورة شهرية لحساب عمر الحمل وموعد الولادة تلقائياً
           </Text>
-          <LinearGradient colors={["#A86DBF","#7C3AED"]} style={S.startBtn}>
+          <LinearGradient colors={["#00C4A0","#007A65"]} style={S.startBtn}>
             <Text style={S.startBtnTxt}>🚀 ابدئي الآن</Text>
           </LinearGradient>
         </Pressable>
@@ -416,13 +416,13 @@ export default function PregnancyScreen(){
                   <Text style={[S.sub,{color:colors.muted}]}> +{stats.days} أيام</Text>
                 </Text>
                 {pregnancyData.babyName?(
-                  <Text style={[S.sub,{color:"#A86DBF"}]}>👶 {pregnancyData.babyName}</Text>
+                  <Text style={[S.sub,{color:"#00C4A0"}]}>👶 {pregnancyData.babyName}</Text>
                 ):null}
               </View>
               <View style={{alignItems:"center",gap:4}}>
                 <Text style={{fontSize:52}}>{stats.fruit.emoji}</Text>
                 <Text style={[S.sub,{color:colors.muted,textAlign:"center",fontSize:10}]}>حجم {stats.fruit.name}</Text>
-                <Text style={[S.sub,{color:"#A86DBF",fontSize:10}]}>{stats.fruit.size} • {stats.fruit.weight}</Text>
+                <Text style={[S.sub,{color:"#00C4A0",fontSize:10}]}>{stats.fruit.size} • {stats.fruit.weight}</Text>
               </View>
             </View>
 
@@ -430,32 +430,32 @@ export default function PregnancyScreen(){
             <View style={{gap:4}}>
               <View style={{flexDirection:"row-reverse",justifyContent:"space-between"}}>
                 <Text style={[S.sub,{color:colors.muted}]}>الحمل من 40 أسبوع</Text>
-                <Text style={[S.sub,{color:"#A86DBF"}]}>{Math.round(stats.progress)}%</Text>
+                <Text style={[S.sub,{color:"#00C4A0"}]}>{Math.round(stats.progress)}%</Text>
               </View>
               <View style={[S.barTrack,{backgroundColor:colors.border,height:12}]}>
-                <LinearGradient colors={["#EC4899","#A86DBF","#7C3AED"]}
+                <LinearGradient colors={["#EC4899","#00C4A0","#007A65"]}
                   style={[S.barFill,{width:`${Math.min(stats.progress,100)}%`,height:12}]}/>
               </View>
             </View>
 
             {/* Due date */}
-            <View style={[S.dueBox,{backgroundColor:"#A86DBF12",borderColor:"#A86DBF33"}]}>
+            <View style={[S.dueBox,{backgroundColor:"#00C4A012",borderColor:"#00C4A033"}]}>
               <View style={{flex:1}}>
                 <Text style={[S.sub,{color:colors.muted}]}>موعد الولادة المتوقع</Text>
-                <Text style={[S.cardTitle,{color:"#A86DBF",fontSize:16}]}>{formatDateAr(stats.due.toISOString())}</Text>
+                <Text style={[S.cardTitle,{color:"#00C4A0",fontSize:16}]}>{formatDateAr(stats.due.toISOString())}</Text>
               </View>
               <View style={{alignItems:"center",gap:2}}>
-                <Text style={{fontSize:28,fontFamily:"Cairo_700Bold",color:"#A86DBF"}}>{stats.daysLeft}</Text>
+                <Text style={{fontSize:28,fontFamily:"Cairo_700Bold",color:"#00C4A0"}}>{stats.daysLeft}</Text>
                 <Text style={[S.sub,{color:colors.muted}]}>يوم باقي</Text>
               </View>
             </View>
           </View>
 
           {/* Weekly tip */}
-          <View style={[S.card,{backgroundColor: isDark?colors.surface:"#fff",borderColor:"#A86DBF44"}]}>
+          <View style={[S.card,{backgroundColor: isDark?colors.surface:"#fff",borderColor:"#00C4A044"}]}>
             <Text style={[S.cardTitle,{color:colors.text}]}>✨ أسبوعك {stats.weeks} — ماذا يحدث؟</Text>
             <View style={{gap:10}}>
-              <View style={[S.tipRow,{backgroundColor:"#A86DBF12",borderColor:"#A86DBF33"}]}>
+              <View style={[S.tipRow,{backgroundColor:"#00C4A012",borderColor:"#00C4A033"}]}>
                 <Text style={{fontSize:18}}>👶</Text>
                 <Text style={[S.sub,{color:colors.text,flex:1,textAlign:"right",lineHeight:18}]}>{stats.tip.baby}</Text>
               </View>
@@ -492,7 +492,7 @@ export default function PregnancyScreen(){
         <View style={{alignItems:"center",gap:16,paddingVertical:8}}>
           {!kickActive?(
             <Pressable onPress={startKick} style={S.kickStartBtn}>
-              <LinearGradient colors={["#A86DBF","#7C3AED"]} style={S.kickGrad}>
+              <LinearGradient colors={["#00C4A0","#007A65"]} style={S.kickGrad}>
                 <Text style={{fontSize:48}}>👶</Text>
                 <Text style={{color:"#fff",fontSize:13,fontFamily:"Tajawal_700Bold"}}>ابدئي العد</Text>
               </LinearGradient>
@@ -537,7 +537,7 @@ export default function PregnancyScreen(){
       <View style={[S.card,{backgroundColor: isDark?colors.surface:"#fff",borderColor:colors.border}]}>
         <View style={{flexDirection:"row-reverse",justifyContent:"space-between",alignItems:"center"}}>
           <Text style={[S.cardTitle,{color:colors.text}]}>⚖️ منحنى الوزن</Text>
-          <Pressable onPress={()=>setWeightOpen(true)} style={[S.addBtn,{backgroundColor:"#A86DBF"}]}>
+          <Pressable onPress={()=>setWeightOpen(true)} style={[S.addBtn,{backgroundColor:"#00C4A0"}]}>
             <Text style={S.addBtnTxt}>+ سجّلي وزنك</Text>
           </Pressable>
         </View>
@@ -549,9 +549,9 @@ export default function PregnancyScreen(){
               <Text style={{fontSize:22,fontFamily:"Cairo_700Bold",color:bmiInfo.guide.color}}>{bmiInfo.bmi}</Text>
               <Text style={[S.sub,{color:colors.muted,fontSize:10}]}>{bmiInfo.guide.label}</Text>
             </View>
-            <View style={[S.metaBox,{backgroundColor:"#A86DBF18",borderColor:"#A86DBF44",flex:1}]}>
-              <Text style={[S.sub,{color:"#A86DBF",fontFamily:"Tajawal_700Bold"}]}>الزيادة الموصى بها</Text>
-              <Text style={{fontSize:16,fontFamily:"Cairo_700Bold",color:"#A86DBF"}}>{bmiInfo.guide.low}–{bmiInfo.guide.high} كغ</Text>
+            <View style={[S.metaBox,{backgroundColor:"#00C4A018",borderColor:"#00C4A044",flex:1}]}>
+              <Text style={[S.sub,{color:"#00C4A0",fontFamily:"Tajawal_700Bold"}]}>الزيادة الموصى بها</Text>
+              <Text style={{fontSize:16,fontFamily:"Cairo_700Bold",color:"#00C4A0"}}>{bmiInfo.guide.low}–{bmiInfo.guide.high} كغ</Text>
             </View>
             {weightGain!==null&&(
               <View style={[S.metaBox,{backgroundColor: weightGain<bmiInfo.guide.high?"#10B98118":"#EF444418",borderColor: weightGain<bmiInfo.guide.high?"#10B98144":"#EF444444",flex:1}]}>
@@ -576,7 +576,7 @@ export default function PregnancyScreen(){
             {pregnancyData.weightLogs!.slice(-3).reverse().map((l,i)=>(
               <View key={i} style={{flexDirection:"row-reverse",justifyContent:"space-between",backgroundColor:inputBg,borderRadius:10,padding:8}}>
                 <Text style={[S.sub,{color:colors.muted}]}>{formatDateAr(l.date)}</Text>
-                <Text style={[S.sub,{color:"#A86DBF",fontFamily:"Tajawal_700Bold"}]}>{l.weight} كغ</Text>
+                <Text style={[S.sub,{color:"#00C4A0",fontFamily:"Tajawal_700Bold"}]}>{l.weight} كغ</Text>
               </View>
             ))}
           </View>
@@ -652,7 +652,7 @@ export default function PregnancyScreen(){
         <Text style={[S.cardTitle,{color:colors.text}]}>🛒 تسوق لاستقبال المولود</Text>
         {[
           {name:"نون للتسوق",desc:"أغراض المواليد والأطفال",emoji:"🛍️",color:"#F59E0B"},
-          {name:"متجر أطفالنا",emoji:"👶",desc:"ملابس وأدوات للأطفال",color:"#A86DBF"},
+          {name:"متجر أطفالنا",emoji:"👶",desc:"ملابس وأدوات للأطفال",color:"#00C4A0"},
           {name:"دوق",emoji:"📦",desc:"توصيل سريع 24 ساعة",color:"#10B981"},
         ].map((s,i)=>(
           <Pressable key={i} style={[S.storeCard,{backgroundColor: isDark?colors.surface:"#fff",borderColor:colors.border}]}>
@@ -678,7 +678,7 @@ export default function PregnancyScreen(){
 
       {/* ── Book doctor ── */}
       <Pressable style={S.bannerWrap} onPress={()=>router.push("/section/clinics" as any)}>
-        <LinearGradient colors={["#A86DBF","#7C3AED"]} style={S.bookBanner}>
+        <LinearGradient colors={["#00C4A0","#007A65"]} style={S.bookBanner}>
           <Text style={S.bookBannerTxt}>🤱 احصلي على رعاية صحية تهتم بطفلك</Text>
           <View style={S.bookBtn}><Text style={S.bookBtnTxt}>احجزي الآن</Text></View>
         </LinearGradient>
@@ -740,7 +740,7 @@ export default function PregnancyScreen(){
               <Pressable onPress={()=>setSetupOpen(false)} style={[S.modalBtn,{backgroundColor:inputBg}]}>
                 <Text style={[S.tabTxt,{color:colors.text}]}>إلغاء</Text>
               </Pressable>
-              <Pressable onPress={saveSetup} style={[S.modalBtn,{backgroundColor:"#A86DBF"}]}>
+              <Pressable onPress={saveSetup} style={[S.modalBtn,{backgroundColor:"#00C4A0"}]}>
                 <Text style={[S.tabTxt,{color:"#fff"}]}>💾 حفظ</Text>
               </Pressable>
             </View>
@@ -763,7 +763,7 @@ export default function PregnancyScreen(){
               <Pressable onPress={()=>setWeightOpen(false)} style={[S.modalBtn,{backgroundColor:inputBg}]}>
                 <Text style={[S.tabTxt,{color:colors.text}]}>إلغاء</Text>
               </Pressable>
-              <Pressable onPress={saveWeight} style={[S.modalBtn,{backgroundColor:"#A86DBF"}]}>
+              <Pressable onPress={saveWeight} style={[S.modalBtn,{backgroundColor:"#00C4A0"}]}>
                 <Text style={[S.tabTxt,{color:"#fff"}]}>حفظ</Text>
               </Pressable>
             </View>
@@ -813,7 +813,7 @@ export default function PregnancyScreen(){
             <View style={S.sympGrid}>
               {SYMP.map(s=>(
                 <Pressable key={s.id} onPress={()=>setSelSymp(prev=>prev.includes(s.id)?prev.filter(x=>x!==s.id):[...prev,s.id])}
-                  style={[S.sympChip,{borderColor:selSymp.includes(s.id)?"#A86DBF":chipBorder,backgroundColor:selSymp.includes(s.id)?"#A86DBF":"transparent"}]}>
+                  style={[S.sympChip,{borderColor:selSymp.includes(s.id)?"#00C4A0":chipBorder,backgroundColor:selSymp.includes(s.id)?"#00C4A0":"transparent"}]}>
                   <Text style={{fontSize:14}}>{s.emoji}</Text>
                   <Text style={[S.chipTxt,{color:selSymp.includes(s.id)?"#fff":colors.text}]}>{s.label}</Text>
                 </Pressable>
@@ -823,7 +823,7 @@ export default function PregnancyScreen(){
               <Pressable onPress={()=>{setSympOpen(false);setSelSymp([]);}} style={[S.modalBtn,{backgroundColor:inputBg}]}>
                 <Text style={[S.tabTxt,{color:colors.text}]}>إلغاء</Text>
               </Pressable>
-              <Pressable onPress={saveSymp} style={[S.modalBtn,{backgroundColor:"#A86DBF"}]}>
+              <Pressable onPress={saveSymp} style={[S.modalBtn,{backgroundColor:"#00C4A0"}]}>
                 <Text style={[S.tabTxt,{color:"#fff"}]}>حفظ</Text>
               </Pressable>
             </View>
@@ -851,7 +851,7 @@ const S=StyleSheet.create({
   trimBadge:{borderRadius:10,paddingHorizontal:10,paddingVertical:4},
   trimBadgeTxt:{fontSize:11,fontFamily:"Tajawal_700Bold"},
   barTrack:{height:10,borderRadius:6,overflow:"hidden"},
-  barFill:{height:"100%",backgroundColor:"#A86DBF",borderRadius:6},
+  barFill:{height:"100%",backgroundColor:"#00C4A0",borderRadius:6},
   dueBox:{flexDirection:"row-reverse",justifyContent:"space-between",alignItems:"center",borderRadius:16,padding:14,borderWidth:1},
   tipRow:{flexDirection:"row-reverse",alignItems:"flex-start",gap:8,borderRadius:14,padding:12,borderWidth:1},
   chipRow:{flexDirection:"row-reverse",flexWrap:"wrap",gap:8},
@@ -861,7 +861,7 @@ const S=StyleSheet.create({
   startBtnTxt:{color:"#fff",fontSize:15,fontFamily:"Cairo_700Bold"},
   kickStartBtn:{alignItems:"center"},
   kickGrad:{width:140,height:140,borderRadius:70,alignItems:"center",justifyContent:"center",gap:4},
-  kickActiveBtn:{width:150,height:150,borderRadius:75,backgroundColor:"#A86DBF",alignItems:"center",justifyContent:"center",gap:4,elevation:8,shadowColor:"#A86DBF",shadowOffset:{width:0,height:4},shadowOpacity:0.4,shadowRadius:8},
+  kickActiveBtn:{width:150,height:150,borderRadius:75,backgroundColor:"#00C4A0",alignItems:"center",justifyContent:"center",gap:4,elevation:8,shadowColor:"#00C4A0",shadowOffset:{width:0,height:4},shadowOpacity:0.4,shadowRadius:8},
   kickCount:{color:"#fff",fontSize:44,fontFamily:"Cairo_700Bold",lineHeight:48},
   kickLabel:{color:"rgba(255,255,255,0.85)",fontSize:12,fontFamily:"Tajawal_400Regular"},
   kickEndBtn:{borderRadius:14,paddingHorizontal:18,paddingVertical:10,borderWidth:1},
@@ -877,7 +877,7 @@ const S=StyleSheet.create({
   bookBanner:{padding:20,flexDirection:"row-reverse",alignItems:"center",justifyContent:"space-between"},
   bookBannerTxt:{color:"#fff",fontSize:14,fontFamily:"Cairo_700Bold"},
   bookBtn:{backgroundColor:"#fff",borderRadius:12,paddingHorizontal:16,paddingVertical:8},
-  bookBtnTxt:{color:"#A86DBF",fontSize:13,fontFamily:"Tajawal_700Bold"},
+  bookBtnTxt:{color:"#00C4A0",fontSize:13,fontFamily:"Tajawal_700Bold"},
   overlay:{flex:1,backgroundColor:"rgba(0,0,0,0.65)",justifyContent:"flex-end"},
   modalSheet:{borderTopLeftRadius:28,borderTopRightRadius:28,maxHeight:"90%"},
   fullInput:{borderWidth:1,borderRadius:14,paddingHorizontal:14,paddingVertical:12,fontSize:14,fontFamily:"Tajawal_400Regular"},

@@ -145,7 +145,7 @@ function AboutModal({ visible, onClose, isDark }: { visible: boolean; onClose: (
               <Text style={{ color: "rgba(255,255,255,0.4)", fontFamily: "Tajawal_400Regular", fontSize: 11, textAlign: "right", marginBottom: 12 }}>للأبد – بلا بطاقة ائتمان</Text>
               {["تتبع الصحة اليومي", "عيادات اكسير والحجوزات", "المختبرات والصالونات", "مجتمع اكسير والتحديات"].map((f) => (
                 <View key={f} style={{ flexDirection: "row-reverse", alignItems: "center", gap: 8, marginBottom: 8 }}>
-                  <Feather name="check" size={14} color="#A78BFA" />
+                  <Feather name="check" size={14} color="#00C4A0" />
                   <Text style={{ color: "rgba(255,255,255,0.7)", fontFamily: "Tajawal_400Regular", fontSize: 13 }}>{f}</Text>
                 </View>
               ))}
@@ -288,7 +288,7 @@ export default function ProfileScreen() {
   const SEC_TITLE_C = colors.muted;
 
   const ACCOUNT_ITEMS = [
-    { id: "edit",     label: t("معلومات حسابي", "My Account Info"),    sub: t("الاسم، البريد، رقم الجوال", "Name, email, phone"),                      emoji: "✏️", color: "#C490D8" },
+    { id: "edit",     label: t("معلومات حسابي", "My Account Info"),    sub: t("الاسم، البريد، رقم الجوال", "Name, email, phone"),                      emoji: "✏️", color: "#00E0B8" },
     { id: "goals",    label: t("أهدافي الصحية", "My Health Goals"),    sub: t("الوزن المستهدف، السعرات، الخطة", "Target weight, calories, plan"),       emoji: "🎯", color: "#F59E0B" },
     { id: "reports",  label: t("تقاريري الصحية", "My Health Reports"),  sub: t("تحليل تقدمك الشهري والأسبوعي", "Monthly & weekly progress analysis"),   emoji: "📊", color: "#3B82F6" },
     { id: "security", label: t("الأمان وكلمة المرور", "Security & Password"), sub: t("تغيير كلمة المرور، المصادقة الثنائية", "Change password, 2FA"), emoji: "🔒", color: "#22C55E" },
@@ -306,7 +306,7 @@ export default function ProfileScreen() {
     { id: "lang",    label: t("اللغة / Language", "Language / اللغة"),           sub: lang === "ar" ? "العربية – اضغط للتغيير للإنجليزية" : "English – tap to switch to Arabic",  emoji: "🌍", color: "#3B82F6", badge: lang === "ar" ? "AR" : "EN" },
     { id: "privacy", label: t("الخصوصية والأمان", "Privacy & Security"),          sub: t("إدارة بياناتك وصلاحيات التطبيق", "Manage your data and app permissions"),              emoji: "🛡️", color: "#22C55E" },
     { id: "help",    label: t("المساعدة والدعم", "Help & Support"),               sub: t("الأسئلة الشائعة والتواصل معنا", "FAQs and contact us"),                                emoji: "❓", color: "#EC4899" },
-    { id: "about",   label: t("عن اكسير", "About Akseer"),                        sub: t("تعرف على المنصة وباقاتها ومميزاتها", "Learn about the platform and its features"),      emoji: "✨", color: "#A78BFA" },
+    { id: "about",   label: t("عن اكسير", "About Akseer"),                        sub: t("تعرف على المنصة وباقاتها ومميزاتها", "Learn about the platform and its features"),      emoji: "✨", color: "#00C4A0" },
   ];
 
   const handleItem = (id: string) => {
@@ -327,14 +327,14 @@ export default function ProfileScreen() {
           <RefreshControl
             refreshing={refreshing}
             onRefresh={() => { setRefreshing(true); setTimeout(() => setRefreshing(false), 1500); }}
-            tintColor="#C490D8"
-            colors={["#C490D8", "#7C3AED"]}
+            tintColor="#00E0B8"
+            colors={["#00E0B8", "#007A65"]}
           />
         }
       >
         {/* ── Hero Card ── */}
         <LinearGradient
-          colors={["#3B0764", "#6D28D9", "#A78BFA"]}
+          colors={["#3B0764", "#007A65", "#00C4A0"]}
           start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}
           style={{ paddingTop: topPadding + 16, paddingHorizontal: 20, paddingBottom: 28, borderBottomLeftRadius: 32, borderBottomRightRadius: 32 }}
         >
@@ -440,7 +440,7 @@ export default function ProfileScreen() {
                     textAlign="center" />
                 </View>
               </View>
-              <Pressable onPress={handleSave} style={{ backgroundColor: "#7C3AED", borderRadius: 14, paddingVertical: 14, alignItems: "center", marginTop: 4 }}>
+              <Pressable onPress={handleSave} style={{ backgroundColor: "#007A65", borderRadius: 14, paddingVertical: 14, alignItems: "center", marginTop: 4 }}>
                 <Text style={{ color: "#fff", fontFamily: "Cairo_700Bold", fontSize: 15 }}>حفظ التغييرات</Text>
               </Pressable>
             </View>
@@ -486,19 +486,19 @@ export default function ProfileScreen() {
 
             {/* ترقية */}
             <Pressable style={[styles.row, { borderBottomWidth: 1, borderColor: CARD_BDR }]} onPress={() => Alert.alert(t("الباقة السنوية", "Annual Plan"), t("وفر 30% – 100 ريال/سنة فقط!", "Save 30% – only 100 SAR/year!"))}>
-              <Text style={{ color: "#6D28D9", fontFamily: "Tajawal_700Bold", fontSize: 12 }}>{t("ترقية ›", "Upgrade ›")}</Text>
+              <Text style={{ color: "#007A65", fontFamily: "Tajawal_700Bold", fontSize: 12 }}>{t("ترقية ›", "Upgrade ›")}</Text>
               <View style={{ flex: 1 }}>
                 <Text style={{ color: colors.text, fontFamily: "Tajawal_500Medium", fontSize: 14, textAlign: "right" }}>{t("ترقية للباقة السنوية", "Upgrade to Annual Plan")}</Text>
                 <Text style={{ color: colors.muted, fontFamily: "Tajawal_400Regular", fontSize: 11, textAlign: "right", marginTop: 1 }}>{t("وفر 30% – 100 ريال/سنة فقط", "Save 30% – 100 SAR/year only")}</Text>
               </View>
-              <View style={[styles.iconBox, { backgroundColor: "#6D28D918" }]}>
+              <View style={[styles.iconBox, { backgroundColor: "#007A6518" }]}>
                 <Text style={{ fontSize: 18 }}>💎</Text>
               </View>
             </Pressable>
 
             {/* عائلية */}
             <Pressable style={[styles.row, { borderBottomWidth: 1, borderColor: CARD_BDR }]} onPress={() => Alert.alert(t("الباقة العائلية", "Family Plan"), t("25.99 ر/شهر للأسرة كاملة", "25.99 SAR/month for the whole family"))}>
-              <Text style={{ color: "#6D28D9", fontFamily: "Tajawal_700Bold", fontSize: 12 }}>{t("اشترك ›", "Subscribe ›")}</Text>
+              <Text style={{ color: "#007A65", fontFamily: "Tajawal_700Bold", fontSize: 12 }}>{t("اشترك ›", "Subscribe ›")}</Text>
               <View style={{ flex: 1 }}>
                 <Text style={{ color: colors.text, fontFamily: "Tajawal_500Medium", fontSize: 14, textAlign: "right" }}>{t("الباقة العائلية", "Family Plan")}</Text>
                 <Text style={{ color: colors.muted, fontFamily: "Tajawal_400Regular", fontSize: 11, textAlign: "right", marginTop: 1 }}>{t("25.99 ر/شهر · 4 أفراد · حسابات مستقلة", "25.99 SAR/mo · 4 members · individual accounts")}</Text>
@@ -531,8 +531,8 @@ export default function ProfileScreen() {
                     <Text style={{ color: "#22C55E", fontFamily: "Tajawal_700Bold", fontSize: 11 }}>{t("متصلة", "Connected")}</Text>
                   </View>
                 ) : (
-                  <Pressable onPress={() => Alert.alert(t("ربط الجهاز", "Connect Device"), `${t("اضغط لربط", "Tap to connect")} ${d.label}`)} style={{ backgroundColor: "#6D28D918", borderRadius: 8, paddingHorizontal: 8, paddingVertical: 3 }}>
-                    <Text style={{ color: "#A78BFA", fontFamily: "Tajawal_700Bold", fontSize: 11 }}>{t("ربط +", "Connect +")}</Text>
+                  <Pressable onPress={() => Alert.alert(t("ربط الجهاز", "Connect Device"), `${t("اضغط لربط", "Tap to connect")} ${d.label}`)} style={{ backgroundColor: "#007A6518", borderRadius: 8, paddingHorizontal: 8, paddingVertical: 3 }}>
+                    <Text style={{ color: "#00C4A0", fontFamily: "Tajawal_700Bold", fontSize: 11 }}>{t("ربط +", "Connect +")}</Text>
                   </Pressable>
                 )}
                 <View style={{ flex: 1 }}>
@@ -555,7 +555,7 @@ export default function ProfileScreen() {
                 onPress={() => handleItem(item.id)}
               >
                 {item.isToggle ? (
-                  <Switch value={isDark} onValueChange={toggleTheme} trackColor={{ false: "#E5E7EB", true: "#6D28D9" }} thumbColor="#fff" />
+                  <Switch value={isDark} onValueChange={toggleTheme} trackColor={{ false: "#E5E7EB", true: "#007A65" }} thumbColor="#fff" />
                 ) : item.badge ? (
                   <View style={{ backgroundColor: "#3B82F620", borderRadius: 8, paddingHorizontal: 8, paddingVertical: 3 }}>
                     <Text style={{ color: "#3B82F6", fontFamily: "Tajawal_700Bold", fontSize: 11 }}>{item.badge}</Text>

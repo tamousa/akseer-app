@@ -37,7 +37,7 @@ const isWeb = Platform.OS === "web";
 const QUICK_SERVICES = [
   { id: "beauty",   titleAr: "العناية والجمال",       titleEn: "Beauty",            emoji: "💅",  color: "#E0457E", route: "/section/beauty" },
   { id: "labs",     titleAr: "المختبرات",             titleEn: "Labs",              emoji: "🔬",  color: "#2563EB", route: "/section/labs" },
-  { id: "clinics",  titleAr: "العيادات والاستشارات", titleEn: "Clinics",           emoji: "🩺",  color: "#A78BFA", route: "/section/clinics" },
+  { id: "clinics",  titleAr: "العيادات والاستشارات", titleEn: "Clinics",           emoji: "🩺",  color: "#00C4A0", route: "/section/clinics" },
   { id: "cupping",  titleAr: "الحجامة",               titleEn: "Cupping",           emoji: "🫙",  color: "#E14B4B", route: "/section/cupping" },
   { id: "rehab",    titleAr: "العلاج الطبيعي",        titleEn: "Physiotherapy",     emoji: "🤸",  color: "#3B82F6", route: "/section/rehab" },
   { id: "massage",  titleAr: "المساج",                titleEn: "Massage",           emoji: "💆",  color: "#3FA876", route: "/section/massage" },
@@ -56,7 +56,7 @@ const SPECIALISTS = [
 
 const OFFERS = [
   { id: "1", titleAr: "استشارة تغذية",     titleEn: "Nutrition Consultation", code: "ELIXIR56", price: 199, oldPrice: 450, discount: 56,  color: "#22C55E" },
-  { id: "2", titleAr: "جلسة نفسية مجانية", titleEn: "Free Mental Session",    code: "FREEMIND", price: 0,   oldPrice: 200, discount: 100, color: "#C490D8" },
+  { id: "2", titleAr: "جلسة نفسية مجانية", titleEn: "Free Mental Session",    code: "FREEMIND", price: 0,   oldPrice: 200, discount: 100, color: "#00E0B8" },
   { id: "3", titleAr: "تحليل النوم",        titleEn: "Sleep Analysis",         code: "SLEEP58",  price: 159, oldPrice: 380, discount: 58,  color: "#3B82F6" },
   { id: "4", titleAr: "خطة رياضية",         titleEn: "Fitness Plan",           code: "FIT53",    price: 279, oldPrice: 599, discount: 53,  color: "#F43F5E" },
 ];
@@ -80,7 +80,7 @@ const LABS_AND_CLINICS = [
   },
   {
     id: "2", type: "clinic", nameAr: "عيادة الرعاية الأولى", nameEn: "Primary Care Clinic",
-    distance: "1.8 كم", infoAr: "عيادة عامة", infoEn: "General Clinic", rating: 4.7, emoji: "🏥", color: "#A86DBF",
+    distance: "1.8 كم", infoAr: "عيادة عامة", infoEn: "General Clinic", rating: 4.7, emoji: "🏥", color: "#00C4A0",
     addressAr: "حي العليا، الرياض", addressEn: "Al-Olaya, Riyadh", phone: "011-4321000", isOpen: true,
     workingHoursAr: "السبت - الخميس: 8ص - 9م | الجمعة: 2م - 8م",
     workingHoursEn: "Sat - Thu: 8AM - 9PM | Fri: 2PM - 8PM",
@@ -141,7 +141,7 @@ function HabitsBar({ isDark, colors }: { isDark: boolean; colors: any }) {
   const done = habits.filter(h => h.completedDates.includes(today)).length;
   const total = habits.length;
   const pct = total > 0 ? Math.round((done / total) * 100) : 0;
-  const barColor = pct === 100 ? "#22C55E" : pct >= 60 ? "#F59E0B" : "#C490D8";
+  const barColor = pct === 100 ? "#22C55E" : pct >= 60 ? "#F59E0B" : "#00E0B8";
 
   const confettiRef = useRef<ConfettiCannon>(null);
   const prevDone = useRef<number>(-1);
@@ -184,9 +184,9 @@ function HabitsBar({ isDark, colors }: { isDark: boolean; colors: any }) {
         <View style={{ flexDirection: "row-reverse", alignItems: "center", gap: 8 }}>
           <Pressable
             onPress={() => router.push("/habits" as any)}
-            style={{ width: 32, height: 32, borderRadius: 10, backgroundColor: "#C490D815", alignItems: "center", justifyContent: "center" }}
+            style={{ width: 32, height: 32, borderRadius: 10, backgroundColor: "#00E0B815", alignItems: "center", justifyContent: "center" }}
           >
-            <Feather name="edit-2" size={14} color="#C490D8" />
+            <Feather name="edit-2" size={14} color="#00E0B8" />
           </Pressable>
           <Pressable
             onPress={() => router.push("/habits" as any)}
@@ -236,11 +236,11 @@ function HabitsBar({ isDark, colors }: { isDark: boolean; colors: any }) {
 
               {/* Day counter badge */}
               {target ? (
-                <View style={{ alignItems: "center", backgroundColor: progressDays >= target ? "#22C55E15" : "#C490D815", borderRadius: 10, paddingHorizontal: 8, paddingVertical: 3, minWidth: 52 }}>
-                  <Text style={{ color: progressDays >= target ? "#22C55E" : "#C490D8", fontFamily: "Tajawal_700Bold", fontSize: 11 }}>
+                <View style={{ alignItems: "center", backgroundColor: progressDays >= target ? "#22C55E15" : "#00E0B815", borderRadius: 10, paddingHorizontal: 8, paddingVertical: 3, minWidth: 52 }}>
+                  <Text style={{ color: progressDays >= target ? "#22C55E" : "#00E0B8", fontFamily: "Tajawal_700Bold", fontSize: 11 }}>
                     {progressDays}/{target}
                   </Text>
-                  <Text style={{ color: progressDays >= target ? "#22C55E80" : "#C490D880", fontFamily: "Tajawal_400Regular", fontSize: 9 }}>{t("يوم", "day")}</Text>
+                  <Text style={{ color: progressDays >= target ? "#22C55E80" : "#00E0B880", fontFamily: "Tajawal_400Regular", fontSize: 9 }}>{t("يوم", "day")}</Text>
                 </View>
               ) : streak > 0 ? (
                 <View style={{ backgroundColor: "#F59E0B15", borderRadius: 10, paddingHorizontal: 8, paddingVertical: 4 }}>
@@ -261,7 +261,7 @@ function HabitsBar({ isDark, colors }: { isDark: boolean; colors: any }) {
       fadeOut
       fallSpeed={3000}
       explosionSpeed={400}
-      colors={["#A86DBF", "#EC4899", "#F5D26A", "#22C55E", "#3B82F6", "#F97316"]}
+      colors={["#00C4A0", "#EC4899", "#F5D26A", "#22C55E", "#3B82F6", "#F97316"]}
     />
     </View>
   );
@@ -274,7 +274,7 @@ function HealthPointsBar({ isDark, todayPoints }: { isDark: boolean; todayPoints
 
   const getRating = (val: number, max: number) => {
     const p = val / max;
-    if (p >= 0.8) return { label: t("ممتاز", "Excellent"),      color: "#A78BFA" };
+    if (p >= 0.8) return { label: t("ممتاز", "Excellent"),      color: "#00C4A0" };
     if (p >= 0.6) return { label: t("جيد", "Good"),             color: "#34D399" };
     if (p >= 0.4) return { label: t("متوسط", "Average"),        color: "#FBBF24" };
     return           { label: t("يحتاج تحسين", "Needs Work"),   color: "#F87171" };
@@ -295,7 +295,7 @@ function HealthPointsBar({ isDark, todayPoints }: { isDark: boolean; todayPoints
           <Text style={{ fontSize: 20 }}>🏆</Text>
           <Text style={{ color: "#fff", fontFamily: "Cairo_700Bold", fontSize: 16 }}>{t("نقاط صحتك", "Health Score")}</Text>
         </View>
-        <Text style={{ color: "#A78BFA", fontFamily: "Tajawal_700Bold", fontSize: 22 }}>
+        <Text style={{ color: "#00C4A0", fontFamily: "Tajawal_700Bold", fontSize: 22 }}>
           1000 / {totalScore}
         </Text>
       </View>
@@ -317,7 +317,7 @@ function HealthPointsBar({ isDark, todayPoints }: { isDark: boolean; todayPoints
       {/* Progress bar */}
       <View style={{ height: 10, backgroundColor: "rgba(255,255,255,0.1)", borderRadius: 5, overflow: "hidden", marginBottom: 6 }}>
         <LinearGradient
-          colors={["#7C3AED", "#A855F7", "#F59E0B"]}
+          colors={["#007A65", "#00C4A0", "#F59E0B"]}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
           style={{ width: `${Math.max(pct * 100, 3)}%` as any, height: 10, borderRadius: 5 }}
@@ -357,16 +357,16 @@ function QuickActionsRow({
             <Text style={{ color: "#fff", fontFamily: "Cairo_700Bold", fontSize: 13 }}>{t("التغذية", "Nutrition")}</Text>
           </View>
           <Pressable onPress={() => router.push("/section/nutrition-plan" as any)}>
-            <Text style={{ color: "#A78BFA", fontFamily: "Tajawal_700Bold", fontSize: 11 }}>{t("إضافة", "Add")}</Text>
+            <Text style={{ color: "#00C4A0", fontFamily: "Tajawal_700Bold", fontSize: 11 }}>{t("إضافة", "Add")}</Text>
           </Pressable>
         </View>
 
-        <Text style={{ color: "#A78BFA", fontFamily: "Tajawal_700Bold", fontSize: 11, textAlign: lang === "en" ? "left" : "right", marginBottom: 4 }}>
+        <Text style={{ color: "#00C4A0", fontFamily: "Tajawal_700Bold", fontSize: 11, textAlign: lang === "en" ? "left" : "right", marginBottom: 4 }}>
           {caloriesConsumed} / {nutritionGoal.calories || 2200} {t("سعرة", "cal")}
         </Text>
         <View style={{ height: 5, backgroundColor: "rgba(255,255,255,0.1)", borderRadius: 3, overflow: "hidden", marginBottom: 10 }}>
           <LinearGradient
-            colors={["#7C3AED", "#F59E0B"]}
+            colors={["#007A65", "#F59E0B"]}
             start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
             style={{ width: `${Math.max(calPct * 100, 3)}%` as any, height: 5, borderRadius: 3 }}
           />
@@ -384,7 +384,7 @@ function QuickActionsRow({
               borderRadius: 10, paddingHorizontal: 8, paddingVertical: 3,
             }}>
               <Text style={{ fontSize: 11 }}>{m.done ? "✓" : m.emoji}</Text>
-              <Text style={{ color: m.done ? "#A78BFA" : "rgba(255,255,255,0.5)", fontFamily: "Tajawal_500Medium", fontSize: 10 }}>{t(m.labelAr, m.labelEn)}</Text>
+              <Text style={{ color: m.done ? "#00C4A0" : "rgba(255,255,255,0.5)", fontFamily: "Tajawal_500Medium", fontSize: 10 }}>{t(m.labelAr, m.labelEn)}</Text>
             </View>
           ))}
         </View>
@@ -393,7 +393,7 @@ function QuickActionsRow({
           onPress={() => router.push("/section/nutrition-plan" as any)}
           style={{ backgroundColor: "rgba(167,139,250,0.15)", borderRadius: 12, paddingVertical: 9, alignItems: "center", borderWidth: 1, borderColor: "rgba(167,139,250,0.25)" }}
         >
-          <Text style={{ color: "#A78BFA", fontFamily: "Tajawal_700Bold", fontSize: 12 }}>+ {nextMeal}</Text>
+          <Text style={{ color: "#00C4A0", fontFamily: "Tajawal_700Bold", fontSize: 12 }}>+ {nextMeal}</Text>
         </Pressable>
       </View>
 
@@ -405,7 +405,7 @@ function QuickActionsRow({
             <Text style={{ color: "#fff", fontFamily: "Cairo_700Bold", fontSize: 13 }}>{t("تمرين اليوم", "Today's Workout")}</Text>
           </View>
           <Pressable onPress={() => router.push("/section/fitness" as any)}>
-            <Text style={{ color: "#A78BFA", fontFamily: "Tajawal_700Bold", fontSize: 11 }}>{t("تفاصيل", "Details")}</Text>
+            <Text style={{ color: "#00C4A0", fontFamily: "Tajawal_700Bold", fontSize: 11 }}>{t("تفاصيل", "Details")}</Text>
           </Pressable>
         </View>
 
@@ -418,7 +418,7 @@ function QuickActionsRow({
 
         <View style={{ height: 5, backgroundColor: "rgba(255,255,255,0.1)", borderRadius: 3, overflow: "hidden", marginBottom: 4 }}>
           <LinearGradient
-            colors={["#7C3AED", "#22C55E"]}
+            colors={["#007A65", "#22C55E"]}
             start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
             style={{ width: `${workoutPct * 100}%` as any, height: 5, borderRadius: 3 }}
           />
@@ -429,7 +429,7 @@ function QuickActionsRow({
 
         <Pressable
           onPress={() => router.push("/section/fitness" as any)}
-          style={{ backgroundColor: "#7C3AED", borderRadius: 12, paddingVertical: 9, alignItems: "center", flexDirection: "row-reverse", justifyContent: "center", gap: 6 }}
+          style={{ backgroundColor: "#007A65", borderRadius: 12, paddingVertical: 9, alignItems: "center", flexDirection: "row-reverse", justifyContent: "center", gap: 6 }}
         >
           <Text style={{ fontSize: 13 }}>▶️</Text>
           <Text style={{ color: "#fff", fontFamily: "Tajawal_700Bold", fontSize: 12 }}>{t("استكمل", "Continue")}</Text>
@@ -534,7 +534,7 @@ export default function HomeScreen() {
 
   const chartDataKey  = chartTab === "steps" ? "steps" : chartTab === "sleep" ? "sleep" : "water";
   const chartMax      = chartTab === "steps" ? 10000 : chartTab === "sleep" ? 10 : 8;
-  const chartColor    = chartTab === "steps" ? "#C490D8" : chartTab === "sleep" ? "#8B5CF6" : "#3B82F6";
+  const chartColor    = chartTab === "steps" ? "#00E0B8" : chartTab === "sleep" ? "#8B5CF6" : "#3B82F6";
   const chartLabel    = chartTab === "steps" ? t("خطوات", "Steps") : chartTab === "sleep" ? t("ساعات نوم", "Sleep Hours") : t("أكواب ماء", "Water Cups");
   const chartCurrentVal = chartTab === "steps" ? steps.toLocaleString() : chartTab === "sleep" ? `${sleepHours}h` : `${waterIntake.glasses}/8`;
 
@@ -550,7 +550,7 @@ export default function HomeScreen() {
   );
 
   const typeConfig: Record<string, { emoji: string; color: string }> = {
-    clinic:  { emoji: "🩺", color: "#A86DBF" },
+    clinic:  { emoji: "🩺", color: "#00C4A0" },
     lab:     { emoji: "🔬", color: "#3B82F6" },
     beauty:  { emoji: "💆", color: "#EC4899" },
     trainer: { emoji: "🏋️", color: "#22C55E" },
@@ -570,23 +570,23 @@ export default function HomeScreen() {
               style={[styles.iconBtn, { backgroundColor: isDark ? colors.surfaceAlt : "#FDF6FA" }]}
               onPress={() => setShowNotifications(true)}
             >
-              {isIOS ? <SymbolView name="bell.fill" tintColor="#C490D8" size={18} /> : <Feather name="bell" size={18} color="#C490D8" />}
+              {isIOS ? <SymbolView name="bell.fill" tintColor="#00E0B8" size={18} /> : <Feather name="bell" size={18} color="#00E0B8" />}
               <View style={styles.badge} />
             </Pressable>
             <Pressable
               style={[styles.iconBtn, { backgroundColor: isDark ? colors.surfaceAlt : "#FDF6FA" }]}
               onPress={toggleTheme}
             >
-              <Feather name={isDark ? "sun" : "moon"} size={18} color="#C490D8" />
+              <Feather name={isDark ? "sun" : "moon"} size={18} color="#00E0B8" />
             </Pressable>
             <Pressable
               style={[styles.iconBtn, { backgroundColor: isDark ? colors.surfaceAlt : "#FDF6FA" }]}
               onPress={toggleLang}
             >
-              <Text style={{ color: "#C490D8", fontFamily: "Cairo_700Bold", fontSize: 13 }}>{lang === "ar" ? "EN" : "ع"}</Text>
+              <Text style={{ color: "#00E0B8", fontFamily: "Cairo_700Bold", fontSize: 13 }}>{lang === "ar" ? "EN" : "ع"}</Text>
             </Pressable>
             <Pressable
-              style={[styles.planBadge, { backgroundColor: "#C490D8" + "20" }]}
+              style={[styles.planBadge, { backgroundColor: "#00E0B8" + "20" }]}
               onPress={() => router.push("/subscription" as any)}
             >
               <Text style={styles.planBadgeText}>FREE</Text>
@@ -670,9 +670,9 @@ export default function HomeScreen() {
                 <Text style={[styles.pointsCatVal, { color: todayPoints.sleep > 0 ? "#22C55E" : colors.muted }]}>{todayPoints.sleep}</Text>
               </View>
             </View>
-            <View style={[styles.pointsMonthlyRow, { backgroundColor: isDark ? "rgba(196,144,216,0.1)" : "rgba(168,109,191,0.06)" }]}>
+            <View style={[styles.pointsMonthlyRow, { backgroundColor: isDark ? "rgba(0,224,184,0.1)" : "rgba(0,196,160,0.06)" }]}>
               <Text style={[styles.pointsMonthlyLabel, { color: colors.muted }]}>{t("هذا الشهر", "This Month")}</Text>
-              <Text style={[styles.pointsMonthlyVal, { color: "#C490D8" }]}>{totalMonthlyPoints} ⭐</Text>
+              <Text style={[styles.pointsMonthlyVal, { color: "#00E0B8" }]}>{totalMonthlyPoints} ⭐</Text>
             </View>
           </Pressable>
         </View>
@@ -682,7 +682,7 @@ export default function HomeScreen() {
           <View style={[styles.sectionHeaderRow, { marginBottom: 10 }]}>
             <Text style={[styles.miniSectionTitle, { color: colors.text }]}>📅 {t("مواعيدي القادمة", "Upcoming Appointments")}</Text>
             <Pressable onPress={() => router.push("/bookings" as any)}>
-              <Text style={[styles.seeAllText, { color: "#C490D8" }]}>{t("عرض الكل", "View All")}</Text>
+              <Text style={[styles.seeAllText, { color: "#00E0B8" }]}>{t("عرض الكل", "View All")}</Text>
             </Pressable>
           </View>
 
@@ -729,12 +729,12 @@ export default function HomeScreen() {
         </View>
         {/* ─── نصيحة اليوم (inline, always visible) ─── */}
         <Pressable
-          style={[styles.inlineTipCard, { backgroundColor: isDark ? "#1C1330" : "#F8F0FF", borderColor: isDark ? "rgba(196,144,216,0.2)" : "rgba(168,109,191,0.15)" }]}
+          style={[styles.inlineTipCard, { backgroundColor: isDark ? "#1C1330" : "#F8F0FF", borderColor: isDark ? "rgba(0,224,184,0.2)" : "rgba(0,196,160,0.15)" }]}
           onPress={() => {}}
         >
           <Text style={{ fontSize: 22 }}>💡</Text>
           <View style={{ flex: 1 }}>
-            <Text style={[styles.inlineTipLabel, { color: "#A86DBF" }]}>{t("نصيحة اليوم", "Today's Tip")}</Text>
+            <Text style={[styles.inlineTipLabel, { color: "#00C4A0" }]}>{t("نصيحة اليوم", "Today's Tip")}</Text>
             <Text style={[styles.inlineTipText, { color: colors.text }]} numberOfLines={2}>
               {t(DAILY_TIPS[new Date().getDay()].ar, DAILY_TIPS[new Date().getDay()].en)}
             </Text>
@@ -747,7 +747,7 @@ export default function HomeScreen() {
         <RNAnimated.View style={[styles.heroBanner, { transform: [{ scale: glowScale }], opacity: glowOpacity }]}>
           <Image source={require("@/assets/images/hero-banner.png")} style={styles.heroBannerImage} resizeMode="cover" />
           <LinearGradient
-            colors={["rgba(90,20,140,0.55)", "rgba(168,109,191,0.82)", "rgba(60,10,100,0.92)"]}
+            colors={["rgba(90,20,140,0.55)", "rgba(0,196,160,0.82)", "rgba(60,10,100,0.92)"]}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
             style={StyleSheet.absoluteFill}
@@ -806,12 +806,12 @@ export default function HomeScreen() {
               </View>
               <Text style={[styles.offerTitle, { color: colors.text }]}>{t(offer.titleAr, offer.titleEn)}</Text>
               <View style={styles.offerPriceRow}>
-                <Text style={[styles.offerPrice, { color: "#C490D8" }]}>{offer.price === 0 ? t("مجاناً", "Free") : `${offer.price} ${t("ر.س", "SAR")}`}</Text>
+                <Text style={[styles.offerPrice, { color: "#00E0B8" }]}>{offer.price === 0 ? t("مجاناً", "Free") : `${offer.price} ${t("ر.س", "SAR")}`}</Text>
                 <Text style={[styles.offerOldPrice, { color: colors.muted }]}>{offer.oldPrice} {t("ر.س", "SAR")}</Text>
               </View>
-              <View style={[styles.codeBadge, { backgroundColor: "#C490D8" + "15", flexDirection: "row-reverse", alignItems: "center", gap: 4 }]}>
-                <Feather name="copy" size={11} color="#C490D8" />
-                <Text style={[styles.codeText, { color: "#C490D8" }]}>{offer.code}</Text>
+              <View style={[styles.codeBadge, { backgroundColor: "#00E0B8" + "15", flexDirection: "row-reverse", alignItems: "center", gap: 4 }]}>
+                <Feather name="copy" size={11} color="#00E0B8" />
+                <Text style={[styles.codeText, { color: "#00E0B8" }]}>{offer.code}</Text>
               </View>
             </Pressable>
           ))}
@@ -875,20 +875,20 @@ export default function HomeScreen() {
         <View style={styles.sectionHeaderRow}>
           <Text style={[styles.sectionTitle, { color: colors.text, marginBottom: 0 }]}>{t("الكفاءات المتاحة", "Available Specialists")} ⭐</Text>
           <Pressable onPress={() => router.push("/section/clinics" as any)}>
-            <Text style={[styles.seeAllText, { color: "#C490D8" }]}>{t("عرض الكل", "View All")}</Text>
+            <Text style={[styles.seeAllText, { color: "#00E0B8" }]}>{t("عرض الكل", "View All")}</Text>
           </Pressable>
         </View>
         <View style={{ height: 12 }} />
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ flexDirection: "row-reverse" }}>
           {SPECIALISTS.filter((s) => s.available).map((spec) => (
             <View key={spec.id} style={[styles.specCard, { backgroundColor: isDark ? colors.card : "#FFFFFF", borderColor: colors.border }]}>
-              <View style={[styles.specAvatar, { backgroundColor: "#C490D8" + "20" }]}>
+              <View style={[styles.specAvatar, { backgroundColor: "#00E0B8" + "20" }]}>
                 <Text style={{ fontSize: 20 }}>👨‍⚕️</Text>
               </View>
               <Text style={[styles.specName, { color: colors.text }]}>{t(spec.nameAr, spec.nameEn)}</Text>
               <Text style={[styles.specSpecialty, { color: colors.muted }]}>{t(spec.specialtyAr, spec.specialtyEn)}</Text>
               <View style={styles.specRatingRow}>
-                <Text style={[styles.specPrice, { color: "#C490D8" }]}>{spec.price} {t("ر.س", "SAR")}</Text>
+                <Text style={[styles.specPrice, { color: "#00E0B8" }]}>{spec.price} {t("ر.س", "SAR")}</Text>
                 <View style={styles.ratingRow}>
                   <Text style={{ color: "#F5D26A", fontSize: 12 }}>⭐</Text>
                   <Text style={[styles.ratingText, { color: colors.muted }]}>{spec.rating}</Text>
@@ -1378,7 +1378,7 @@ export default function HomeScreen() {
             {/* Calorie ring summary */}
             <View style={[styles.nutritionCalorieRow, { backgroundColor: isDark ? colors.surfaceAlt : "#F8F0F5", borderRadius: 20, padding: 16 }]}>
               <View style={styles.nutritionCalorieCenter}>
-                <Text style={[styles.nutritionBigCal, { color: "#A86DBF" }]}>{todayNutrition.calories}</Text>
+                <Text style={[styles.nutritionBigCal, { color: "#00C4A0" }]}>{todayNutrition.calories}</Text>
                 <Text style={[styles.nutritionCalLabel, { color: colors.muted }]}>{t("سعرة من", "kcal of")} {nutritionGoal.calories}</Text>
                 <View style={[styles.nutritionCalBar, { backgroundColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.06)" }]}>
                   <View style={[styles.nutritionCalBarFill, { width: `${Math.min(100, (todayNutrition.calories / nutritionGoal.calories) * 100)}%` }]} />
@@ -1482,7 +1482,7 @@ const styles = StyleSheet.create({
   iconBtn: { width: 38, height: 38, borderRadius: 12, alignItems: "center", justifyContent: "center" },
   badge: { position: "absolute", top: 7, right: 7, width: 8, height: 8, borderRadius: 4, backgroundColor: "#F43F5E" },
   planBadge: { paddingHorizontal: 10, paddingVertical: 4, borderRadius: 8 },
-  planBadgeText: { color: "#C490D8", fontSize: 11, fontFamily: "Tajawal_700Bold" },
+  planBadgeText: { color: "#00E0B8", fontSize: 11, fontFamily: "Tajawal_700Bold" },
 
   summarySection: { marginTop: 8 },
   greetingRow: { marginBottom: 16 },
@@ -1523,7 +1523,7 @@ const styles = StyleSheet.create({
   apptEmptyStrip: { flexDirection: "row-reverse", alignItems: "center", gap: 10, borderRadius: 14, padding: 14, borderWidth: 1 },
   apptEmptyTitle: { fontSize: 13, fontFamily: "Tajawal_700Bold", textAlign: "right" },
   apptEmptySub: { fontSize: 11, fontFamily: "Tajawal_400Regular", textAlign: "right", marginTop: 2 },
-  apptEmptyBtn: { flexDirection: "row-reverse", alignItems: "center", gap: 4, backgroundColor: "#A86DBF", paddingHorizontal: 12, paddingVertical: 7, borderRadius: 10 },
+  apptEmptyBtn: { flexDirection: "row-reverse", alignItems: "center", gap: 4, backgroundColor: "#00C4A0", paddingHorizontal: 12, paddingVertical: 7, borderRadius: 10 },
   apptEmptyBtnText: { color: "#fff", fontSize: 12, fontFamily: "Tajawal_700Bold" },
 
   heroBanner: { borderRadius: 22, overflow: "hidden", height: 170, position: "relative" },
@@ -1537,7 +1537,7 @@ const styles = StyleSheet.create({
   clinicBannerSub: { color: "rgba(255,255,255,0.88)", fontSize: 13, fontFamily: "Tajawal_400Regular", textAlign: "right", marginTop: 2 },
   clinicBannerBtns: { flexDirection: "row-reverse", gap: 8, marginTop: 12 },
   clinicBannerBtn: { backgroundColor: "#fff", paddingHorizontal: 16, paddingVertical: 8, borderRadius: 10 },
-  clinicBannerBtnTxt: { color: "#A86DBF", fontSize: 13, fontFamily: "Tajawal_700Bold" },
+  clinicBannerBtnTxt: { color: "#00C4A0", fontSize: 13, fontFamily: "Tajawal_700Bold" },
   clinicBannerGhostBtn: { borderWidth: 1, borderColor: "rgba(255,255,255,0.5)", paddingHorizontal: 14, paddingVertical: 8, borderRadius: 10 },
   clinicBannerGhostTxt: { color: "#fff", fontSize: 13, fontFamily: "Tajawal_500Medium" },
 
@@ -1570,7 +1570,7 @@ const styles = StyleSheet.create({
   specPrice: { fontSize: 14, fontFamily: "Tajawal_700Bold" },
   ratingRow: { flexDirection: "row", alignItems: "center", gap: 2 },
   ratingText: { fontSize: 12, fontFamily: "Tajawal_400Regular" },
-  bookBtn: { backgroundColor: "#A86DBF", borderRadius: 10, paddingHorizontal: 24, paddingVertical: 8, marginTop: 4 },
+  bookBtn: { backgroundColor: "#00C4A0", borderRadius: 10, paddingHorizontal: 24, paddingVertical: 8, marginTop: 4 },
   bookBtnText: { color: "#fff", fontSize: 13, fontFamily: "Tajawal_700Bold" },
 
   labCard: { borderRadius: 16, marginBottom: 10, borderWidth: 1, overflow: "hidden" },
@@ -1625,9 +1625,9 @@ const styles = StyleSheet.create({
   macroImg: { width: 56, height: 56, borderRadius: 16 },
   macroTitle: { fontSize: 16, fontFamily: "Cairo_700Bold", textAlign: "right" },
   macroSub: { fontSize: 12, fontFamily: "Tajawal_400Regular", textAlign: "right", marginTop: 2 },
-  macroTotalBar: { height: 4, borderRadius: 2, backgroundColor: "rgba(196,144,216,0.15)", marginTop: 6 },
-  macroTotalFill: { height: 4, borderRadius: 2, backgroundColor: "#C490D8" },
-  addMealFloatBtn: { flexDirection: "row-reverse", alignItems: "center", gap: 4, backgroundColor: "#A86DBF", paddingHorizontal: 10, paddingVertical: 6, borderRadius: 10 },
+  macroTotalBar: { height: 4, borderRadius: 2, backgroundColor: "rgba(0,224,184,0.15)", marginTop: 6 },
+  macroTotalFill: { height: 4, borderRadius: 2, backgroundColor: "#00E0B8" },
+  addMealFloatBtn: { flexDirection: "row-reverse", alignItems: "center", gap: 4, backgroundColor: "#00C4A0", paddingHorizontal: 10, paddingVertical: 6, borderRadius: 10 },
   addMealFloatText: { color: "#fff", fontSize: 11, fontFamily: "Tajawal_700Bold" },
   macroRows: { gap: 10 },
   macroRow: { flexDirection: "row-reverse", alignItems: "center", gap: 10 },
@@ -1673,7 +1673,7 @@ const styles = StyleSheet.create({
   notifTitle: { fontSize: 14, fontFamily: "Tajawal_700Bold", textAlign: "right" },
   notifBody: { fontSize: 13, fontFamily: "Tajawal_400Regular", textAlign: "right", marginTop: 2, lineHeight: 20 },
   notifTime: { fontSize: 11, fontFamily: "Tajawal_400Regular", textAlign: "right", marginTop: 4 },
-  notifCloseBtn: { backgroundColor: "#A86DBF", borderRadius: 14, paddingVertical: 12, alignItems: "center", marginTop: 8 },
+  notifCloseBtn: { backgroundColor: "#00C4A0", borderRadius: 14, paddingVertical: 12, alignItems: "center", marginTop: 8 },
   notifCloseBtnText: { color: "#fff", fontSize: 15, fontFamily: "Tajawal_700Bold" },
   weightInput: { borderRadius: 14, padding: 16, borderWidth: 1, fontSize: 20, fontFamily: "Tajawal_700Bold" },
   photoUploadBtn: { borderRadius: 14, borderWidth: 1, borderStyle: "dashed", marginTop: 12, overflow: "hidden", alignItems: "center", justifyContent: "center", minHeight: 100 },
@@ -1688,7 +1688,7 @@ const styles = StyleSheet.create({
   nutritionBigCal: { fontSize: 38, fontFamily: "Cairo_700Bold", textAlign: "right" },
   nutritionCalLabel: { fontSize: 12, fontFamily: "Tajawal_400Regular", textAlign: "right", marginBottom: 8 },
   nutritionCalBar: { height: 8, borderRadius: 4, overflow: "hidden" },
-  nutritionCalBarFill: { height: 8, borderRadius: 4, backgroundColor: "#A86DBF" },
+  nutritionCalBarFill: { height: 8, borderRadius: 4, backgroundColor: "#00C4A0" },
   nutritionQuickStats: { gap: 12 },
   nutritionQuickStat: { alignItems: "center", gap: 2 },
   nutritionQuickVal: { fontSize: 15, fontFamily: "Tajawal_700Bold" },
@@ -1698,10 +1698,10 @@ const styles = StyleSheet.create({
   waterGlasses: { flexDirection: "row-reverse", flex: 1, gap: 4 },
   waterGlass: { flex: 1, height: 20, borderRadius: 4 },
   waterLabel: { fontSize: 12, fontFamily: "Tajawal_700Bold" },
-  openFullNutritionBtn: { flexDirection: "row-reverse", alignItems: "center", justifyContent: "center", gap: 8, backgroundColor: "#A86DBF", borderRadius: 16, paddingVertical: 14 },
+  openFullNutritionBtn: { flexDirection: "row-reverse", alignItems: "center", justifyContent: "center", gap: 8, backgroundColor: "#00C4A0", borderRadius: 16, paddingVertical: 14 },
   openFullNutritionText: { color: "#fff", fontSize: 15, fontFamily: "Tajawal_700Bold" },
 
-  pointsNotif: { position: "absolute", left: 20, right: 20, flexDirection: "row-reverse", alignItems: "center", gap: 12, padding: 14, borderRadius: 16, zIndex: 999, elevation: 10, shadowColor: "#000", shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.15, shadowRadius: 8, borderWidth: 1, borderColor: "rgba(196,144,216,0.3)" },
+  pointsNotif: { position: "absolute", left: 20, right: 20, flexDirection: "row-reverse", alignItems: "center", gap: 12, padding: 14, borderRadius: 16, zIndex: 999, elevation: 10, shadowColor: "#000", shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.15, shadowRadius: 8, borderWidth: 1, borderColor: "rgba(0,224,184,0.3)" },
   pointsNotifIcon: { width: 44, height: 44, borderRadius: 14, alignItems: "center", justifyContent: "center" },
   pointsNotifTitle: { fontSize: 15, fontFamily: "Cairo_700Bold", textAlign: "right" },
   pointsNotifReason: { fontSize: 12, fontFamily: "Tajawal_500Medium", textAlign: "right", marginTop: 2 },

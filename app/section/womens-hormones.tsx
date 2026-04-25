@@ -27,14 +27,14 @@ const HORMONES_ART = require("@/assets/images/womens-hormones-art.png");
 const HORMONE_PANELS = [
   { id: "thyroid", name: "هرمونات الغدة الدرقية", emoji: "🦋", color: "#F59E0B", badge: "تؤثر على كل خلية في الجسم ⚡", tests: ["TSH","T3","T4","Anti-TPO"], symptoms: ["التعب","البرود","الأرق","تساقط الشعر","زيادة الوزن"], info: "تحكم معدل الأيض، الطاقة، ودرجة الحرارة. خلل الدرقية شائع جداً في المرأة." },
   { id: "estrogen", name: "هرمونات الأنوثة", emoji: "🌸", color: "#EC4899", badge: "أساس الصحة الإنجابية 💜", tests: ["LH","FSH","Progesterone","Estradiol (E2)"], symptoms: ["اضطراب الدورة","جفاف المهبل","تقلبات المزاج","ضعف الخصوبة"], info: "تتحكم في الدورة الشهرية والخصوبة والصحة العاطفية والعظام." },
-  { id: "testosterone", name: "التستوستيرون", emoji: "💪", color: "#A86DBF", badge: "مهم للمرأة أيضاً! 🔬", tests: ["Free Testosterone","Total Testosterone","DHEA-S","SHBG"], symptoms: ["ضعف الرغبة","فقدان العضلات","التعب المزمن","حبوب الوجه"], info: "يؤثر على الطاقة، الرغبة الجنسية، كتلة العضلات، والمزاج. ارتفاعه قد يسبب PCOS." },
+  { id: "testosterone", name: "التستوستيرون", emoji: "💪", color: "#00C4A0", badge: "مهم للمرأة أيضاً! 🔬", tests: ["Free Testosterone","Total Testosterone","DHEA-S","SHBG"], symptoms: ["ضعف الرغبة","فقدان العضلات","التعب المزمن","حبوب الوجه"], info: "يؤثر على الطاقة، الرغبة الجنسية، كتلة العضلات، والمزاج. ارتفاعه قد يسبب PCOS." },
   { id: "insulin", name: "الأنسولين وسكر الدم", emoji: "🍬", color: "#10B981", badge: "مرتبط بـ PCOS وهشاشة العظام 📊", tests: ["Fasting Glucose","HbA1c","Fasting Insulin","HOMA-IR"], symptoms: ["تعب بعد الأكل","رغبة شديدة بالسكر","انتفاخ","صعوبة خسارة الوزن"], info: "مقاومة الأنسولين شائعة في PCOS وتؤثر على هرمونات الأنوثة." },
   { id: "cortisol", name: "هرمون الكورتيزول", emoji: "😤", color: "#EF4444", badge: "هرمون التوتر — راقبيه! ⚠️", tests: ["Morning Cortisol","24h Urine Cortisol","ACTH","Cortisol Saliva"], symptoms: ["توتر مزمن","اضطراب النوم","زيادة الوزن في البطن","ضعف المناعة"], info: "ارتفاع الكورتيزول المزمن يضر بكل الهرمونات الأخرى ويؤثر على الدورة." },
   { id: "prolactin", name: "البرولاكتين", emoji: "🍼", color: "#6366F1", badge: "ليس فقط لمن يرضعن!", tests: ["Prolactin","MRI الغدة النخامية (إذا مرتفع)"], symptoms: ["اضطراب الدورة","سيلان الثدي","ضعف الرغبة","صعوبة الحمل"], info: "ارتفاعه قد يوقف الدورة ويؤثر على الخصوبة، حتى بدون رضاعة." },
 ];
 
 const CONDITIONS = [
-  { name: "متلازمة تكيس المبايض PCOS", emoji: "🔵", color: "#A86DBF", tests: ["LH/FSH Ratio","Testosterone","Insulin","AMH"] },
+  { name: "متلازمة تكيس المبايض PCOS", emoji: "🔵", color: "#00C4A0", tests: ["LH/FSH Ratio","Testosterone","Insulin","AMH"] },
   { name: "قصور الغدة الدرقية", emoji: "🦋", color: "#F59E0B", tests: ["TSH","T3","T4","Anti-TPO"] },
   { name: "مرحلة قبل انقطاع الطمث", emoji: "🌙", color: "#EC4899", tests: ["FSH","Estradiol","AMH","LH"] },
   { name: "خلل هرمونات الأنوثة", emoji: "💮", color: "#10B981", tests: ["Estradiol","Progesterone","LH","FSH"] },
@@ -203,9 +203,9 @@ export default function HormonesScreen() {
           <Text style={[styles.statVal, { color: "#10B981" }]}>{todayEntry ? todayEntry.symptoms.length : "—"}</Text>
           <Text style={[styles.statLbl, { color: colors.muted }]}>أعراض اليوم</Text>
         </Pressable>
-        <Pressable onPress={() => setLogOpen(true)} style={[styles.statCard, { backgroundColor: "#A86DBF18", borderColor: "#A86DBF33" }]}>
+        <Pressable onPress={() => setLogOpen(true)} style={[styles.statCard, { backgroundColor: "#00C4A018", borderColor: "#00C4A033" }]}>
           <Text style={{ fontSize: 20 }}>⚡</Text>
-          <Text style={[styles.statVal, { color: "#A86DBF" }]}>{todayEntry?.energy ?? "—"}/10</Text>
+          <Text style={[styles.statVal, { color: "#00C4A0" }]}>{todayEntry?.energy ?? "—"}/10</Text>
           <Text style={[styles.statLbl, { color: colors.muted }]}>الطاقة</Text>
         </Pressable>
         <Pressable onPress={() => setLogOpen(true)} style={[styles.statCard, { backgroundColor: "#EC489918", borderColor: "#EC489933" }]}>
@@ -290,10 +290,10 @@ export default function HormonesScreen() {
         {activeInsight === "energy" && (
           avgEnergy ? (
             <View style={{ alignItems: "center", gap: 8 }}>
-              <Text style={{ fontSize: 48, fontFamily: "Cairo_700Bold", color: "#A86DBF" }}>{avgEnergy}</Text>
+              <Text style={{ fontSize: 48, fontFamily: "Cairo_700Bold", color: "#00C4A0" }}>{avgEnergy}</Text>
               <Text style={[styles.subTxt, { color: colors.muted }]}>متوسط طاقتك آخر 7 أيام</Text>
               <View style={[styles.barTrack, { width: "100%", backgroundColor: colors.border }]}>
-                <View style={[styles.barFill, { width: `${(parseFloat(avgEnergy) / 10) * 100}%`, backgroundColor: "#A86DBF" }]} />
+                <View style={[styles.barFill, { width: `${(parseFloat(avgEnergy) / 10) * 100}%`, backgroundColor: "#00C4A0" }]} />
               </View>
             </View>
           ) : <Text style={[styles.subTxt, { color: colors.muted, textAlign: "center", paddingVertical: 12 }]}>سجّلي طاقتك يومياً لرؤية الإحصاءات</Text>
@@ -545,7 +545,7 @@ export default function HormonesScreen() {
               </View>
             </View>
 
-            <ScaleSelector label="⚡ مستوى الطاقة" value={energy} onChange={setEnergy} color="#A86DBF" />
+            <ScaleSelector label="⚡ مستوى الطاقة" value={energy} onChange={setEnergy} color="#00C4A0" />
             <ScaleSelector label="😊 حالة المزاج" value={mood} onChange={setMood} color="#EC4899" />
             <ScaleSelector label="😰 مستوى التوتر" value={stress} onChange={setStress} color="#EF4444" />
             <ScaleSelector label="💜 الرغبة الجنسية" value={libido} onChange={setLibido} color="#6366F1" />

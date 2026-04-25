@@ -71,7 +71,7 @@ const SECTION_DATA: Record<string, any> = {
   mental: {
     title: "الصحة النفسية",
     subtitle: "صحتك النفسية لا تقل أهمية",
-    color: "#C490D8",
+    color: "#00E0B8",
     items: [
       { id: "1", title: "تمارين التأمل اليومي", sub: "10 دقائق تغير يومك", type: "meditation", contentId: "mental-1" },
       { id: "2", title: "تقليل التوتر والقلق", sub: "تقنيات التنفس والاسترخاء", type: "stress", contentId: "mental-2" },
@@ -161,7 +161,7 @@ const SECTION_DATA: Record<string, any> = {
   clinics: {
     title: "العيادات والمختبرات",
     subtitle: "خدمات طبية موثوقة",
-    color: "#A86DBF",
+    color: "#00C4A0",
     items: [
       { id: "1", title: "العيادات الطبية", sub: "احجز مع طبيبك المفضل", type: "clinics", route: "/section/clinics" },
       { id: "2", title: "المختبرات الطبية", sub: "مختبرات معتمدة قريبة منك", type: "labs", route: "/providers/labs" },

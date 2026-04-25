@@ -31,7 +31,7 @@ export default function WelcomeSplash({ onFinish }: Props) {
   return (
     <Animated.View style={[StyleSheet.absoluteFill, { opacity: fadeOut, zIndex: 9999 }]}>
       <LinearGradient
-        colors={["#1A0B2E", "#3D1A66", "#A86DBF"]}
+        colors={["#0D1B2A", "#07564A", "#00C4A0"]}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={styles.container}
@@ -53,7 +53,7 @@ export default function WelcomeSplash({ onFinish }: Props) {
 
 const styles = StyleSheet.create({
   container: { flex: 1, alignItems: "center", justifyContent: "center", gap: 18 },
-  glow: { position: "absolute", width: 380, height: 380, borderRadius: 190, backgroundColor: "rgba(196,144,216,0.18)", top: "30%" },
+  glow: { position: "absolute", width: 380, height: 380, borderRadius: 190, backgroundColor: "rgba(0,224,184,0.18)", top: "30%" },
   logo: { width: 140, height: 140 },
   title: { color: "#fff", fontSize: 42, fontFamily: "Cairo_700Bold", letterSpacing: 2 },
   subtitle: { color: "rgba(255,255,255,0.85)", fontSize: 15, fontFamily: "Tajawal_500Medium" },

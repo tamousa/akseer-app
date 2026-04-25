@@ -142,7 +142,7 @@ const CONTENT_DB: Record<string, any> = {
   "mental-1": {
     title: "تمارين التأمل اليومي",
     category: "الصحة النفسية",
-    categoryColor: "#C490D8",
+    categoryColor: "#00E0B8",
     image: require("@/assets/images/mental-banner.png"),
     readTime: "4 دقائق",
     intro: "10 دقائق من التأمل يومياً تُغيّر حياتك. تعلم التقنيات الأساسية.",
@@ -155,7 +155,7 @@ const CONTENT_DB: Record<string, any> = {
   "mental-3": {
     title: "تحسين جودة النوم",
     category: "الصحة النفسية",
-    categoryColor: "#C490D8",
+    categoryColor: "#00E0B8",
     image: require("@/assets/images/sleep-banner.png"),
     readTime: "4 دقائق",
     intro: "نم أفضل وعش أسعد. نصائح علمية لتحسين جودة نومك.",
@@ -195,7 +195,7 @@ const CONTENT_DB: Record<string, any> = {
   "clinics-4": {
     title: "استشارات طبية عن بعد",
     category: "العيادات",
-    categoryColor: "#A86DBF",
+    categoryColor: "#00C4A0",
     image: require("@/assets/images/clinic-room.png"),
     readTime: "3 دقائق",
     intro: "تحدث مع طبيب متخصص من بيتك عبر استشارات الفيديو.",
@@ -210,7 +210,7 @@ const CONTENT_DB: Record<string, any> = {
 const DEFAULT_CONTENT = {
   title: "المحتوى",
   category: "عام",
-  categoryColor: "#C490D8",
+  categoryColor: "#00E0B8",
   image: require("@/assets/images/hero-banner.png"),
   readTime: "3 دقائق",
   intro: "محتوى صحي مفيد ومعتمد من متخصصين.",
@@ -309,7 +309,7 @@ export default function ContentScreen() {
       )}
 
       <View style={styles.actionRow}>
-        <Pressable style={[styles.actionBtn, { backgroundColor: "#A86DBF" }]} onPress={() => Alert.alert("تم الحفظ", "تم حفظ المحتوى في المفضلة")}>
+        <Pressable style={[styles.actionBtn, { backgroundColor: "#00C4A0" }]} onPress={() => Alert.alert("تم الحفظ", "تم حفظ المحتوى في المفضلة")}>
           <Feather name="heart" size={18} color="#fff" />
           <Text style={styles.actionBtnText}>حفظ</Text>
         </Pressable>

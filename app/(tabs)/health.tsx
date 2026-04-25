@@ -105,7 +105,7 @@ export default function HealthScreen() {
   const metrics = [
     { id: "water",    emoji: "💧", labelAr: "شرب الماء",     labelEn: "Hydration", value: waterIntake.glasses,         goal: userGoals.water,         unitAr: "كوب",   unitEn: "cups",  color: "#3B82F6", bg: "rgba(59,130,246,0.12)", action: addWaterGlass },
     { id: "calories", emoji: "🔥", labelAr: "السعرات",        labelEn: "Calories",  value: caloriesBurned,              goal: userGoals.caloriesBurn,  unitAr: "سعرة",  unitEn: "kcal",  color: "#F59E0B", bg: "rgba(245,158,11,0.12)" },
-    { id: "sleep",    emoji: "😴", labelAr: "النوم",           labelEn: "Sleep",     value: sleepHours,                  goal: userGoals.sleep,         unitAr: "ساعة",  unitEn: "hrs",   color: "#A86DBF", bg: "rgba(168,109,191,0.14)" },
+    { id: "sleep",    emoji: "😴", labelAr: "النوم",           labelEn: "Sleep",     value: sleepHours,                  goal: userGoals.sleep,         unitAr: "ساعة",  unitEn: "hrs",   color: "#00C4A0", bg: "rgba(0,196,160,0.14)" },
     { id: "active",   emoji: "🏃", labelAr: "النشاط الرياضي", labelEn: "Activity",  value: activeMinutes,               goal: userGoals.activeMinutes, unitAr: "دقيقة", unitEn: "min",   color: "#22C55E", bg: "rgba(34,197,94,0.12)" },
     { id: "steps",    emoji: "👟", labelAr: "الخطوات",         labelEn: "Steps",     value: steps,                       goal: userGoals.steps,         unitAr: "خطوة",  unitEn: "steps", color: "#EC4899", bg: "rgba(236,72,153,0.12)" },
     { id: "nutrition",emoji: "🥗", labelAr: "التغذية",         labelEn: "Nutrition", value: todayNutrition.calories || 0,goal: nutritionGoal.calories,  unitAr: "سعرة",  unitEn: "kcal",  color: "#10B981", bg: "rgba(16,185,129,0.12)" },
@@ -118,11 +118,11 @@ export default function HealthScreen() {
     { id: "fitness",   titleAr: "التمارين الرياضية",       titleEn: "Fitness",              descAr: "برنامج تدريبي شخصي",       descEn: "Personalized training",       emoji: "🏋️", color: "#F43F5E", route: "/section/fitness" },
     { id: "womens",    titleAr: "صحة المرأة والطفل",       titleEn: "Women & Child Health", descAr: "الدورة، الحمل، الجمال",     descEn: "Cycle, pregnancy, beauty",     emoji: "🌸", color: "#EC4899", route: "/section/womens" },
     { id: "mens",      titleAr: "صحة الرجل",              titleEn: "Men's Health",         descAr: "هرمونات وعافية للرجل",       descEn: "Hormones & men's wellness",    emoji: "💪", color: "#3B82F6", route: "/section/mens" },
-    { id: "mental",    titleAr: "الصحة النفسية",           titleEn: "Mental Health",        descAr: "تأمل ومزاج وجلسات دعم",     descEn: "Mood, meditation & support",   emoji: "🧠", color: "#A86DBF", route: "/section/mental" },
+    { id: "mental",    titleAr: "الصحة النفسية",           titleEn: "Mental Health",        descAr: "تأمل ومزاج وجلسات دعم",     descEn: "Mood, meditation & support",   emoji: "🧠", color: "#00C4A0", route: "/section/mental" },
   ];
 
   const CARE_SECTIONS = [
-    { id: "clinics",     titleAr: "العيادات والاستشارات", titleEn: "Clinics & Consultations", descAr: "استشارات معتمدة من المختصين", descEn: "Certified specialist consultations", emoji: "🩺", color: "#A86DBF", route: "/section/clinics" },
+    { id: "clinics",     titleAr: "العيادات والاستشارات", titleEn: "Clinics & Consultations", descAr: "استشارات معتمدة من المختصين", descEn: "Certified specialist consultations", emoji: "🩺", color: "#00C4A0", route: "/section/clinics" },
     { id: "labs",        titleAr: "المختبرات",            titleEn: "Laboratories",            descAr: "احجز فحوصاتك من المنزل",       descEn: "Book lab tests from home",            emoji: "🔬", color: "#3B82F6", route: "/section/labs" },
     { id: "specialists", titleAr: "المختصون",             titleEn: "Specialists",             descAr: "أطباء، مدربون ومختصو تغذية",   descEn: "Doctors, trainers & nutritionists",   emoji: "👨‍⚕️", color: "#F59E0B", route: "/providers/specialists" },
     { id: "rehab",       titleAr: "العلاج الطبيعي",        titleEn: "Physiotherapy",           descAr: "جلسات تأهيل وعلاج طبيعي",      descEn: "Rehab & physiotherapy sessions",      emoji: "🤸", color: "#0EA5E9", route: "/section/rehab" },
@@ -133,7 +133,7 @@ export default function HealthScreen() {
     { id: "calories", titleAr: "السعرات",       titleEn: "Calories",       emoji: "🔥", color: "#F59E0B" },
     { id: "bmi",      titleAr: "الجسم والوزن",  titleEn: "BMI & Weight",   emoji: "⚖️", color: "#3B82F6" },
     { id: "heart",    titleAr: "خطر القلب",     titleEn: "Heart Risk",     emoji: "❤️", color: "#F43F5E" },
-    { id: "diabetes", titleAr: "خطر السكري",    titleEn: "Diabetes Risk",  emoji: "💉", color: "#A86DBF" },
+    { id: "diabetes", titleAr: "خطر السكري",    titleEn: "Diabetes Risk",  emoji: "💉", color: "#00C4A0" },
     { id: "water",    titleAr: "احتياج الماء",  titleEn: "Water Needs",    emoji: "💧", color: "#0EA5E9" },
     { id: "protein",  titleAr: "احتياج البروتين",titleEn: "Protein Needs",  emoji: "🥩", color: "#10B981" },
   ];
@@ -177,7 +177,7 @@ export default function HealthScreen() {
               <Pressable
                 key={tab.id}
                 onPress={() => setActiveTab(tab.id as any)}
-                style={[styles.tab, { backgroundColor: active ? "#A86DBF" : isDark ? "rgba(255,255,255,0.06)" : "rgba(168,109,191,0.08)", borderColor: active ? "#A86DBF" : "transparent" }]}
+                style={[styles.tab, { backgroundColor: active ? "#00C4A0" : isDark ? "rgba(255,255,255,0.06)" : "rgba(0,196,160,0.08)", borderColor: active ? "#00C4A0" : "transparent" }]}
               >
                 <Text style={{ fontSize: 14 }}>{tab.emoji}</Text>
                 <Text style={[styles.tabText, { color: active ? "#fff" : colors.text }]}>{t(tab.labelAr, tab.labelEn)}</Text>
@@ -193,7 +193,7 @@ export default function HealthScreen() {
           {/* Hero summary card */}
           <View style={[styles.heroCard, { backgroundColor: isDark ? colors.card : "#fff", borderColor: colors.border }]}>
             <Image source={require("@/assets/images/yoga-sunrise.png")} style={styles.heroImg} resizeMode="cover" />
-            <LinearGradient colors={["rgba(168,109,191,0.0)", "rgba(168,109,191,0.85)", "rgba(60,10,100,0.95)"]} style={StyleSheet.absoluteFill} />
+            <LinearGradient colors={["rgba(0,196,160,0.0)", "rgba(0,196,160,0.85)", "rgba(60,10,100,0.95)"]} style={StyleSheet.absoluteFill} />
             <View style={styles.heroOverlay}>
               <View style={styles.heroBadge}>
                 <Text style={styles.heroBadgeText}>📊 {t("أرقامي اليوم", "Today's Stats")}</Text>
@@ -243,7 +243,7 @@ export default function HealthScreen() {
           <View style={[styles.chartCard, { backgroundColor: isDark ? colors.card : "#fff", borderColor: colors.border }]}>
             <View style={styles.chartHeader}>
               <Pressable onPress={() => router.push("/section/fitness" as any)}>
-                <Text style={[styles.chartLink, { color: "#A86DBF" }]}>{t("التفاصيل", "Details")} ←</Text>
+                <Text style={[styles.chartLink, { color: "#00C4A0" }]}>{t("التفاصيل", "Details")} ←</Text>
               </Pressable>
               <Text style={[styles.chartTitle, { color: colors.text }]}>📈 {t("نشاطك هذا الأسبوع", "This Week's Activity")}</Text>
             </View>
@@ -255,9 +255,9 @@ export default function HealthScreen() {
                 return (
                   <View key={i} style={styles.weekBar}>
                     <View style={[styles.weekBarTrack, { backgroundColor: isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.04)" }]}>
-                      <View style={{ height: `${h}%`, backgroundColor: isToday ? "#A86DBF" : "#A86DBF80", borderRadius: 6, marginTop: "auto" }} />
+                      <View style={{ height: `${h}%`, backgroundColor: isToday ? "#00C4A0" : "#00C4A080", borderRadius: 6, marginTop: "auto" }} />
                     </View>
-                    <Text style={[styles.weekBarLbl, { color: isToday ? "#A86DBF" : colors.muted, fontFamily: isToday ? "Tajawal_700Bold" : "Tajawal_400Regular" }]}>
+                    <Text style={[styles.weekBarLbl, { color: isToday ? "#00C4A0" : colors.muted, fontFamily: isToday ? "Tajawal_700Bold" : "Tajawal_400Regular" }]}>
                       {[t("سبت","Sat"),t("أحد","Sun"),t("اثنين","Mon"),t("ثلاثاء","Tue"),t("أربعاء","Wed"),t("خميس","Thu"),t("اليوم","Today")][i]}
                     </Text>
                   </View>
@@ -271,7 +271,7 @@ export default function HealthScreen() {
             style={styles.insightBanner}
             onPress={() => router.push("/section/ai-chat" as any)}
           >
-            <LinearGradient colors={["#A86DBF", "#6D28D9"]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill} />
+            <LinearGradient colors={["#00C4A0", "#007A65"]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill} />
             <View style={styles.insightContent}>
               <View style={styles.insightAvatar}>
                 <Text style={{ fontSize: 28 }}>🤖</Text>
@@ -324,7 +324,7 @@ export default function HealthScreen() {
       {/* ═══════════════ TAB: الرعاية الطبية ═══════════════ */}
       {activeTab === "care" && (
         <View style={{ paddingTop: 4 }}>
-          <View style={[styles.bannerCard, { backgroundColor: "#A86DBF" }]}>
+          <View style={[styles.bannerCard, { backgroundColor: "#00C4A0" }]}>
             <Image source={require("@/assets/images/clinics-banner.png")} style={styles.bannerImg} resizeMode="cover" />
             <LinearGradient colors={["transparent", "rgba(60,10,100,0.9)"]} style={StyleSheet.absoluteFill} />
             <View style={styles.bannerInner}>
@@ -453,7 +453,7 @@ const styles = StyleSheet.create({
   headerRow: { flexDirection: "row-reverse", justifyContent: "space-between", alignItems: "center" },
   headerTitle: { fontSize: 30, fontFamily: "Cairo_700Bold", textAlign: "right" },
   headerSub: { fontSize: 12, fontFamily: "Tajawal_400Regular", textAlign: "right", marginTop: 4 },
-  scoreCircle: { width: 64, height: 64, borderRadius: 32, backgroundColor: "#A86DBF", alignItems: "center", justifyContent: "center", flexDirection: "row-reverse", gap: 1, shadowColor: "#A86DBF", shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.4, shadowRadius: 8, elevation: 6 },
+  scoreCircle: { width: 64, height: 64, borderRadius: 32, backgroundColor: "#00C4A0", alignItems: "center", justifyContent: "center", flexDirection: "row-reverse", gap: 1, shadowColor: "#00C4A0", shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.4, shadowRadius: 8, elevation: 6 },
   scoreNum: { color: "#fff", fontSize: 22, fontFamily: "Cairo_700Bold" },
   scorePct: { color: "rgba(255,255,255,0.85)", fontSize: 11, fontFamily: "Tajawal_500Medium", marginBottom: 4 },
 
@@ -535,6 +535,6 @@ const styles = StyleSheet.create({
   modalBtns: { flexDirection: "row-reverse", gap: 10, marginTop: 12 },
   modalCancel: { flex: 1, paddingVertical: 14, borderRadius: 14, alignItems: "center" },
   modalCancelText: { fontSize: 14, fontFamily: "Tajawal_700Bold" },
-  modalSave: { flex: 1.5, paddingVertical: 14, borderRadius: 14, alignItems: "center", backgroundColor: "#A86DBF" },
+  modalSave: { flex: 1.5, paddingVertical: 14, borderRadius: 14, alignItems: "center", backgroundColor: "#00C4A0" },
   modalSaveText: { color: "#fff", fontSize: 14, fontFamily: "Tajawal_700Bold" },
 });

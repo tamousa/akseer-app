@@ -70,12 +70,12 @@ export default function AkseerDropLogo({
     >
       <Defs>
         <LinearGradient id="dropOutline" x1="0" y1="0" x2="1" y2="1">
-          <Stop offset="0%" stopColor="#A78BFA" />
-          <Stop offset="100%" stopColor="#7C3AED" />
+          <Stop offset="0%" stopColor="#00C4A0" />
+          <Stop offset="100%" stopColor="#007A65" />
         </LinearGradient>
         <LinearGradient id="dropFill" x1="0" y1="0" x2="0" y2="1">
-          <Stop offset="0%" stopColor="#C490D8" />
-          <Stop offset="100%" stopColor="#6D28D9" />
+          <Stop offset="0%" stopColor="#00E0B8" />
+          <Stop offset="100%" stopColor="#007A65" />
         </LinearGradient>
         <ClipPath id="fillClip">
           <AnimatedRect

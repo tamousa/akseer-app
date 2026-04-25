@@ -139,7 +139,7 @@ function ShoppingItemRow({
   return (
     <View style={[shopStyles.itemRow, { borderColor: isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.05)" }]}>
       <Pressable style={shopStyles.checkArea} onPress={onToggle}>
-        <View style={[shopStyles.checkbox, { borderColor: item.checked ? "#A86DBF" : colors.muted, backgroundColor: item.checked ? "#A86DBF" : "transparent" }]}>
+        <View style={[shopStyles.checkbox, { borderColor: item.checked ? "#00C4A0" : colors.muted, backgroundColor: item.checked ? "#00C4A0" : "transparent" }]}>
           <Animated.View style={{ transform: [{ scale: scaleAnim }] }}>
             <Feather name="check" size={14} color="#fff" />
           </Animated.View>
@@ -306,9 +306,9 @@ export default function NutritionPlanScreen() {
         <Text style={[styles.headerTitle, { color: colors.text }]}>التغذية</Text>
         <Pressable
           onPress={() => setShowGoalEditor(!showGoalEditor)}
-          style={[styles.editGoalBtn, { backgroundColor: isDark ? colors.card : "#F3EBF8", borderColor: "#A86DBF40" }]}
+          style={[styles.editGoalBtn, { backgroundColor: isDark ? colors.card : "#F3EBF8", borderColor: "#00C4A040" }]}
         >
-          <Feather name="sliders" size={14} color="#A86DBF" />
+          <Feather name="sliders" size={14} color="#00C4A0" />
           <Text style={styles.editGoalText}>تعديل برنامجي</Text>
         </Pressable>
       </View>
@@ -321,7 +321,7 @@ export default function NutritionPlanScreen() {
               <Pressable
                 key={g.id}
                 onPress={() => { setSelectedGoal(g.id); setShowGoalEditor(false); }}
-                style={[styles.goalChip, { backgroundColor: selectedGoal === g.id ? "#A86DBF" : (isDark ? colors.card : "#fff"), borderColor: selectedGoal === g.id ? "#A86DBF" : colors.border }]}
+                style={[styles.goalChip, { backgroundColor: selectedGoal === g.id ? "#00C4A0" : (isDark ? colors.card : "#fff"), borderColor: selectedGoal === g.id ? "#00C4A0" : colors.border }]}
               >
                 <Text style={{ fontSize: 18 }}>{g.emoji}</Text>
                 <Text style={[styles.goalChipText, { color: selectedGoal === g.id ? "#fff" : colors.text }]}>{g.label}</Text>
@@ -457,8 +457,8 @@ export default function NutritionPlanScreen() {
                   )) : (
                     <Text style={[styles.emptyMeal, { color: colors.muted }]}>لم تضف أي طعام بعد</Text>
                   )}
-                  <Pressable style={[styles.addItemBtn, { borderColor: "#A86DBF40" }]} onPress={() => openAddFood(mealType)}>
-                    <Feather name="plus" size={16} color="#A86DBF" />
+                  <Pressable style={[styles.addItemBtn, { borderColor: "#00C4A040" }]} onPress={() => openAddFood(mealType)}>
+                    <Feather name="plus" size={16} color="#00C4A0" />
                     <Text style={styles.addItemBtnText}>إضافة طعام</Text>
                   </Pressable>
                 </View>
@@ -520,7 +520,7 @@ export default function NutritionPlanScreen() {
 
       <View style={[styles.shopSection, { backgroundColor: isDark ? colors.card : "#fff", borderColor: colors.border }]}>
         <View style={styles.shopHeader}>
-          <Pressable style={[styles.shopAddBtn, { backgroundColor: "#A86DBF" }]} onPress={() => setShowAddShopItem(!showAddShopItem)}>
+          <Pressable style={[styles.shopAddBtn, { backgroundColor: "#00C4A0" }]} onPress={() => setShowAddShopItem(!showAddShopItem)}>
             <Feather name={showAddShopItem ? "x" : "plus"} size={16} color="#fff" />
           </Pressable>
           <View>
@@ -543,7 +543,7 @@ export default function NutritionPlanScreen() {
               {SHOPPING_CATEGORIES.map((cat) => (
                 <Pressable
                   key={cat.id}
-                  style={[styles.catChip, { backgroundColor: newItemCategory === cat.id ? "#A86DBF" : (isDark ? colors.card : "#fff"), borderColor: newItemCategory === cat.id ? "#A86DBF" : colors.border }]}
+                  style={[styles.catChip, { backgroundColor: newItemCategory === cat.id ? "#00C4A0" : (isDark ? colors.card : "#fff"), borderColor: newItemCategory === cat.id ? "#00C4A0" : colors.border }]}
                   onPress={() => setNewItemCategory(cat.id)}
                 >
                   <Text style={{ fontSize: 12 }}>{cat.emoji}</Text>
@@ -551,7 +551,7 @@ export default function NutritionPlanScreen() {
                 </Pressable>
               ))}
             </ScrollView>
-            <Pressable style={[styles.shopConfirmBtn, { backgroundColor: "#A86DBF" }]} onPress={handleAddShopItem}>
+            <Pressable style={[styles.shopConfirmBtn, { backgroundColor: "#00C4A0" }]} onPress={handleAddShopItem}>
               <Feather name="plus" size={14} color="#fff" />
               <Text style={styles.shopConfirmTxt}>إضافة للقائمة</Text>
             </Pressable>
@@ -562,11 +562,11 @@ export default function NutritionPlanScreen() {
           {[{ id: "all", label: "الكل", emoji: "📋" }, { id: "checked", label: "تم شراؤه", emoji: "✅" }, ...SHOPPING_CATEGORIES].map((cat) => (
             <Pressable
               key={cat.id}
-              style={[styles.shopFilterChip, { backgroundColor: shopCategoryFilter === cat.id ? "#A86DBF15" : "transparent", borderColor: shopCategoryFilter === cat.id ? "#A86DBF" : colors.border }]}
+              style={[styles.shopFilterChip, { backgroundColor: shopCategoryFilter === cat.id ? "#00C4A015" : "transparent", borderColor: shopCategoryFilter === cat.id ? "#00C4A0" : colors.border }]}
               onPress={() => setShopCategoryFilter(cat.id)}
             >
               <Text style={{ fontSize: 12 }}>{cat.emoji}</Text>
-              <Text style={[styles.shopFilterText, { color: shopCategoryFilter === cat.id ? "#A86DBF" : colors.muted }]}>{cat.label}</Text>
+              <Text style={[styles.shopFilterText, { color: shopCategoryFilter === cat.id ? "#00C4A0" : colors.muted }]}>{cat.label}</Text>
             </Pressable>
           ))}
         </ScrollView>
@@ -701,7 +701,7 @@ export default function NutritionPlanScreen() {
             style={[styles.specCard, { backgroundColor: isDark ? colors.card : "#fff", borderColor: colors.border }]}
             onPress={() => router.push(`/providers/detail/${spec.id}?type=specialists` as any)}
           >
-            <View style={[styles.specAvatar, { backgroundColor: "#A86DBF15" }]}>
+            <View style={[styles.specAvatar, { backgroundColor: "#00C4A015" }]}>
               <Text style={{ fontSize: 28 }}>👨‍⚕️</Text>
             </View>
             <View style={{ flex: 1 }}>
@@ -718,7 +718,7 @@ export default function NutritionPlanScreen() {
               <View style={styles.specFooter}>
                 <Feather name="star" size={12} color="#F5D26A" />
                 <Text style={[{ color: colors.muted, fontSize: 12, fontFamily: "Tajawal_500Medium" }]}>{spec.rating}</Text>
-                <Text style={[styles.specPrice, { color: "#A86DBF" }]}>{spec.price} ر.س</Text>
+                <Text style={[styles.specPrice, { color: "#00C4A0" }]}>{spec.price} ر.س</Text>
                 <Pressable style={styles.specBookBtn} onPress={() => router.push(`/providers/detail/${spec.id}?type=specialists` as any)}>
                   <Text style={{ color: "#fff", fontSize: 12, fontFamily: "Tajawal_700Bold" }}>احجز</Text>
                 </Pressable>
@@ -748,7 +748,7 @@ export default function NutritionPlanScreen() {
               ]).map((tab) => (
                 <Pressable
                   key={tab.key}
-                  style={[styles.tab, addFoodTab === tab.key && { backgroundColor: "#A86DBF" }]}
+                  style={[styles.tab, addFoodTab === tab.key && { backgroundColor: "#00C4A0" }]}
                   onPress={() => { setAddFoodTab(tab.key); setSelectedFood(null); setBarcodeResult(null); }}
                 >
                   <Text style={[styles.tabText, { color: addFoodTab === tab.key ? "#fff" : colors.muted }]}>{tab.label}</Text>
@@ -779,7 +779,7 @@ export default function NutritionPlanScreen() {
                 <Text style={[styles.qtyLabel, { color: colors.text }]}>عدد الحصص</Text>
                 <View style={styles.qtyRow}>
                   {["0.5", "1", "1.5", "2"].map((q) => (
-                    <Pressable key={q} style={[styles.qtyBtn, servingQty === q && { backgroundColor: "#A86DBF" }]} onPress={() => setServingQty(q)}>
+                    <Pressable key={q} style={[styles.qtyBtn, servingQty === q && { backgroundColor: "#00C4A0" }]} onPress={() => setServingQty(q)}>
                       <Text style={[styles.qtyBtnText, { color: servingQty === q ? "#fff" : colors.text }]}>{q}</Text>
                     </Pressable>
                   ))}
@@ -790,7 +790,7 @@ export default function NutritionPlanScreen() {
                   />
                 </View>
                 <View style={styles.modalBtns}>
-                  <Pressable style={[styles.modalBtn, { backgroundColor: "#A86DBF" }]} onPress={() => handleAddFood(selectedFood, parseFloat(servingQty) || 1)}>
+                  <Pressable style={[styles.modalBtn, { backgroundColor: "#00C4A0" }]} onPress={() => handleAddFood(selectedFood, parseFloat(servingQty) || 1)}>
                     <Feather name="plus" size={16} color="#fff" />
                     <Text style={{ color: "#fff", fontFamily: "Tajawal_700Bold", marginRight: 6 }}>إضافة</Text>
                   </Pressable>
@@ -816,7 +816,7 @@ export default function NutritionPlanScreen() {
                 </View>
                 <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ flexDirection: "row-reverse", gap: 6, paddingVertical: 8 }}>
                   {FOOD_CATEGORIES.map((cat) => (
-                    <Pressable key={cat.id} style={[styles.catChip, searchCategory === cat.id && { backgroundColor: "#A86DBF" }]} onPress={() => setSearchCategory(cat.id)}>
+                    <Pressable key={cat.id} style={[styles.catChip, searchCategory === cat.id && { backgroundColor: "#00C4A0" }]} onPress={() => setSearchCategory(cat.id)}>
                       <Text style={{ fontSize: 12 }}>{cat.emoji}</Text>
                       <Text style={[styles.catChipText, { color: searchCategory === cat.id ? "#fff" : colors.muted }]}>{cat.label}</Text>
                     </Pressable>
@@ -835,7 +835,7 @@ export default function NutritionPlanScreen() {
                         <Text style={{ color: "#F59E0B", fontSize: 10, fontFamily: "Tajawal_700Bold" }}>ك{food.carbs}</Text>
                         <Text style={{ color: "#22C55E", fontSize: 10, fontFamily: "Tajawal_700Bold" }}>د{food.fat}</Text>
                       </View>
-                      <Feather name="plus-circle" size={22} color="#A86DBF" />
+                      <Feather name="plus-circle" size={22} color="#00C4A0" />
                     </Pressable>
                   ))}
                   {filteredFoods.length === 0 && (
@@ -862,7 +862,7 @@ export default function NutritionPlanScreen() {
                     <Text style={[styles.manualLabel, { color: colors.text }]}>الوحدة</Text>
                     <View style={styles.unitRow}>
                       {["جم", "مل", "حبة", "كوب"].map((u) => (
-                        <Pressable key={u} style={[styles.unitBtn, manualUnit === u && { backgroundColor: "#A86DBF" }]} onPress={() => setManualUnit(u)}>
+                        <Pressable key={u} style={[styles.unitBtn, manualUnit === u && { backgroundColor: "#00C4A0" }]} onPress={() => setManualUnit(u)}>
                           <Text style={[styles.unitBtnText, { color: manualUnit === u ? "#fff" : colors.muted }]}>{u}</Text>
                         </Pressable>
                       ))}
@@ -884,7 +884,7 @@ export default function NutritionPlanScreen() {
                   ))}
                 </View>
                 <View style={[styles.modalBtns, { marginTop: 16 }]}>
-                  <Pressable style={[styles.modalBtn, { backgroundColor: "#A86DBF" }]} onPress={handleManualAdd}>
+                  <Pressable style={[styles.modalBtn, { backgroundColor: "#00C4A0" }]} onPress={handleManualAdd}>
                     <Feather name="plus" size={16} color="#fff" />
                     <Text style={{ color: "#fff", fontFamily: "Tajawal_700Bold", marginRight: 6 }}>إضافة</Text>
                   </Pressable>
@@ -908,7 +908,7 @@ export default function NutritionPlanScreen() {
                     value={barcodeInput} onChangeText={setBarcodeInput} keyboardType="number-pad" textAlign="center"
                   />
                 </View>
-                <Pressable style={[styles.scanBtn, { backgroundColor: "#A86DBF" }]} onPress={handleBarcodeScan}>
+                <Pressable style={[styles.scanBtn, { backgroundColor: "#00C4A0" }]} onPress={handleBarcodeScan}>
                   <Feather name="search" size={16} color="#fff" />
                   <Text style={styles.scanBtnText}>بحث</Text>
                 </Pressable>
@@ -916,13 +916,13 @@ export default function NutritionPlanScreen() {
                   <Text style={[styles.barcodeHintTitle, { color: colors.text }]}>💡 باركودات للتجربة:</Text>
                   {Object.entries(BARCODE_PRODUCTS).slice(0, 3).map(([code, prod]) => (
                     <Pressable key={code} onPress={() => setBarcodeInput(code)} style={styles.barcodeHintRow}>
-                      <Text style={[styles.barcodeHintCode, { color: "#A86DBF" }]}>{code}</Text>
+                      <Text style={[styles.barcodeHintCode, { color: "#00C4A0" }]}>{code}</Text>
                       <Text style={[styles.barcodeHintName, { color: colors.muted }]}>{prod.name}</Text>
                     </Pressable>
                   ))}
                 </View>
                 {barcodeResult && (
-                  <View style={[styles.barcodeResultCard, { backgroundColor: isDark ? colors.card : "#fff", borderColor: "#A86DBF40" }]}>
+                  <View style={[styles.barcodeResultCard, { backgroundColor: isDark ? colors.card : "#fff", borderColor: "#00C4A040" }]}>
                     <Text style={[styles.barcodeResultName, { color: colors.text }]}>{barcodeResult.name}</Text>
                     {barcodeResult.brand && <Text style={[styles.barcodeResultBrand, { color: colors.muted }]}>{barcodeResult.brand}</Text>}
                     <View style={styles.barcodeResultMacros}>
@@ -931,7 +931,7 @@ export default function NutritionPlanScreen() {
                       <Text style={{ color: "#F59E0B", fontSize: 12, fontFamily: "Tajawal_700Bold" }}>ك{barcodeResult.carbs}</Text>
                       <Text style={{ color: "#22C55E", fontSize: 12, fontFamily: "Tajawal_700Bold" }}>د{barcodeResult.fat}</Text>
                     </View>
-                    <Pressable style={[styles.modalBtn, { backgroundColor: "#A86DBF", marginTop: 12 }]} onPress={() => handleAddFood(barcodeResult, 1)}>
+                    <Pressable style={[styles.modalBtn, { backgroundColor: "#00C4A0", marginTop: 12 }]} onPress={() => handleAddFood(barcodeResult, 1)}>
                       <Feather name="plus" size={16} color="#fff" />
                       <Text style={{ color: "#fff", fontFamily: "Tajawal_700Bold", marginRight: 6 }}>إضافة</Text>
                     </Pressable>
@@ -961,7 +961,7 @@ const styles = StyleSheet.create({
   headerTitle: { fontSize: 22, fontFamily: "Cairo_700Bold", flex: 1, textAlign: "center" },
   backBtn: { width: 40, height: 40, alignItems: "center", justifyContent: "center" },
   editGoalBtn: { flexDirection: "row-reverse", alignItems: "center", gap: 5, paddingHorizontal: 12, paddingVertical: 8, borderRadius: 20, borderWidth: 1 },
-  editGoalText: { fontSize: 12, fontFamily: "Tajawal_700Bold", color: "#A86DBF" },
+  editGoalText: { fontSize: 12, fontFamily: "Tajawal_700Bold", color: "#00C4A0" },
 
   goalEditorSection: { paddingHorizontal: 20, marginBottom: 12 },
   sectionTitle: { fontSize: 17, fontFamily: "Cairo_700Bold", textAlign: "right", paddingHorizontal: 20, marginBottom: 12 },
@@ -1022,12 +1022,12 @@ const styles = StyleSheet.create({
   removeBtn: { padding: 6 },
   emptyMeal: { textAlign: "right", fontSize: 13, fontFamily: "Tajawal_400Regular", paddingVertical: 8 },
   addItemBtn: { flexDirection: "row-reverse", alignItems: "center", justifyContent: "center", gap: 6, borderWidth: 1, borderStyle: "dashed", borderRadius: 12, paddingVertical: 10, marginTop: 8 },
-  addItemBtnText: { color: "#A86DBF", fontSize: 13, fontFamily: "Tajawal_700Bold" },
+  addItemBtnText: { color: "#00C4A0", fontSize: 13, fontFamily: "Tajawal_700Bold" },
 
   proSection: { marginHorizontal: 20, marginBottom: 16, borderRadius: 24, borderWidth: 1, overflow: "hidden" },
   proCard: { padding: 20 },
   proHeader: { flexDirection: "row-reverse", alignItems: "center", gap: 10, marginBottom: 16 },
-  proBadge: { backgroundColor: "#A86DBF", borderRadius: 8, paddingHorizontal: 8, paddingVertical: 3 },
+  proBadge: { backgroundColor: "#00C4A0", borderRadius: 8, paddingHorizontal: 8, paddingVertical: 3 },
   proBadgeText: { color: "#fff", fontSize: 11, fontFamily: "Tajawal_700Bold" },
   proTitle: { fontSize: 17, fontFamily: "Cairo_700Bold" },
   proPreview: { gap: 10, marginBottom: 0 },
@@ -1042,7 +1042,7 @@ const styles = StyleSheet.create({
   proFeaturesList: { alignSelf: "stretch", gap: 8, paddingHorizontal: 16, marginTop: 4 },
   proFeatureRow: { flexDirection: "row-reverse", alignItems: "center", gap: 10 },
   proFeatureLabel: { fontSize: 13, fontFamily: "Tajawal_500Medium", flex: 1, textAlign: "right" },
-  proSubscribeBtn: { backgroundColor: "#A86DBF", borderRadius: 16, paddingHorizontal: 28, paddingVertical: 14, marginTop: 8 },
+  proSubscribeBtn: { backgroundColor: "#00C4A0", borderRadius: 16, paddingHorizontal: 28, paddingVertical: 14, marginTop: 8 },
   proSubscribeTxt: { color: "#fff", fontSize: 15, fontFamily: "Tajawal_700Bold" },
 
   shopSection: { marginHorizontal: 20, marginBottom: 16, borderRadius: 20, borderWidth: 1, padding: 18 },
@@ -1104,7 +1104,7 @@ const styles = StyleSheet.create({
   specTitle: { fontSize: 12, fontFamily: "Tajawal_400Regular", textAlign: "right", marginBottom: 6 },
   specFooter: { flexDirection: "row-reverse", alignItems: "center", gap: 6 },
   specPrice: { fontFamily: "Tajawal_700Bold", fontSize: 13, marginRight: "auto" as any },
-  specBookBtn: { backgroundColor: "#A86DBF", borderRadius: 10, paddingHorizontal: 14, paddingVertical: 6 },
+  specBookBtn: { backgroundColor: "#00C4A0", borderRadius: 10, paddingHorizontal: 14, paddingVertical: 6 },
 
   modalOverlay: { flex: 1, backgroundColor: "rgba(0,0,0,0.6)", justifyContent: "flex-end" },
   modalContent: { borderTopLeftRadius: 28, borderTopRightRadius: 28, padding: 20, maxHeight: "90%" },
@@ -1124,7 +1124,7 @@ const styles = StyleSheet.create({
   foodDetailMacroLabel: { fontSize: 10, fontFamily: "Tajawal_400Regular" },
   qtyLabel: { fontSize: 14, fontFamily: "Tajawal_700Bold", textAlign: "right" },
   qtyRow: { flexDirection: "row-reverse", gap: 8, alignItems: "center" },
-  qtyBtn: { width: 50, height: 40, borderRadius: 10, alignItems: "center", justifyContent: "center", backgroundColor: "rgba(168,109,191,0.1)" },
+  qtyBtn: { width: 50, height: 40, borderRadius: 10, alignItems: "center", justifyContent: "center", backgroundColor: "rgba(0,196,160,0.1)" },
   qtyBtnText: { fontSize: 14, fontFamily: "Tajawal_700Bold" },
   qtyInput: { width: 60, height: 40, borderRadius: 10, borderWidth: 1, textAlign: "center", fontSize: 14 },
   modalBtns: { flexDirection: "row-reverse", gap: 10 },
@@ -1132,7 +1132,7 @@ const styles = StyleSheet.create({
   searchTab: { flex: 1 },
   searchBar: { flexDirection: "row-reverse", alignItems: "center", gap: 10, borderRadius: 14, borderWidth: 1, paddingHorizontal: 14, paddingVertical: 10, marginBottom: 4 },
   searchInput: { flex: 1, fontSize: 14, fontFamily: "Tajawal_400Regular" },
-  catChip: { flexDirection: "row-reverse", alignItems: "center", gap: 4, paddingHorizontal: 10, paddingVertical: 6, borderRadius: 20, borderWidth: 1, borderColor: "rgba(168,109,191,0.3)" },
+  catChip: { flexDirection: "row-reverse", alignItems: "center", gap: 4, paddingHorizontal: 10, paddingVertical: 6, borderRadius: 20, borderWidth: 1, borderColor: "rgba(0,196,160,0.3)" },
   catChipText: { fontSize: 12, fontFamily: "Tajawal_700Bold" },
   foodList: { maxHeight: 280 },
   foodRow: { flexDirection: "row-reverse", alignItems: "center", gap: 8, paddingVertical: 10, borderBottomWidth: 1 },
@@ -1142,14 +1142,14 @@ const styles = StyleSheet.create({
   foodRowMicro: { flexDirection: "row-reverse", gap: 4 },
   noResults: { alignItems: "center", paddingVertical: 24, gap: 8 },
   noResultsText: { fontSize: 15, fontFamily: "Tajawal_700Bold" },
-  noResultsBtn: { backgroundColor: "#A86DBF", borderRadius: 12, paddingHorizontal: 20, paddingVertical: 10 },
+  noResultsBtn: { backgroundColor: "#00C4A0", borderRadius: 12, paddingHorizontal: 20, paddingVertical: 10 },
   noResultsBtnText: { color: "#fff", fontSize: 13, fontFamily: "Tajawal_700Bold" },
   manualTab: { maxHeight: 380 },
   manualLabel: { fontSize: 13, fontFamily: "Tajawal_700Bold", textAlign: "right", marginBottom: 6 },
   manualInput: { borderRadius: 12, borderWidth: 1, paddingHorizontal: 14, paddingVertical: 10, fontSize: 14, marginBottom: 8 },
   manualRow: { flexDirection: "row-reverse", gap: 8 },
   unitRow: { flexDirection: "row-reverse", gap: 4, flexWrap: "wrap" },
-  unitBtn: { paddingHorizontal: 8, paddingVertical: 6, borderRadius: 8, backgroundColor: "rgba(168,109,191,0.1)" },
+  unitBtn: { paddingHorizontal: 8, paddingVertical: 6, borderRadius: 8, backgroundColor: "rgba(0,196,160,0.1)" },
   unitBtnText: { fontSize: 11, fontFamily: "Tajawal_700Bold" },
   barcodeTab: { gap: 10 },
   barcodeBox: { alignItems: "center", gap: 8, borderRadius: 16, padding: 24 },
